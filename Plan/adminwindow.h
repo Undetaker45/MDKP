@@ -43,13 +43,15 @@ private:
     ChangeUser* changeUser;
     QStackedWidget* stackedWidgetUserManagement;
     Database* db;
-
+    void fillProfile(const User& user);
     void ShowViewUsers();
     void ShowChangeUser();
     void RefreshDataView();
     void ClearDataRegistrationUserWidget();
     void CheckingFieldsEmpty();
     void SetValidationOnCreateUsers();
+signals:
+    void signalLogoutButtonClicked();
 public slots:
     void slotBackButtonChangeUserWidgetCliked();
 private slots:

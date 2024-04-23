@@ -142,14 +142,52 @@ User Database::GetUserById(int id){
     QSqlQuery query;
     QString str_query;
     str_query = QString("SELECT * "
-                            "FROM User "
-                            "WHERE ID = '%1';").arg(id);
-
+                        "FROM User "
+                            "WHERE ID = %1;").arg(id);
     bool queryResult = query.exec(str_query);
 
     if(!queryResult){
         qDebug() << query.lastError();
         return User();
+    }
+    query.next();
+    QString post = query.value("Role").toString();
+    int Role = User::convertRoleToInt(post);
+    if(Role == 3){
+        str_query = QString("SELECT * "
+                            "FROM User "
+                            "join Teacher on Teacher.ID_User = User.ID "
+                            "WHERE User.ID = %1;").arg(id);
+        queryResult = query.exec(str_query);
+
+            if(!queryResult){
+                qDebug() << query.lastError();
+                return User();
+            }
+    }
+    else if(Role == 4){
+        str_query = QString("SELECT * "
+                            "FROM User "
+                            "join Listener on Listener.ID_User = User.ID "
+                            "join Groups on Groups.ID = Listener.ID_Group "
+                            "WHERE User.ID = %1;").arg(id);
+        queryResult = query.exec(str_query);
+
+            if(!queryResult){
+                qDebug() << query.lastError();
+                return User();
+            }
+    }
+    else if(Role == 2 || Role == 1){
+
+        str_query = QString("SELECT * "
+                            "FROM User "
+                            "WHERE ID = %1;").arg(id);
+        bool queryResult = query.exec(str_query);
+        if(!queryResult){
+            qDebug() << query.lastError();
+                    return User();
+        }
     }
 
 
@@ -197,7 +235,7 @@ int Database::SearchSpecialization(QString Specialization){
     return query.value("ID").toInt();
 }
 
-int Database::SearchGroup(QString Group, QString ID_Specialization){
+int Database::SearchGroup(QString Group, int ID_Specialization){
     QSqlQuery query;
     query.prepare("SELECT * "
                   "FROM Groups "
@@ -234,14 +272,12 @@ int Database::AddSpecialization(QString Specialization){
     int ID_Specialization = SearchSpecialization(Specialization);
     return ID_Specialization;
 }
-int Database::AddGroup(QString Group, QString ID_Specialization){
+int Database::AddGroup(QString Group, int ID_Specialization){
     QSqlQuery query;
     query.prepare("INSERT INTO Groups (Name, ID_Specialization) VALUES"
-                  "(:name, id_specialization)");
+                  "(:name, :id_specialization)");
     query.bindValue(":name", Group);
     query.bindValue(":id_specialization", ID_Specialization);
-
-
     bool queryResult = query.exec();;
 
     if(!queryResult){
@@ -267,10 +303,10 @@ void Database::RegisterUser(QString Surname, QString Name, QString MiddleName, Q
     int Post = User::convertRoleToInt(Role);
     int ID_Group;
     if (Group != ""){
-        ID_Group = SearchGroup(Group,  QString::number(ID_Specialization));
+        ID_Group = SearchGroup(Group,  ID_Specialization);
 
         if (ID_Group == 0){
-            ID_Group = AddGroup(Group, QString::number(ID_Specialization));
+            ID_Group = AddGroup(Group, ID_Specialization);
         }
     }
 
@@ -298,7 +334,6 @@ void Database::RegisterUser(QString Surname, QString Name, QString MiddleName, Q
     query.bindValue(":middlename", MiddleName);
     query.bindValue(":role", Role);
     queryResult = query.exec();
-
     if(!queryResult){
         qDebug() << query.lastError();
         throw std::runtime_error("Вставка данных не выполнена.");
@@ -312,12 +347,15 @@ void Database::RegisterUser(QString Surname, QString Name, QString MiddleName, Q
         break;
     case (3):
 //  Teacher
-        query.prepare("SELECT ID as ID "
-                      "FROM User "
-                      "WHERE Login = :login;");
-        query.bindValue(":login",Login);
+        query.exec("SELECT last_insert_rowid()");
+        if (query.next()) {
+            ID_User = query.value(0).toInt();
+            qDebug() << "ID последней вставленной записи:" << ID_User;
+        }
+        else {
+            qDebug() << "Ошибка: last_insert_rowid() вернула 0";
+        }
 
-        ID_User = query.value("ID").toInt();
         query.prepare("SELECT ID "
                       "FROM Teacher "
                       "WHERE PhoneNumber = :phone;");
@@ -343,13 +381,14 @@ void Database::RegisterUser(QString Surname, QString Name, QString MiddleName, Q
         break;
     case (4):
 //  Listener
-        query.prepare("SELECT ID as ID "
-                      "FROM User "
-                      "WHERE Login = :login;");
-        query.bindValue(":login",Login);
-
-        ID_User = query.value("ID").toInt();
-
+        query.exec("SELECT last_insert_rowid()");
+        if (query.next()) {
+            ID_User = query.value(0).toInt();
+            qDebug() << "ID последней вставленной записи:" << ID_User;
+        }
+        else {
+            qDebug() << "Ошибка: last_insert_rowid() вернула 0";
+        }
         query.prepare("SELECT COUNT(*) as cGroup "
                             "FROM Listener "
                             "WHERE ID_Group = :id_group");
@@ -446,20 +485,21 @@ void Database::RefreshUserById(User user){
     QSqlQuery query;
     bool queryResult;
     query.prepare("UPDATE User "
-                  "SET  Flag = :flag,"
-                  "     Login = :login,"
-                  "     Password = :password,"
-                  "     Name = :name,"
-                  "     Surname = :surname,"
-                  "     MidleName = :middlename,"
-                  "     Role = :role"
-                  "Where ID =:id;");
+                  "SET  Flag = :flag, "
+                  "     Login = :login, "
+                  "     Password = :password, "
+                  "     Name = :name, "
+                  "     Surname = :surname, "
+                  "     MiddleName = :middlename, "
+                  "     Role = :role "
+                  "WHERE ID = :id;");
+    query.bindValue(":flag", user.GetIsWork());
     query.bindValue(":login", user.GetLogin());
     query.bindValue(":password", user.GetPassword());
     query.bindValue(":name", user.GetName());
     query.bindValue(":surname", user.GetSurname());
     query.bindValue(":middlename", user.GetMiddleName());
-    query.bindValue(":role", user.GetRole());
+    query.bindValue(":role", User::convertRole(user.GetRole()));
     query.bindValue(":id", user.GetId());
     queryResult = query.exec();
     if(!queryResult){
@@ -477,14 +517,14 @@ void Database::RefreshUserById(User user){
     case (3):
 //  Teacher
         query.prepare("UPDATE Teacher "
-                      "SET  ID_Specialization = :id_specialization,"
-                      "     PhoneNumber = :phonenumber,"
-                      "     WorkExperience = :workexperience"
-                      "Where ID_User = :id;");
+                      "SET  ID_Specialization = :id_specialization, "
+                      "     PhoneNumber = :phonenumber, "
+                      "     WorkExperience = :workexperience "
+                      "WHERE ID_User = :id_user;");
         query.bindValue(":id_specialization", user.GetIdSpecialization());
         query.bindValue(":phonenumber", user.GetPhone());
         query.bindValue(":workexperience", user.GetWorkTime());
-        query.bindValue(":id", user.GetId());
+        query.bindValue(":id_user", user.GetId());
         queryResult = query.exec();
 
         if(!queryResult){
@@ -495,10 +535,9 @@ void Database::RefreshUserById(User user){
     case (4):
 //  Listener
         query.prepare("UPDATE Listener "
-                      "SET  ID_Specialization = :id_specialization,"
-                      "     Department = :department,"
-                      "     ID_Group = :id_grout"
-                      "Where ID_User = :id;");
+                      "SET Department = :department, "
+                      "    ID_Group = :id_group "
+                      "WHERE ID_User = :id;");
         query.bindValue(":id_specialization", user.GetIdSpecialization());
         query.bindValue(":department", user.GetDepartment());
         query.bindValue(":id_group", user.GetIdGroup());

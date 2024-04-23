@@ -35,7 +35,8 @@ void ChangeUser::setUserToChangeWidget(User user){
     ui->Role->setCurrentText(postStr);
     QString statusStr = User::convertStatusToString(user.GetIsWork());
     ui->Status->setCurrentText(statusStr);
-    ui->Otdelenie->setCurrentText(user.GetDepartment());
+    QString DepartmentStr = User::convertDepartmentToString(user.GetDepartment());
+    ui->Otdelenie->setCurrentText(DepartmentStr);
 }
 
 void ChangeUser::slotConfirmButtonClicked(){
@@ -56,6 +57,7 @@ void ChangeUser::slotConfirmButtonClicked(){
     changeUser.SetIsWork(status);
     changeUser.SetLogin(ui->Login->text());
     changeUser.SetPassword(ui->Password->text());
-    changeUser.SetDepartment(ui->Otdelenie->currentText());
+    int Department = User::convertDepartmentToInt(ui->Otdelenie->currentText());
+    changeUser.SetDepartment(Department);
     emit signalRefreshUser(changeUser);
 }

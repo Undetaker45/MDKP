@@ -21,9 +21,9 @@ public:
     User GetUserById(int id);
     User CheckLogin(const QString login, const QString password);
     int SearchSpecialization(QString Specialization);
-    int SearchGroup(QString Group, QString ID_Specialization);
+    int SearchGroup(QString Group, int ID_Specialization);
     int AddSpecialization(QString Specialization);
-    int AddGroup(QString Group, QString ID_Specialization);
+    int AddGroup(QString Group, int ID_Specialization);
     void RegisterUser(QString Surname, QString Name, QString MidleName, QString Specialization, QString Phone, QString WorkTime, QString Department, QString Group, QString Login, QString Password, QString Role);
     void RefreshUserById(User user);
     void AddLesson(Lesson lesson);

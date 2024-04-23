@@ -74,6 +74,16 @@
          <string>Выберите отделение</string>
         </property>
        </item>
+       <item>
+        <property name="text">
+         <string>Очное</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Заочное</string>
+        </property>
+       </item>
       </widget>
      </item>
      <item row="8" column="3">
@@ -189,7 +199,7 @@
        </item>
        <item>
         <property name="text">
-         <string>Учитель</string>
+         <string>Преподаватель</string>
         </property>
        </item>
        <item>

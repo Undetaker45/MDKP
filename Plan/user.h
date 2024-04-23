@@ -7,9 +7,9 @@
 class User
 {
 public:
-    User(int id, int role, int isWork, QString Surname, QString Name, QString MiddleName, int ID_Specialization, QString phone, int WorkTime, QString Department, int ID_Group);
-    User(int id, int isWork, QString SurnName, QString Name, QString MiddleName, int ID_Specialization, QString Phone, int WorkTime, QString Department, int ID_Group, QString Login, QString Password, QString Role);
-    User(int id, int role, int isWork, QString SurnName, QString Name, QString MiddleName, int ID_Specialization, QString phone, int WorkTime, QString Department, int ID_Group, QString Login, QString Password);
+    User(int id, int role, int isWork, QString Surname, QString Name, QString MiddleName, int ID_Specialization, QString phone, int WorkTime, int Department, int ID_Group);
+    User(int id, int isWork, QString SurnName, QString Name, QString MiddleName, int ID_Specialization, QString Phone, int WorkTime, int Department, int ID_Group, QString Login, QString Password, QString Role);
+    User(int id, int role, int isWork, QString SurnName, QString Name, QString MiddleName, int ID_Specialization, QString phone, int WorkTime, int Department, int ID_Group, QString Login, QString Password);
     User();
     int getRole() const;
 private:
@@ -22,7 +22,7 @@ private:
     int id_specialization;
     QString phone;
     int worktime;
-    QString department;
+    int department;
     int id_group;
     QString login;
     QString password;
@@ -38,7 +38,7 @@ public:
     void SetSpecialization(int ID_Specialization);
     void SetRole(int Role);
     void SetWorkTime(int WorkTime);
-    void SetDepartment(QString Department);
+    void SetDepartment(int Department);
     void SetGroup(int ID_Group);
     void SetPassword(QString Password);
     void SetLogin(QString Login);
@@ -52,7 +52,7 @@ public:
     int GetIdSpecialization() const;
     int GetRole() const;
     int GetWorkTime() const;
-    QString GetDepartment() const;
+    int GetDepartment() const;
     int GetIdGroup() const;
     QString GetPassword() const;
     QString GetLogin() const;
@@ -61,6 +61,8 @@ public:
     static int convertRoleToInt(QString role);
     static QString convertStatusToString(int status);
     static int convertStatusToInt(QString status);
+    static QString convertDepartmentToString(int Department);
+    static int convertDepartmentToInt(QString Department);
     static QString convertIdSpecializationToString(int ID_Specialization);
     static QString convertIdGroupToString(int ID_Group);
     static int convertSpecializationToInt(QString Specialization);

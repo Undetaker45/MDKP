@@ -14,6 +14,7 @@
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QFormLayout>
 #include <QtWidgets/QGridLayout>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
@@ -31,7 +32,7 @@ class Ui_AdminWindow
 {
 public:
     QWidget *centralwidget;
-    QVBoxLayout *verticalLayout;
+    QHBoxLayout *horizontalLayout;
     QFormLayout *formLayout_3;
     QTabWidget *tabWidget;
     QWidget *ProfileTab;
@@ -50,8 +51,9 @@ public:
     QSpacerItem *verticalSpacer_8;
     QVBoxLayout *verticalLayout_4;
     QSpacerItem *verticalSpacer_6;
-    QPushButton *VihodBtn;
+    QPushButton *ExitBtn;
     QWidget *deleteTab;
+    QHBoxLayout *horizontalLayout_2;
     QStackedWidget *stackedWidgetUserManagement;
     QWidget *page;
     QWidget *page_2;
@@ -103,8 +105,8 @@ public:
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(centralwidget->sizePolicy().hasHeightForWidth());
         centralwidget->setSizePolicy(sizePolicy);
-        verticalLayout = new QVBoxLayout(centralwidget);
-        verticalLayout->setObjectName("verticalLayout");
+        horizontalLayout = new QHBoxLayout(centralwidget);
+        horizontalLayout->setObjectName("horizontalLayout");
         formLayout_3 = new QFormLayout();
         formLayout_3->setObjectName("formLayout_3");
         tabWidget = new QTabWidget(centralwidget);
@@ -113,6 +115,7 @@ public:
         font.setPointSize(12);
         tabWidget->setFont(font);
         tabWidget->setToolTipDuration(-1);
+        tabWidget->setTabBarAutoHide(false);
         ProfileTab = new QWidget();
         ProfileTab->setObjectName("ProfileTab");
         gridLayout_2 = new QGridLayout(ProfileTab);
@@ -175,10 +178,10 @@ public:
 
         verticalLayout_4->addItem(verticalSpacer_6);
 
-        VihodBtn = new QPushButton(ProfileTab);
-        VihodBtn->setObjectName("VihodBtn");
+        ExitBtn = new QPushButton(ProfileTab);
+        ExitBtn->setObjectName("ExitBtn");
 
-        verticalLayout_4->addWidget(VihodBtn);
+        verticalLayout_4->addWidget(ExitBtn);
 
 
         gridLayout_3->addLayout(verticalLayout_4, 8, 3, 1, 1);
@@ -189,15 +192,19 @@ public:
         tabWidget->addTab(ProfileTab, QString());
         deleteTab = new QWidget();
         deleteTab->setObjectName("deleteTab");
+        horizontalLayout_2 = new QHBoxLayout(deleteTab);
+        horizontalLayout_2->setObjectName("horizontalLayout_2");
         stackedWidgetUserManagement = new QStackedWidget(deleteTab);
         stackedWidgetUserManagement->setObjectName("stackedWidgetUserManagement");
-        stackedWidgetUserManagement->setGeometry(QRect(9, 9, 941, 571));
         page = new QWidget();
         page->setObjectName("page");
         stackedWidgetUserManagement->addWidget(page);
         page_2 = new QWidget();
         page_2->setObjectName("page_2");
         stackedWidgetUserManagement->addWidget(page_2);
+
+        horizontalLayout_2->addWidget(stackedWidgetUserManagement);
+
         tabWidget->addTab(deleteTab, QString());
         AddUserTab = new QWidget();
         AddUserTab->setObjectName("AddUserTab");
@@ -302,6 +309,7 @@ public:
         RoleBox->addItem(QString());
         RoleBox->addItem(QString());
         RoleBox->addItem(QString());
+        RoleBox->addItem(QString());
         RoleBox->setObjectName("RoleBox");
 
         gridLayout->addWidget(RoleBox, 13, 3, 1, 1);
@@ -356,6 +364,8 @@ public:
 
         DepartmentBox = new QComboBox(AddUserTab);
         DepartmentBox->addItem(QString());
+        DepartmentBox->addItem(QString());
+        DepartmentBox->addItem(QString());
         DepartmentBox->setObjectName("DepartmentBox");
 
         gridLayout->addWidget(DepartmentBox, 10, 3, 1, 1);
@@ -368,7 +378,7 @@ public:
         formLayout_3->setWidget(0, QFormLayout::FieldRole, tabWidget);
 
 
-        verticalLayout->addLayout(formLayout_3);
+        horizontalLayout->addLayout(formLayout_3);
 
         AdminWindow->setCentralWidget(centralwidget);
         statusbar = new QStatusBar(AdminWindow);
@@ -377,7 +387,7 @@ public:
 
         retranslateUi(AdminWindow);
 
-        tabWidget->setCurrentIndex(2);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(AdminWindow);
@@ -389,9 +399,9 @@ public:
         label->setText(QCoreApplication::translate("AdminWindow", "\320\230\320\274\321\217", nullptr));
         label_2->setText(QCoreApplication::translate("AdminWindow", "\320\244\320\260\320\274\320\270\320\273\320\270\321\217", nullptr));
         label_3->setText(QCoreApplication::translate("AdminWindow", "\320\236\321\202\321\207\320\265\321\201\321\202\320\262\320\276", nullptr));
-        VihodBtn->setText(QCoreApplication::translate("AdminWindow", "\320\222\321\213\321\205\320\276\320\264", nullptr));
+        ExitBtn->setText(QCoreApplication::translate("AdminWindow", "\320\222\321\213\321\205\320\276\320\264", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(ProfileTab), QCoreApplication::translate("AdminWindow", "\320\237\321\200\320\276\321\204\320\270\320\273\321\214", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(deleteTab), QCoreApplication::translate("AdminWindow", "\320\243\320\264\320\260\320\273\320\265\320\275\320\270\320\265 \320\277\320\276\320\273\321\214\320\267\320\276\320\262\320\260\321\202\320\265\320\273\321\217", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(deleteTab), QCoreApplication::translate("AdminWindow", "\320\230\320\267\320\274\320\265\320\275\320\265\320\275\320\270\320\265 \320\277\320\276\320\273\321\214\320\267\320\276\320\262\320\260\321\202\320\265\320\273\321\217", nullptr));
         label_11->setText(QCoreApplication::translate("AdminWindow", "\320\235\320\276\320\274\320\265\321\200 \321\202\320\265\320\273\320\265\321\204\320\276\320\275\320\260", nullptr));
         label_7->setText(QCoreApplication::translate("AdminWindow", "\320\233\320\276\320\263\320\270\320\275", nullptr));
         label_15->setText(QCoreApplication::translate("AdminWindow", "\320\236\321\202\320\264\320\265\320\273\320\265\320\275\320\270\320\265", nullptr));
@@ -402,14 +412,17 @@ public:
         label_6->setText(QCoreApplication::translate("AdminWindow", "\320\236\321\202\321\207\320\265\321\201\321\202\320\262\320\276", nullptr));
         label_14->setText(QCoreApplication::translate("AdminWindow", "\320\223\321\200\321\203\320\277\320\277\320\260", nullptr));
         RoleBox->setItemText(0, QCoreApplication::translate("AdminWindow", "\320\222\321\213\320\261\320\265\321\200\320\270\321\202\320\265 \321\200\320\276\320\273\321\214", nullptr));
-        RoleBox->setItemText(1, QCoreApplication::translate("AdminWindow", "\320\241\320\277\320\265\321\206\320\270\320\260\320\273\320\270\321\201\321\202\320\276 \320\277\320\276 \321\203\321\207\320\265\320\261\320\275\320\276-\320\274\320\265\321\202\320\276\320\264\320\270\321\207\320\265\321\201\320\272\320\276\320\271 \321\200\320\260\320\261\320\276\321\202\320\265", nullptr));
-        RoleBox->setItemText(2, QCoreApplication::translate("AdminWindow", "\320\241\320\273\321\203\321\210\320\260\321\202\320\265\320\273\321\214", nullptr));
-        RoleBox->setItemText(3, QCoreApplication::translate("AdminWindow", "\320\237\321\200\320\265\320\277\320\276\320\264\320\260\320\262\320\260\321\202\320\265\320\273\321\214", nullptr));
+        RoleBox->setItemText(1, QCoreApplication::translate("AdminWindow", "\320\220\320\264\320\274\320\270\320\275\320\270\321\201\321\202\321\200\320\260\321\202\320\276\321\200", nullptr));
+        RoleBox->setItemText(2, QCoreApplication::translate("AdminWindow", "\320\234\320\265\321\202\320\276\320\264\320\270\321\201\321\202", nullptr));
+        RoleBox->setItemText(3, QCoreApplication::translate("AdminWindow", "\320\241\320\273\321\203\321\210\320\260\321\202\320\265\320\273\321\214", nullptr));
+        RoleBox->setItemText(4, QCoreApplication::translate("AdminWindow", "\320\237\321\200\320\265\320\277\320\276\320\264\320\260\320\262\320\260\321\202\320\265\320\273\321\214", nullptr));
 
         label_13->setText(QCoreApplication::translate("AdminWindow", "\320\241\320\277\320\265\321\206\320\270\320\260\320\273\321\214\320\275\320\276\321\201\321\202\321\214", nullptr));
         label_9->setText(QCoreApplication::translate("AdminWindow", "\320\240\320\276\320\273\321\214", nullptr));
         DobavitBtn->setText(QCoreApplication::translate("AdminWindow", "\320\224\320\276\320\261\320\260\320\262\320\270\321\202\321\214", nullptr));
         DepartmentBox->setItemText(0, QCoreApplication::translate("AdminWindow", "\320\222\321\213\320\261\320\265\321\200\320\270\321\202\320\265 \320\276\321\202\320\264\320\265\320\273\320\265\320\275\320\270\320\265", nullptr));
+        DepartmentBox->setItemText(1, QCoreApplication::translate("AdminWindow", "\320\236\321\207\320\275\320\276\320\265", nullptr));
+        DepartmentBox->setItemText(2, QCoreApplication::translate("AdminWindow", "\320\227\320\260\320\276\321\207\320\275\320\276\320\265", nullptr));
 
         tabWidget->setTabText(tabWidget->indexOf(AddUserTab), QCoreApplication::translate("AdminWindow", "\320\224\320\276\320\261\320\260\320\262\320\273\320\265\320\275\320\270\320\265 \320\277\320\276\320\273\321\214\320\267\320\276\320\262\320\260\321\202\320\265\320\273\321\217", nullptr));
     } // retranslateUi

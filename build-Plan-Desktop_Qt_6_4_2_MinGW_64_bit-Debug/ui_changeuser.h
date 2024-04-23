@@ -99,6 +99,8 @@ public:
 
         Otdelenie = new QComboBox(ChangeUser);
         Otdelenie->addItem(QString());
+        Otdelenie->addItem(QString());
+        Otdelenie->addItem(QString());
         Otdelenie->setObjectName("Otdelenie");
         Otdelenie->setFont(font);
 
@@ -294,6 +296,8 @@ public:
         ChangeUser->setWindowTitle(QCoreApplication::translate("ChangeUser", "Form", nullptr));
         label_6->setText(QCoreApplication::translate("ChangeUser", "\320\241\321\202\320\260\321\202\321\203\321\201", nullptr));
         Otdelenie->setItemText(0, QCoreApplication::translate("ChangeUser", "\320\222\321\213\320\261\320\265\321\200\320\270\321\202\320\265 \320\276\321\202\320\264\320\265\320\273\320\265\320\275\320\270\320\265", nullptr));
+        Otdelenie->setItemText(1, QCoreApplication::translate("ChangeUser", "\320\236\321\207\320\275\320\276\320\265", nullptr));
+        Otdelenie->setItemText(2, QCoreApplication::translate("ChangeUser", "\320\227\320\260\320\276\321\207\320\275\320\276\320\265", nullptr));
 
         label_12->setText(QCoreApplication::translate("ChangeUser", "\320\223\321\200\321\203\320\277\320\277\320\260", nullptr));
         label_2->setText(QCoreApplication::translate("ChangeUser", "\320\230\320\274\321\217", nullptr));
@@ -302,7 +306,7 @@ public:
         Role->setItemText(0, QCoreApplication::translate("ChangeUser", "\320\222\321\213\320\261\320\265\321\200\320\270\321\202\320\265 \321\200\320\276\320\273\321\214", nullptr));
         Role->setItemText(1, QCoreApplication::translate("ChangeUser", "\320\220\320\264\320\274\320\270\320\275\320\270\321\201\321\202\321\200\320\260\321\202\320\276\321\200", nullptr));
         Role->setItemText(2, QCoreApplication::translate("ChangeUser", "\320\234\320\265\321\202\320\276\320\264\320\270\321\201\321\202", nullptr));
-        Role->setItemText(3, QCoreApplication::translate("ChangeUser", "\320\243\321\207\320\270\321\202\320\265\320\273\321\214", nullptr));
+        Role->setItemText(3, QCoreApplication::translate("ChangeUser", "\320\237\321\200\320\265\320\277\320\276\320\264\320\260\320\262\320\260\321\202\320\265\320\273\321\214", nullptr));
         Role->setItemText(4, QCoreApplication::translate("ChangeUser", "\320\241\320\273\321\203\321\210\320\260\321\202\320\265\320\273\321\214", nullptr));
 
         label->setText(QCoreApplication::translate("ChangeUser", "\320\244\320\260\320\274\320\270\320\273\320\270\321\217", nullptr));

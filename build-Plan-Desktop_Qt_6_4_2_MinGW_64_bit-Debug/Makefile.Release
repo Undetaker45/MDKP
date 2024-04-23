@@ -3562,10 +3562,11 @@ release/moc_windownavigator.cpp: ../Plan/windownavigator.h \
 		../Plan/lesson.h \
 		C:/Osnova/Qt/6.4.2/mingw_64/include/QtCore/QDateTime \
 		../Plan/user.h \
-		../Plan/methodistwindow.h \
-		../Plan/abstractuserwindow.h \
+		../Plan/loginwindow.h \
 		C:/Osnova/Qt/6.4.2/mingw_64/include/QtWidgets/QMainWindow \
 		C:/Osnova/Qt/6.4.2/mingw_64/include/QtWidgets/qmainwindow.h \
+		../Plan/methodistwindow.h \
+		../Plan/abstractuserwindow.h \
 		C:/Osnova/Qt/6.4.2/mingw_64/include/QtWidgets/QTableView \
 		C:/Osnova/Qt/6.4.2/mingw_64/include/QtWidgets/qtableview.h \
 		../Plan/listenerwindow.h \
@@ -6286,10 +6287,11 @@ release/main.o: ../Plan/main.cpp ../Plan/windownavigator.h \
 		../Plan/lesson.h \
 		C:/Osnova/Qt/6.4.2/mingw_64/include/QtCore/QDateTime \
 		../Plan/user.h \
-		../Plan/methodistwindow.h \
-		../Plan/abstractuserwindow.h \
+		../Plan/loginwindow.h \
 		C:/Osnova/Qt/6.4.2/mingw_64/include/QtWidgets/QMainWindow \
 		C:/Osnova/Qt/6.4.2/mingw_64/include/QtWidgets/qmainwindow.h \
+		../Plan/methodistwindow.h \
+		../Plan/abstractuserwindow.h \
 		C:/Osnova/Qt/6.4.2/mingw_64/include/QtWidgets/QTableView \
 		C:/Osnova/Qt/6.4.2/mingw_64/include/QtWidgets/qtableview.h \
 		../Plan/listenerwindow.h \
@@ -8256,10 +8258,11 @@ release/windownavigator.o: ../Plan/windownavigator.cpp ../Plan/windownavigator.h
 		../Plan/lesson.h \
 		C:/Osnova/Qt/6.4.2/mingw_64/include/QtCore/QDateTime \
 		../Plan/user.h \
-		../Plan/methodistwindow.h \
-		../Plan/abstractuserwindow.h \
+		../Plan/loginwindow.h \
 		C:/Osnova/Qt/6.4.2/mingw_64/include/QtWidgets/QMainWindow \
 		C:/Osnova/Qt/6.4.2/mingw_64/include/QtWidgets/qmainwindow.h \
+		../Plan/methodistwindow.h \
+		../Plan/abstractuserwindow.h \
 		C:/Osnova/Qt/6.4.2/mingw_64/include/QtWidgets/QTableView \
 		C:/Osnova/Qt/6.4.2/mingw_64/include/QtWidgets/qtableview.h \
 		../Plan/listenerwindow.h \

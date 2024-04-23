@@ -1,6 +1,6 @@
 #include "user.h"
 
-User::User(int id, int role, int isWork, QString Surname, QString Name, QString MiddleName, int ID_Specialization, QString phone, int WorkTime, QString Department, int ID_Group) {
+User::User(int id, int role, int isWork, QString Surname, QString Name, QString MiddleName, int ID_Specialization, QString phone, int WorkTime, int Department, int ID_Group) {
     empty = false;
     this->id = id;
     this->role = role;
@@ -28,7 +28,7 @@ User::User(int id, int role, int isWork, QString Surname, QString Name, QString 
     };
 }
 
-User::User(int Id, int iswork, QString Surname, QString Name, QString MiddleName, int ID_Specialization, QString Phone, int WorkTime, QString Department, int ID_Group, QString Login, QString Password, QString Role) {
+User::User(int Id, int iswork, QString Surname, QString Name, QString MiddleName, int ID_Specialization, QString Phone, int WorkTime, int Department, int ID_Group, QString Login, QString Password, QString Role) {
     empty = false;
     id = Id;
     int post = User::convertRoleToInt(Role);
@@ -59,7 +59,7 @@ User::User(int Id, int iswork, QString Surname, QString Name, QString MiddleName
     password = Password;
 }
 
-User::User(int id, int role, int isWork, QString Surname, QString Name, QString MiddleName, int ID_Specialization, QString phone, int WorkTime, QString Department, int ID_Group, QString Login, QString Password) {
+User::User(int id, int role, int isWork, QString Surname, QString Name, QString MiddleName, int ID_Specialization, QString phone, int WorkTime, int Department, int ID_Group, QString Login, QString Password) {
     empty = false;
     this->id = id;
     this->role = role;
@@ -105,18 +105,16 @@ void User::operator << (QSqlQuery& query){
         return;
     }
     empty = false;
-    int Id = query.value("ID").toString().toInt();
+    int Department;
+    int Id = query.value("User.ID").toString().toInt();
     id = Id;
-    isWork = query.value("Flag").toString().toInt();
-    surname = query.value("Surname").toString();
-    name = query.value("Name").toString();
-    middlename = query.value("MiddleName").toString();
-    login = query.value("Login").toString();
-    password = query.value("Password").toString();
-    int Role = User::convertRoleToInt(query.value("Role").toString());
-    QSqlQuery query1;
-    QString str_query;
-    bool queryResult;
+    isWork = query.value("User.Flag").toString().toInt();
+    surname = query.value("User.Surname").toString();
+    name = query.value("User.Name").toString();
+    middlename = query.value("User.MiddleName").toString();
+    login = query.value("User.Login").toString();
+    password = query.value("User.Password").toString();
+    int Role = User::convertRoleToInt(query.value("User.Role").toString());
     role = Role;
     switch (Role) {
     case (1):
@@ -126,32 +124,15 @@ void User::operator << (QSqlQuery& query){
 
         break;
     case(3):
-        str_query = QString("SELECT * "
-                                "FROM Teacher "
-                                "WHERE ID_User = '%1';").arg(Id);
-
-        queryResult = query1.exec(str_query);
-
-        if(!queryResult){
-            qDebug() << query1.lastError();
-        }
-        id_specialization = query.value("ID_Specialization").toString().toInt();
-        phone = query.value("PhoneNumber").toString();
-        worktime = query.value("WorkTime").toString().toInt();
+        id_specialization = query.value("Teacher.ID_Specialization").toString().toInt();
+        phone = query.value("Teacher.PhoneNumber").toString();
+        worktime = query.value("Teacher.WorkExperience").toString().toInt();
         break;
     case(4):
-        str_query = QString("SELECT * "
-                                "FROM Listener "
-                                "WHERE ID_User = '%1';").arg(Id);
-
-        queryResult = query1.exec(str_query);
-
-        if(!queryResult){
-            qDebug() << query1.lastError();
-        }
-        id_specialization = query.value("ID_Specialization").toString().toInt();
-        department = query.value("Department").toString();
-        id_group = query.value("ID_Group").toString().toInt();
+        id_specialization = query.value("Groups.ID_Specialization").toString().toInt();
+        Department = convertDepartmentToInt(query.value("Listener.Department").toString());
+        department = Department;
+        id_group = query.value("Listener.ID_Group").toString().toInt();
         break;
     default:
         break;
@@ -203,7 +184,7 @@ void User::SetRole(int Role){
 void User::SetWorkTime(int WorkTime){
     this->worktime = WorkTime;
 }
-void User::SetDepartment(QString Department){
+void User::SetDepartment(int Department){
     this->department = Department;
 }
 void User::SetGroup(int ID_Group){
@@ -250,7 +231,7 @@ int User::GetWorkTime() const{
     return worktime;
 }
 
-QString User::GetDepartment() const{
+int User::GetDepartment() const{
     return department;
 }
 
@@ -315,6 +296,36 @@ QString User::convertStatusToString(int status){
     }
     return QString("Unknown");
 }
+
+int User::convertDepartmentToInt(QString Department){
+    if(Department == "Очное"){
+        return FullTime;
+    }
+    if(Department == "Заочное"){
+        return Correspondence;
+    }
+    return UnknownDepartment;
+}
+
+QString User::convertDepartmentToString(int Department){
+    switch (Department) {
+    case FullTime:
+        return QString("Очное");
+        break;
+    case Correspondence:
+        return QString("Заочное");
+        break;
+    case UnknownDepartment:
+        return QString("Unknown");
+        break;
+    default:
+        break;
+    }
+    return QString("Unknown");
+}
+
+
+
 
 QString User::convertIdSpecializationToString(int ID_Specialization){
     QSqlQuery query;

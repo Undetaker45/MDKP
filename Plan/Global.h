@@ -19,6 +19,12 @@ enum {
     Works = 1
 };
 
+enum {
+    UnknownDepartment = -1,
+    FullTime = 0,
+    Correspondence = 1
+};
+
 void AddShadowToChildren(QObject* obj);
 
 #endif // GLOBAL_H

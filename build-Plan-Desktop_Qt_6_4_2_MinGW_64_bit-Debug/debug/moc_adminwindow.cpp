@@ -26,36 +26,39 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 namespace {
 struct qt_meta_stringdata_AdminWindow_t {
-    uint offsetsAndSizes[20];
+    uint offsetsAndSizes[22];
     char stringdata0[12];
-    char stringdata1[37];
+    char stringdata1[26];
     char stringdata2[1];
-    char stringdata3[23];
-    char stringdata4[12];
-    char stringdata5[6];
-    char stringdata6[30];
-    char stringdata7[26];
-    char stringdata8[6];
-    char stringdata9[5];
+    char stringdata3[37];
+    char stringdata4[23];
+    char stringdata5[12];
+    char stringdata6[6];
+    char stringdata7[30];
+    char stringdata8[26];
+    char stringdata9[6];
+    char stringdata10[5];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_AdminWindow_t::offsetsAndSizes) + ofs), len 
 Q_CONSTINIT static const qt_meta_stringdata_AdminWindow_t qt_meta_stringdata_AdminWindow = {
     {
         QT_MOC_LITERAL(0, 11),  // "AdminWindow"
-        QT_MOC_LITERAL(12, 36),  // "slotBackButtonChangeUserWidge..."
-        QT_MOC_LITERAL(49, 0),  // ""
-        QT_MOC_LITERAL(50, 22),  // "slotDoubleClikedOnUser"
-        QT_MOC_LITERAL(73, 11),  // "QModelIndex"
-        QT_MOC_LITERAL(85, 5),  // "index"
-        QT_MOC_LITERAL(91, 29),  // "slotRegistrationButtonClicked"
-        QT_MOC_LITERAL(121, 25),  // "slotRefreshUserInDatabase"
-        QT_MOC_LITERAL(147, 5),  // "User&"
-        QT_MOC_LITERAL(153, 4)   // "user"
+        QT_MOC_LITERAL(12, 25),  // "signalLogoutButtonClicked"
+        QT_MOC_LITERAL(38, 0),  // ""
+        QT_MOC_LITERAL(39, 36),  // "slotBackButtonChangeUserWidge..."
+        QT_MOC_LITERAL(76, 22),  // "slotDoubleClikedOnUser"
+        QT_MOC_LITERAL(99, 11),  // "QModelIndex"
+        QT_MOC_LITERAL(111, 5),  // "index"
+        QT_MOC_LITERAL(117, 29),  // "slotRegistrationButtonClicked"
+        QT_MOC_LITERAL(147, 25),  // "slotRefreshUserInDatabase"
+        QT_MOC_LITERAL(173, 5),  // "User&"
+        QT_MOC_LITERAL(179, 4)   // "user"
     },
     "AdminWindow",
-    "slotBackButtonChangeUserWidgetCliked",
+    "signalLogoutButtonClicked",
     "",
+    "slotBackButtonChangeUserWidgetCliked",
     "slotDoubleClikedOnUser",
     "QModelIndex",
     "index",
@@ -73,24 +76,30 @@ Q_CONSTINIT static const uint qt_meta_data_AdminWindow[] = {
       10,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   14, // methods
+       5,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       0,       // signalCount
+       1,       // signalCount
+
+ // signals: name, argc, parameters, tag, flags, initial metatype offsets
+       1,    0,   44,    2, 0x06,    1 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   38,    2, 0x0a,    1 /* Public */,
-       3,    1,   39,    2, 0x08,    2 /* Private */,
-       6,    0,   42,    2, 0x08,    4 /* Private */,
-       7,    1,   43,    2, 0x08,    5 /* Private */,
+       3,    0,   45,    2, 0x0a,    2 /* Public */,
+       4,    1,   46,    2, 0x08,    3 /* Private */,
+       7,    0,   49,    2, 0x08,    5 /* Private */,
+       8,    1,   50,    2, 0x08,    6 /* Private */,
+
+ // signals: parameters
+    QMetaType::Void,
 
  // slots: parameters
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 4,    5,
+    QMetaType::Void, 0x80000000 | 5,    6,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 8,    9,
+    QMetaType::Void, 0x80000000 | 9,   10,
 
        0        // eod
 };
@@ -104,6 +113,8 @@ Q_CONSTINIT const QMetaObject AdminWindow::staticMetaObject = { {
     qt_incomplete_metaTypeArray<qt_meta_stringdata_AdminWindow_t,
         // Q_OBJECT / Q_GADGET
         QtPrivate::TypeAndForceComplete<AdminWindow, std::true_type>,
+        // method 'signalLogoutButtonClicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'slotBackButtonChangeUserWidgetCliked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'slotDoubleClikedOnUser'
@@ -124,11 +135,21 @@ void AdminWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         auto *_t = static_cast<AdminWindow *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->slotBackButtonChangeUserWidgetCliked(); break;
-        case 1: _t->slotDoubleClikedOnUser((*reinterpret_cast< std::add_pointer_t<QModelIndex>>(_a[1]))); break;
-        case 2: _t->slotRegistrationButtonClicked(); break;
-        case 3: _t->slotRefreshUserInDatabase((*reinterpret_cast< std::add_pointer_t<User&>>(_a[1]))); break;
+        case 0: _t->signalLogoutButtonClicked(); break;
+        case 1: _t->slotBackButtonChangeUserWidgetCliked(); break;
+        case 2: _t->slotDoubleClikedOnUser((*reinterpret_cast< std::add_pointer_t<QModelIndex>>(_a[1]))); break;
+        case 3: _t->slotRegistrationButtonClicked(); break;
+        case 4: _t->slotRefreshUserInDatabase((*reinterpret_cast< std::add_pointer_t<User&>>(_a[1]))); break;
         default: ;
+        }
+    } else if (_c == QMetaObject::IndexOfMethod) {
+        int *result = reinterpret_cast<int *>(_a[0]);
+        {
+            using _t = void (AdminWindow::*)();
+            if (_t _q_method = &AdminWindow::signalLogoutButtonClicked; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 0;
+                return;
+            }
         }
     }
 }
@@ -152,15 +173,21 @@ int AdminWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 5;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 4)
+        if (_id < 5)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 4;
+        _id -= 5;
     }
     return _id;
+}
+
+// SIGNAL 0
+void AdminWindow::signalLogoutButtonClicked()
+{
+    QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
 }
 QT_WARNING_POP
 QT_END_MOC_NAMESPACE

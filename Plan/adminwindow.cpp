@@ -11,8 +11,10 @@ AdminWindow::AdminWindow(const User& us, Database* database, QWidget *parent) :
     configuringInterface();
     ClearDataRegistrationUserWidget();
     SetValidationOnCreateUsers();
+    fillProfile(user);
     AddShadowToChildren(changeUser);
     AddShadowToChildren(ui->AddUserTab);
+    connect(ui->ExitBtn, SIGNAL(clicked()),SIGNAL(signalLogoutButtonClicked()));
     connect(viewUsers,SIGNAL(doubleClicked(QModelIndex)),SLOT(slotDoubleClikedOnUser(QModelIndex)));
     connect(changeUser, SIGNAL(signalBackButtonCliked()),SLOT(slotBackButtonChangeUserWidgetCliked()));
     connect(ui->DobavitBtn, SIGNAL(clicked()),SLOT(slotRegistrationButtonClicked()));
@@ -26,8 +28,6 @@ AdminWindow::~AdminWindow()
 }
 
 void AdminWindow::configuringInterface(){
-
-
 
     stackedWidgetUserManagement = ui->stackedWidgetUserManagement;
     viewUsers = new QTableView(stackedWidgetUserManagement);
@@ -135,9 +135,6 @@ void AdminWindow::CheckingFieldsEmpty(){
     if(ui->NameEdit->text().trimmed().isEmpty()){
         throw std::runtime_error("Поле имени не может быть пустым.");
     }
-    if(ui->NomberPhoneEdit->text().trimmed().isEmpty()){
-        throw std::runtime_error("Поле телефона не может быть пустым.");
-    }
     if(ui->LoginEdit->text().trimmed().isEmpty()){
         throw std::runtime_error("Поле логина не может быть пустым.");
     }
@@ -166,4 +163,12 @@ void AdminWindow::SetValidationOnCreateUsers(){
 
     QRegularExpression regExpOnWorkTime("[0-9]*");
     ui->WorkEdit->setValidator(new QRegularExpressionValidator(regExpOnWorkTime,this));
+}
+
+void AdminWindow::fillProfile(const User& user){
+    if(!user.isEmpty()){
+        ui->PMidleNameEdit->setText(user.GetMiddleName());
+        ui->PNameEdit->setText(user.GetName());
+        ui->PSurnameEdit->setText(user.GetSurname());
+    }
 }
