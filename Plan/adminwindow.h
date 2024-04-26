@@ -58,6 +58,7 @@ private slots:
     void slotDoubleClikedOnUser(const QModelIndex index);
     void slotRegistrationButtonClicked();
     void slotRefreshUserInDatabase(User& user);
+    void slotBlocedPole(int index);
 };
 
 #endif // ADMINWINDOW_H

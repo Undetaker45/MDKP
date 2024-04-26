@@ -8,10 +8,12 @@ AdminWindow::AdminWindow(const User& us, Database* database, QWidget *parent) :
     qDebug() << "call constructor";
     ui->setupUi(this);
     db = database;
+
     configuringInterface();
     ClearDataRegistrationUserWidget();
     SetValidationOnCreateUsers();
     fillProfile(user);
+    AddShadowToChildren(ui->ProfileTab);
     AddShadowToChildren(changeUser);
     AddShadowToChildren(ui->AddUserTab);
     connect(ui->ExitBtn, SIGNAL(clicked()),SIGNAL(signalLogoutButtonClicked()));
@@ -19,6 +21,7 @@ AdminWindow::AdminWindow(const User& us, Database* database, QWidget *parent) :
     connect(changeUser, SIGNAL(signalBackButtonCliked()),SLOT(slotBackButtonChangeUserWidgetCliked()));
     connect(ui->DobavitBtn, SIGNAL(clicked()),SLOT(slotRegistrationButtonClicked()));
     connect(changeUser, SIGNAL(signalRefreshUser(User&)),SLOT(slotRefreshUserInDatabase(User&)));
+    connect(ui->RoleBox, SIGNAL(currentIndexChanged(int)), SLOT(slotBlocedPole(int)));
 }
 
 AdminWindow::~AdminWindow()
@@ -36,7 +39,6 @@ void AdminWindow::configuringInterface(){
     stackedWidgetUserManagement->addWidget(changeUser);
     ShowViewUsers();
 
-   //ФИО телефон должность филиал
     usersModel = new QSqlQueryModel(this);
     usersModel->setQuery("SELECT User.ID, "
                          "      Surname ||' '|| Name ||' '||COALESCE(MiddleName,'') as [ФИО],"
@@ -170,5 +172,32 @@ void AdminWindow::fillProfile(const User& user){
         ui->PMidleNameEdit->setText(user.GetMiddleName());
         ui->PNameEdit->setText(user.GetName());
         ui->PSurnameEdit->setText(user.GetSurname());
+        ui->PMidleNameEdit->setReadOnly(1);
+        ui->PNameEdit->setReadOnly(1);
+        ui->PSurnameEdit->setReadOnly(1);
+    }
+}
+
+void AdminWindow::slotBlocedPole(int index){
+    if (index == 0 || index == 1 || index == -1){
+        ui->SpecialnostEdit->setReadOnly(true);
+        ui->GroupEdit->setReadOnly(true);
+        ui->WorkEdit->setReadOnly(true);
+        ui->DepartmentBox->setEnabled(false);
+        ui->NomberPhoneEdit->setReadOnly(true);
+    }
+    else if(index == 2){
+        ui->SpecialnostEdit->setReadOnly(false);
+        ui->WorkEdit->setReadOnly(false);
+        ui->NomberPhoneEdit->setReadOnly(false);
+        ui->DepartmentBox->setEnabled(false);
+        ui->GroupEdit->setReadOnly(true);
+    }
+    else if(index == 3){
+        ui->SpecialnostEdit->setReadOnly(false);
+        ui->WorkEdit->setReadOnly(true);
+        ui->NomberPhoneEdit->setReadOnly(true);
+        ui->DepartmentBox->setEnabled(true);
+        ui->GroupEdit->setReadOnly(false);
     }
 }

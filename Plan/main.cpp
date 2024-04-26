@@ -18,11 +18,9 @@ int main(int argc, char *argv[])
     Database* db = new Database();
     db->SetSqlDatabase(sdb);
     db->CreateTables();
-    db->InsertAdmin();
-    //db->InsertTestData();
+    //db->InsertAdmin();
+    db->InsertTestData();
 
     WindowNavigator navigator(db);
-    //LoginWindow login(db);
-    //login.show();
     return a.exec();
 }

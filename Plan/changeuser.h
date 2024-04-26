@@ -26,6 +26,7 @@ signals:
     void signalRefreshUser(User& user);
 private slots:
     void slotConfirmButtonClicked();
+    void slotBlocedPole(int index);
 };
 
 #endif // CHANGEUSER_H

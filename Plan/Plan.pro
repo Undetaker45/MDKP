@@ -51,7 +51,7 @@ FORMS += \
     loginwindow.ui \
     mainwindow.ui \
     settingswindow.ui \
-    settingswindow2.ui \
+    settingswindow1.ui \
     teacherwindow.ui \
     timewindow.ui
 

@@ -7,7 +7,7 @@ LoginWindow::LoginWindow(Database* database, QWidget *parent) :
 {
     ui->setupUi(this);
     db = database;
-//    AddShadowToChildren(this);
+    AddShadowToChildren(this);
     connect(ui->pbvhod, SIGNAL(clicked()), SLOT(slot_LoginButton_clicked()));
 }
 
@@ -20,7 +20,6 @@ LoginWindow::~LoginWindow()
 
 void LoginWindow::slot_LoginButton_clicked()
 {
-    qDebug() << "Слот сработал";
     User user = db->CheckLogin(ui->Login->text(),ui->Password->text());
     if(user.isEmpty()){
         return;

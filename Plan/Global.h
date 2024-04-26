@@ -25,6 +25,12 @@ enum {
     Correspondence = 1
 };
 
+enum {
+    UnknownActivity = -1,
+    Lessons = 0,
+    Practic = 1
+};
+
 void AddShadowToChildren(QObject* obj);
 
 #endif // GLOBAL_H

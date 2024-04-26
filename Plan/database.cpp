@@ -16,18 +16,17 @@ void  Database::CreateTables(){
     QString str_query = "CREATE TABLE if not exists Lessons ("
                             "ID INTEGER PRIMARY KEY NOT NULL, "
                             "ID_Teacher INTEGER NOT NULL, "
-                            "TypeOfActivity INTEGER NOT NULL, "
+                            "TypeOfActivity NVARCHAR (40) NOT NULL, "
                             "Title NVARCHAR (40), "
                             "ID_Group INTEGER NOT NULL, "
                             "ID_Specialization INTEGER NOT NULL, "
-                            "ID_LectureHall INTEGER NOT NULL, "
-                            "TIME DATE NOT NULL, "
+                            "ID_LectoreHall INTEGER NOT NULL, "
+                            "Time DATE NOT NULL, "
                             "Payment FLOAT NOT NULL, "
-                            "Status INTEGER NOT NULL, "
                             "FOREIGN KEY (ID_Teacher) REFERENCES Teacher(ID), "
                             "FOREIGN KEY (ID_Group) REFERENCES Groups(ID), "
                             "FOREIGN KEY (ID_Specialization) REFERENCES Specialization(ID), "
-                            "FOREIGN KEY (ID_LectureHall) REFERENCES LectureHall(ID));";
+                            "FOREIGN KEY (ID_LectoreHall) REFERENCES LectoreHall(ID));";
     bool queryResult = query.exec(str_query);
     if(!queryResult){
         qDebug() << "Не удаётся создать таблицу Lessons";
@@ -107,6 +106,78 @@ void  Database::CreateTables(){
 
 }
 
+void Database::InsertTestData(){
+    QSqlQuery query;
+    query.prepare("SELECT ID "
+                  "FROM User "
+                  "WHERE Login = 'admin' AND Password = 'admin';");
+    if(!query.exec()){
+        qDebug()<<"Не удалось вставить админа";
+    }
+
+    if(query.next() && !query.value(0).isNull()){
+        return;
+    }
+    else{
+        QString str_query = "INSERT INTO LectoreHall (Name, AcademicBuilding) VALUES "
+                            "('206','IKIT'),"
+                            "('207','IKIT'),"
+                            "('203','ISIT'),"
+                            "('206','ISIT'),"
+                            "('101','IKEA');";
+        bool queryResult = query.exec(str_query);
+        if(!queryResult){
+            qDebug() << "Не удаётся вставить данные";
+            qDebug() << query.lastError();
+        }
+        str_query = "INSERT INTO User (Flag, Login, Password, Name, Surname, MiddleName, Role) VALUES "
+                    "(1, 'admin', 'admin', 'Супер', 'Юзер', 'Викторович', 'Администратор'),"
+                    "(1, 'Andrey', '12345', 'Андрей', 'Болдырев', 'Викторович', 'Преподаватель'),"
+                    "(1, 'Anton', '12345', 'Антон', 'Вальков', 'Андреевич', 'Слушатель'),"
+                    "(1, 'Vasya', '12345', 'Василий', 'Елисеев', 'Андреевич', 'Методист');";
+        queryResult = query.exec(str_query);
+        if(!queryResult){
+            qDebug() << "Не удаётся вставить данные";
+            qDebug() << query.lastError();
+        }
+        str_query = "INSERT INTO Specialization (Name) VALUES "
+                    "('Аккультные дела');";
+        queryResult = query.exec(str_query);
+        if(!queryResult){
+            qDebug() << "Не удаётся вставить данные";
+            qDebug() << query.lastError();
+        }
+        str_query = "INSERT INTO Groups (Name, ID_Specialization) VALUES "
+                    "('КИ22-06Б', 1);";
+        queryResult = query.exec(str_query);
+        if(!queryResult){
+            qDebug() << "Не удаётся вставить данные";
+            qDebug() << query.lastError();
+        }
+        str_query = "INSERT INTO Listener (Department, ID_Group, ID_User) VALUES "
+                    "('Очное', 1, 3);";
+        queryResult = query.exec(str_query);
+        if(!queryResult){
+            qDebug() << "Не удаётся вставить данные";
+            qDebug() << query.lastError();
+        }
+        str_query = "INSERT INTO Teacher (ID_Specialization, PhoneNumber, WorkExperience ,ID_User) VALUES "
+                    "(1, '893241755', 10, 2);";
+        queryResult = query.exec(str_query);
+        if(!queryResult){
+            qDebug() << "Не удаётся вставить данные";
+            qDebug() << query.lastError();
+        }
+        str_query = "INSERT INTO Lessons (ID_Teacher, TypeOfActivity, Title, ID_Group, ID_Specialization, ID_LectoreHall, Time, Payment) VALUES "
+                    "(1, 'Лекция', 'Вызов Сатаны', 1, 1, 3, '2024-04-26 15:55', 1500);";
+        queryResult = query.exec(str_query);
+        if(!queryResult){
+            qDebug() << "Не удаётся вставить данные";
+            qDebug() << query.lastError();
+        }
+    }
+}
+
 Lesson Database::GetLessonById(int id){
     QSqlQuery query;
     QString str_query = QString("SELECT *"
@@ -130,7 +201,7 @@ Lesson Database::GetLessonById(int id){
     QString Title = query.value("Title").toString();
     QString ID_Group = query.value("ID_Group").toString();
     QString ID_Specialization = query.value("ID_Specialization").toString();
-    QString ID_LectureHall = query.value("ID_LectureHall").toString();
+    QString ID_LectureHall = query.value("ID_LectoreHall").toString();
     QString Time = query.value("Time").toString();
     QString Payment = query.value("Payment").toString();
 

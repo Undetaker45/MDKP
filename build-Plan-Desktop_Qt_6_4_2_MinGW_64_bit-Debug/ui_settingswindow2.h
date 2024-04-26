@@ -45,11 +45,11 @@ public:
     QLabel *label_7;
     QComboBox *groupBox;
     QLabel *label_8;
-    QComboBox *comboBox;
+    QComboBox *LectorHall;
     QLabel *label_9;
-    QCalendarWidget *calendarWidget;
+    QCalendarWidget *Data;
     QLabel *label_3;
-    QComboBox *comboBox_2;
+    QComboBox *Time;
     QSpacerItem *verticalSpacer;
     QHBoxLayout *horizontalLayout;
     QSpacerItem *horizontalSpacer_3;
@@ -60,7 +60,7 @@ public:
     {
         if (SettingsWindow->objectName().isEmpty())
             SettingsWindow->setObjectName("SettingsWindow");
-        SettingsWindow->resize(394, 822);
+        SettingsWindow->resize(416, 911);
         verticalLayout_2 = new QVBoxLayout(SettingsWindow);
         verticalLayout_2->setObjectName("verticalLayout_2");
         verticalLayout = new QVBoxLayout();
@@ -167,12 +167,12 @@ public:
 
         verticalLayout->addWidget(label_8);
 
-        comboBox = new QComboBox(SettingsWindow);
-        comboBox->addItem(QString());
-        comboBox->setObjectName("comboBox");
-        comboBox->setFont(font1);
+        LectorHall = new QComboBox(SettingsWindow);
+        LectorHall->addItem(QString());
+        LectorHall->setObjectName("LectorHall");
+        LectorHall->setFont(font1);
 
-        verticalLayout->addWidget(comboBox);
+        verticalLayout->addWidget(LectorHall);
 
         label_9 = new QLabel(SettingsWindow);
         label_9->setObjectName("label_9");
@@ -180,10 +180,10 @@ public:
 
         verticalLayout->addWidget(label_9);
 
-        calendarWidget = new QCalendarWidget(SettingsWindow);
-        calendarWidget->setObjectName("calendarWidget");
+        Data = new QCalendarWidget(SettingsWindow);
+        Data->setObjectName("Data");
 
-        verticalLayout->addWidget(calendarWidget);
+        verticalLayout->addWidget(Data);
 
         label_3 = new QLabel(SettingsWindow);
         label_3->setObjectName("label_3");
@@ -191,20 +191,20 @@ public:
 
         verticalLayout->addWidget(label_3);
 
-        comboBox_2 = new QComboBox(SettingsWindow);
-        comboBox_2->addItem(QString());
-        comboBox_2->addItem(QString());
-        comboBox_2->addItem(QString());
-        comboBox_2->addItem(QString());
-        comboBox_2->addItem(QString());
-        comboBox_2->addItem(QString());
-        comboBox_2->addItem(QString());
-        comboBox_2->addItem(QString());
-        comboBox_2->addItem(QString());
-        comboBox_2->setObjectName("comboBox_2");
-        comboBox_2->setFont(font1);
+        Time = new QComboBox(SettingsWindow);
+        Time->addItem(QString());
+        Time->addItem(QString());
+        Time->addItem(QString());
+        Time->addItem(QString());
+        Time->addItem(QString());
+        Time->addItem(QString());
+        Time->addItem(QString());
+        Time->addItem(QString());
+        Time->addItem(QString());
+        Time->setObjectName("Time");
+        Time->setFont(font1);
 
-        verticalLayout->addWidget(comboBox_2);
+        verticalLayout->addWidget(Time);
 
         verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
@@ -257,19 +257,19 @@ public:
         groupBox->setItemText(0, QCoreApplication::translate("SettingsWindow", "\320\222\321\213\320\261\320\265\321\200\320\270\321\202\320\265 \320\263\321\200\321\203\320\277\320\277\321\203", nullptr));
 
         label_8->setText(QCoreApplication::translate("SettingsWindow", "\320\220\321\203\320\264\320\270\321\202\320\276\321\200\320\270\321\217", nullptr));
-        comboBox->setItemText(0, QCoreApplication::translate("SettingsWindow", "\320\222\321\213\320\261\320\265\321\200\320\270\321\202\320\265 \320\260\321\203\320\264\320\270\321\202\320\276\321\200\320\270\321\216", nullptr));
+        LectorHall->setItemText(0, QCoreApplication::translate("SettingsWindow", "\320\222\321\213\320\261\320\265\321\200\320\270\321\202\320\265 \320\260\321\203\320\264\320\270\321\202\320\276\321\200\320\270\321\216", nullptr));
 
         label_9->setText(QCoreApplication::translate("SettingsWindow", "\320\224\320\260\321\202\320\260 \320\277\321\200\320\276\320\262\320\265\320\264\320\265\320\275\320\270\321\217", nullptr));
         label_3->setText(QCoreApplication::translate("SettingsWindow", "\320\222\321\200\320\265\320\274\321\217 \320\277\321\200\320\276\320\262\320\265\320\264\320\265\320\275\320\270\321\217", nullptr));
-        comboBox_2->setItemText(0, QCoreApplication::translate("SettingsWindow", "\320\222\321\213\320\261\320\265\321\200\320\270\321\202\320\265 \320\262\321\200\320\265\320\274\321\217", nullptr));
-        comboBox_2->setItemText(1, QCoreApplication::translate("SettingsWindow", "8:30", nullptr));
-        comboBox_2->setItemText(2, QCoreApplication::translate("SettingsWindow", "10:15", nullptr));
-        comboBox_2->setItemText(3, QCoreApplication::translate("SettingsWindow", "12:00", nullptr));
-        comboBox_2->setItemText(4, QCoreApplication::translate("SettingsWindow", "14:10", nullptr));
-        comboBox_2->setItemText(5, QCoreApplication::translate("SettingsWindow", "15:55", nullptr));
-        comboBox_2->setItemText(6, QCoreApplication::translate("SettingsWindow", "17:40", nullptr));
-        comboBox_2->setItemText(7, QCoreApplication::translate("SettingsWindow", "18:25", nullptr));
-        comboBox_2->setItemText(8, QCoreApplication::translate("SettingsWindow", "20:10", nullptr));
+        Time->setItemText(0, QCoreApplication::translate("SettingsWindow", "\320\222\321\213\320\261\320\265\321\200\320\270\321\202\320\265 \320\262\321\200\320\265\320\274\321\217", nullptr));
+        Time->setItemText(1, QCoreApplication::translate("SettingsWindow", "8:30", nullptr));
+        Time->setItemText(2, QCoreApplication::translate("SettingsWindow", "10:15", nullptr));
+        Time->setItemText(3, QCoreApplication::translate("SettingsWindow", "12:00", nullptr));
+        Time->setItemText(4, QCoreApplication::translate("SettingsWindow", "14:10", nullptr));
+        Time->setItemText(5, QCoreApplication::translate("SettingsWindow", "15:55", nullptr));
+        Time->setItemText(6, QCoreApplication::translate("SettingsWindow", "17:40", nullptr));
+        Time->setItemText(7, QCoreApplication::translate("SettingsWindow", "18:25", nullptr));
+        Time->setItemText(8, QCoreApplication::translate("SettingsWindow", "20:10", nullptr));
 
         pbGotovo->setText(QCoreApplication::translate("SettingsWindow", "\320\223\320\276\321\202\320\276\320\262\320\276", nullptr));
     } // retranslateUi

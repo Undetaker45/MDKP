@@ -26,7 +26,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 namespace {
 struct qt_meta_stringdata_ChangeUser_t {
-    uint offsetsAndSizes[14];
+    uint offsetsAndSizes[18];
     char stringdata0[11];
     char stringdata1[23];
     char stringdata2[1];
@@ -34,6 +34,8 @@ struct qt_meta_stringdata_ChangeUser_t {
     char stringdata4[6];
     char stringdata5[5];
     char stringdata6[25];
+    char stringdata7[15];
+    char stringdata8[6];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_ChangeUser_t::offsetsAndSizes) + ofs), len 
@@ -45,7 +47,9 @@ Q_CONSTINIT static const qt_meta_stringdata_ChangeUser_t qt_meta_stringdata_Chan
         QT_MOC_LITERAL(35, 17),  // "signalRefreshUser"
         QT_MOC_LITERAL(53, 5),  // "User&"
         QT_MOC_LITERAL(59, 4),  // "user"
-        QT_MOC_LITERAL(64, 24)   // "slotConfirmButtonClicked"
+        QT_MOC_LITERAL(64, 24),  // "slotConfirmButtonClicked"
+        QT_MOC_LITERAL(89, 14),  // "slotBlocedPole"
+        QT_MOC_LITERAL(104, 5)   // "index"
     },
     "ChangeUser",
     "signalBackButtonCliked",
@@ -53,7 +57,9 @@ Q_CONSTINIT static const qt_meta_stringdata_ChangeUser_t qt_meta_stringdata_Chan
     "signalRefreshUser",
     "User&",
     "user",
-    "slotConfirmButtonClicked"
+    "slotConfirmButtonClicked",
+    "slotBlocedPole",
+    "index"
 };
 #undef QT_MOC_LITERAL
 } // unnamed namespace
@@ -64,7 +70,7 @@ Q_CONSTINIT static const uint qt_meta_data_ChangeUser[] = {
       10,       // revision
        0,       // classname
        0,    0, // classinfo
-       3,   14, // methods
+       4,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -72,11 +78,12 @@ Q_CONSTINIT static const uint qt_meta_data_ChangeUser[] = {
        2,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   32,    2, 0x06,    1 /* Public */,
-       3,    1,   33,    2, 0x06,    2 /* Public */,
+       1,    0,   38,    2, 0x06,    1 /* Public */,
+       3,    1,   39,    2, 0x06,    2 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       6,    0,   36,    2, 0x08,    4 /* Private */,
+       6,    0,   42,    2, 0x08,    4 /* Private */,
+       7,    1,   43,    2, 0x08,    5 /* Private */,
 
  // signals: parameters
     QMetaType::Void,
@@ -84,6 +91,7 @@ Q_CONSTINIT static const uint qt_meta_data_ChangeUser[] = {
 
  // slots: parameters
     QMetaType::Void,
+    QMetaType::Void, QMetaType::Int,    8,
 
        0        // eod
 };
@@ -103,7 +111,10 @@ Q_CONSTINIT const QMetaObject ChangeUser::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<User &, std::false_type>,
         // method 'slotConfirmButtonClicked'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'slotBlocedPole'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>
     >,
     nullptr
 } };
@@ -117,6 +128,7 @@ void ChangeUser::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 0: _t->signalBackButtonCliked(); break;
         case 1: _t->signalRefreshUser((*reinterpret_cast< std::add_pointer_t<User&>>(_a[1]))); break;
         case 2: _t->slotConfirmButtonClicked(); break;
+        case 3: _t->slotBlocedPole((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -157,13 +169,13 @@ int ChangeUser::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 3)
+        if (_id < 4)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 3;
+        _id -= 4;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 3)
+        if (_id < 4)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 3;
+        _id -= 4;
     }
     return _id;
 }
