@@ -9,8 +9,12 @@ SettingsWindow::SettingsWindow(QWidget *parent) :
     createModelGroup();
     createModelLectureHall();
     createModelSpecialization();
+    SetValidationOnCreateLessons();
+    ui->DataEdit->setReadOnly(true);
     connect(ui->ExitBtn, SIGNAL(clicked()), SLOT(slotBackButtonCliked()));
-    connect(ui->SpecializaciaBox, SIGNAL(currentTextChanged(const QString &)), SLOT(slotChangeSpecialization(const QString &)));
+    connect(this, SIGNAL(signalBackButtonCliked()), SLOT(slotBackButtonCliked()));
+    connect(ui->SpecializaciaBox, SIGNAL(currentTextChanged(QString)), SLOT(slotChangeSpecialization(QString)));
+    connect(ui->ConfirmBtn,SIGNAL(clicked()),SLOT(slotConfirmButtonClicked()));
     connect(ui->SpecializaciaBox, SIGNAL(currentIndexChanged(int)), SLOT(slotBlockedPole(int)));
     connect(ui->Data, SIGNAL(activated(QDate)), SLOT(slotDateSelection(QDate)));
 }
@@ -111,14 +115,59 @@ void SettingsWindow::setLessonToChangeWidget(Lesson lesson){
     int TypeOfActivity = lesson.GetTypeOfActivity();
     QString STypeOfActivity = Lesson::convertTypeOfActivityToString(TypeOfActivity);
     ui->VidBox->setCurrentText(STypeOfActivity);
-    QDateTime DateTime = lesson.GetTime();
-    QString SDateTime = DateTime.toString("yyyy-mm-dd hh:mm");
-    QString Data = DateTime.toString("dd.MM.yyyy");
-    QString Time = SDateTime.section(' ', 1, 2);
+    QString DateTime = lesson.GetTime();
+    QString Data = DateTime.section(' ', 0, 0);
+    QString Time = DateTime.section(' ', 1, 1);
     ui->Time->setCurrentText(Time);
     ui->DataEdit->setText(Data);
     double Payment = lesson.GetPayment();
     ui->PaymentEdit->setText(QString::number(Payment));
+    Change = true;
+}
+
+void SettingsWindow::slotConfirmButtonClicked(){
+    try {
+        CheckingFieldsEmpty();
+    } catch (std::runtime_error& err) {
+        QMessageBox::information(this,"Предупреждение",err.what());
+        return;
+    }
+    Lesson newLesson;
+    if (Change){
+        newLesson = lesson;
+    }
+    QString Teacher = ui->TeacherBox->currentText();
+    QString Specialization = ui->SpecializaciaBox->currentText();
+    int ID_Specialization = Lesson::convertSpecializationToInt(Specialization);
+    int ID_Teacher = Lesson::convertTeacherToInt(Teacher, ID_Specialization);
+    newLesson.SetIdTeacher(ID_Teacher);
+    newLesson.SetIdSpecialization(ID_Specialization);
+    QString Group = ui->groupBox->currentText();
+    int ID_Group = Lesson::convertGroupToInt(Group, ID_Specialization);
+    newLesson.SetIdGroup(ID_Group);
+    QString LectoreHall = ui->LectorHall->currentText();
+    int ID_LectoreHall = Lesson::convertLectureHallToInt(LectoreHall);
+    newLesson.SetIdLectureHall(ID_LectoreHall);
+    QString STypeOfActivity = ui->VidBox->currentText();
+    int TypeOfActivity = Lesson::convertTypeOfActivityToInt(STypeOfActivity);
+    newLesson.SetTypeOfActivity(TypeOfActivity);
+    QString Data = ui->DataEdit->text();
+    QString Time = ui->Time->currentText();
+    QString SDataTime = Data + " " + Time;
+    newLesson.SetTime(SDataTime);
+    QString SPayment = ui->PaymentEdit->text();
+    double Payment = SPayment.toDouble();
+    newLesson.SetTitle(ui->TitleEdit->text());
+    newLesson.SetPayment(Payment);
+    if (Change){
+        Change = false;
+        cleari();
+        emit signalRefreshLesson(newLesson);
+    }
+    else {
+        cleari();
+        emit signalAddLesson(newLesson);
+    }
 }
 
 void SettingsWindow::slotBlockedPole(int index){
@@ -127,7 +176,7 @@ void SettingsWindow::slotBlockedPole(int index){
     }
 }
 
-void SettingsWindow::slotChangeSpecialization(const QString &Specialization){
+void SettingsWindow::slotChangeSpecialization(QString Specialization){
     if (Specialization != "Выберите предметную область"){
         int ID_Specialization = Lesson::convertSpecializationToInt(Specialization);
         createModelTeacher(ID_Specialization);
@@ -137,11 +186,10 @@ void SettingsWindow::slotChangeSpecialization(const QString &Specialization){
 
 void SettingsWindow::slotDateSelection(QDate Data){
     QDate selectedDate = ui->Data->selectedDate();
-    QString formattedDate = selectedDate.toString("dd.MM.yyyy");
+    QString formattedDate = selectedDate.toString("yyyy.MM.dd");
     ui->DataEdit->setText(formattedDate);
 }
-
-void SettingsWindow::slotBackButtonCliked(){
+void SettingsWindow::cleari(){
     ui->DataEdit->clear();
     ui->SpecializaciaBox->setCurrentIndex(0);
     ui->TeacherBox->setCurrentIndex(0);
@@ -151,6 +199,45 @@ void SettingsWindow::slotBackButtonCliked(){
     ui->VidBox->setCurrentIndex(0);
     ui->Time->setCurrentIndex(0);
     ui->PaymentEdit->clear();
+}
+void SettingsWindow::slotBackButtonCliked(){
+    cleari();
     emit signalClearBackBtn();
 
+}
+
+void SettingsWindow::CheckingFieldsEmpty(){
+    if(ui->TeacherBox->currentIndex() == 0){
+       throw std::runtime_error("Не указан преподаватель.");
+    }
+    if(ui->SpecializaciaBox->currentIndex() == 0){
+        throw std::runtime_error("Не указана предметная область.");
+    }
+    if(ui->LectorHall->currentIndex() == 0){
+        throw std::runtime_error("Не указана аудитория.");
+    }
+    if(ui->groupBox->currentIndex() == 0){
+        throw std::runtime_error("Не указана группа.");
+    }
+    if(ui->Time->currentIndex() == 0){
+        throw std::runtime_error("Не указано время проведения.");
+    }
+    if(ui->DataEdit->text().trimmed().isEmpty()){
+        throw std::runtime_error("Поле даты не может быть пустым.");
+    }
+    if(ui->PaymentEdit->text().trimmed().isEmpty()){
+        throw std::runtime_error("Поле оплаты не может быть пустым.");
+    }
+    if(ui->TitleEdit->text().trimmed().isEmpty()){
+        throw std::runtime_error("Поле названия предмета не может быть пустым.");
+    }
+}
+
+void SettingsWindow::SetValidationOnCreateLessons(){
+
+    QRegularExpression regExpOnTitle("[A-Za-zA-яа-я0-9\\s\\-_.]*");
+    ui->TitleEdit->setValidator(new QRegularExpressionValidator(regExpOnTitle,this));
+
+    QRegularExpression regExpOnPayment("[0-9.\\s-]*");
+    ui->PaymentEdit->setValidator(new QRegularExpressionValidator(regExpOnPayment,this));
 }

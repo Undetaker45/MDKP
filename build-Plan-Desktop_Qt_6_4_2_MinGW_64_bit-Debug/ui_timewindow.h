@@ -34,7 +34,7 @@ public:
     QLabel *laTeacher;
     QComboBox *TeacherBox;
     QLabel *laGroup;
-    QComboBox *GroupBox_2;
+    QComboBox *GroupBox;
     QLabel *laTime;
     QLineEdit *TimeEdit;
     QSpacerItem *verticalSpacer;
@@ -93,11 +93,11 @@ public:
 
         verticalLayout->addWidget(laGroup);
 
-        GroupBox_2 = new QComboBox(TimeWindow);
-        GroupBox_2->setObjectName("GroupBox_2");
-        GroupBox_2->setFont(font1);
+        GroupBox = new QComboBox(TimeWindow);
+        GroupBox->setObjectName("GroupBox");
+        GroupBox->setFont(font1);
 
-        verticalLayout->addWidget(GroupBox_2);
+        verticalLayout->addWidget(GroupBox);
 
         laTime = new QLabel(TimeWindow);
         laTime->setObjectName("laTime");

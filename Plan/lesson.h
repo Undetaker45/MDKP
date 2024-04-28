@@ -17,7 +17,7 @@ public:
     int GetIdGroup() const;
     int GetIdSpecialization() const;
     int GetIdLectureHall() const;
-    QDateTime GetTime() const;
+    QString GetTime() const;
     double GetPayment() const;
 
     void SetIdTeacher(int ID_Teacher);
@@ -26,7 +26,7 @@ public:
     void SetIdGroup(int ID_Group);
     void SetIdSpecialization(int ID_Specialization);
     void SetIdLectureHall(int ID_LectureHall);
-    void SetTime(QDateTime Time);
+    void SetTime(QString Time);
     void SetPayment(double Payment);
 
     bool isValid();
@@ -49,7 +49,7 @@ private:
     int id_group;
     int id_speciazation;
     int id_lecturehall;
-    QDateTime time;
+    QString time;
     double payment;
     bool valid;
 };

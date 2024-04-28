@@ -39,7 +39,7 @@ public:
     QGridLayout *gridLayout;
     QLineEdit *SurnameEdit;
     QSpacerItem *horizontalSpacer;
-    QLineEdit *OtdelEdit_5;
+    QLineEdit *OtdelEdit;
     QLabel *label_4;
     QSpacerItem *verticalSpacer;
     QLabel *label_5;
@@ -48,7 +48,7 @@ public:
     QLineEdit *NameEdit;
     QSpacerItem *verticalSpacer_3;
     QSpacerItem *horizontalSpacer_2;
-    QLineEdit *GroupEdit_6;
+    QLineEdit *GroupEdit;
     QSpacerItem *verticalSpacer_2;
     QLabel *label_2;
     QLineEdit *SpecialnostEdit;
@@ -56,10 +56,10 @@ public:
     QLabel *label_3;
     QVBoxLayout *verticalLayout_2;
     QSpacerItem *verticalSpacer_4;
-    QPushButton *pushButton;
+    QPushButton *ExitBtn;
     QWidget *MyLessonsTab;
     QGridLayout *gridLayout_2;
-    QTableView *tableView;
+    QTableView *LessonView;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -94,10 +94,10 @@ public:
 
         gridLayout->addItem(horizontalSpacer, 2, 2, 1, 1);
 
-        OtdelEdit_5 = new QLineEdit(ProfileTab);
-        OtdelEdit_5->setObjectName("OtdelEdit_5");
+        OtdelEdit = new QLineEdit(ProfileTab);
+        OtdelEdit->setObjectName("OtdelEdit");
 
-        gridLayout->addWidget(OtdelEdit_5, 10, 1, 1, 1);
+        gridLayout->addWidget(OtdelEdit, 10, 1, 1, 1);
 
         label_4 = new QLabel(ProfileTab);
         label_4->setObjectName("label_4");
@@ -136,10 +136,10 @@ public:
 
         gridLayout->addItem(horizontalSpacer_2, 4, 0, 1, 1);
 
-        GroupEdit_6 = new QLineEdit(ProfileTab);
-        GroupEdit_6->setObjectName("GroupEdit_6");
+        GroupEdit = new QLineEdit(ProfileTab);
+        GroupEdit->setObjectName("GroupEdit");
 
-        gridLayout->addWidget(GroupEdit_6, 12, 1, 1, 1);
+        gridLayout->addWidget(GroupEdit, 12, 1, 1, 1);
 
         verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::MinimumExpanding);
 
@@ -171,10 +171,10 @@ public:
 
         verticalLayout_2->addItem(verticalSpacer_4);
 
-        pushButton = new QPushButton(ProfileTab);
-        pushButton->setObjectName("pushButton");
+        ExitBtn = new QPushButton(ProfileTab);
+        ExitBtn->setObjectName("ExitBtn");
 
-        verticalLayout_2->addWidget(pushButton);
+        verticalLayout_2->addWidget(ExitBtn);
 
 
         gridLayout->addLayout(verticalLayout_2, 14, 3, 1, 1);
@@ -187,10 +187,10 @@ public:
         MyLessonsTab->setObjectName("MyLessonsTab");
         gridLayout_2 = new QGridLayout(MyLessonsTab);
         gridLayout_2->setObjectName("gridLayout_2");
-        tableView = new QTableView(MyLessonsTab);
-        tableView->setObjectName("tableView");
+        LessonView = new QTableView(MyLessonsTab);
+        LessonView->setObjectName("LessonView");
 
-        gridLayout_2->addWidget(tableView, 0, 0, 1, 1);
+        gridLayout_2->addWidget(LessonView, 0, 0, 1, 1);
 
         tabWidget->addTab(MyLessonsTab, QString());
 
@@ -210,7 +210,7 @@ public:
 
         retranslateUi(ListenerWindow);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(ListenerWindow);
@@ -225,7 +225,7 @@ public:
         label->setText(QCoreApplication::translate("ListenerWindow", "\320\244\320\260\320\274\320\270\320\273\320\270\321\217", nullptr));
         label_2->setText(QCoreApplication::translate("ListenerWindow", "\320\230\320\274\321\217", nullptr));
         label_3->setText(QCoreApplication::translate("ListenerWindow", "\320\236\321\202\321\207\320\265\321\201\321\202\320\262\320\276", nullptr));
-        pushButton->setText(QCoreApplication::translate("ListenerWindow", "PushButton", nullptr));
+        ExitBtn->setText(QCoreApplication::translate("ListenerWindow", "\320\222\321\213\321\205\320\276\320\264", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(ProfileTab), QCoreApplication::translate("ListenerWindow", "\320\237\321\200\320\276\321\204\320\270\320\273\321\214", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(MyLessonsTab), QCoreApplication::translate("ListenerWindow", "\320\234\320\276\320\270 \320\267\320\260\320\275\321\217\321\202\320\270\321\217", nullptr));
     } // retranslateUi

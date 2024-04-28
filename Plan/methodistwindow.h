@@ -4,9 +4,9 @@
 #include "abstractuserwindow.h"
 #include "database.h"
 #include "QTableView"
-#include "user.h"
 #include "lesson.h"
 #include "settingswindow.h"
+#include "timewindow.h"
 #include <QWidget>
 
 #include <QMainWindow>
@@ -58,6 +58,9 @@ public slots:
 private slots:
     void slotDoubleClikedOnLesson(const QModelIndex index);
     void slotClicedOnButtonAdd();
+    void slotRefreshLessonInDatabase(Lesson& lesson);
+    void slotAddLessonInDatabase(Lesson& lesson);
+    void slotClicedOnButtonTime();
 
 };
 

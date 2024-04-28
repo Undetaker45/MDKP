@@ -28,7 +28,7 @@ public:
     void RefreshUserById(User user);
     void AddLesson(Lesson lesson);
     void RefreshLessonById(Lesson lesson);
-    int Time(QString ID_Teacher, QString ID_Group);
+    static int Time(int ID_Teacher, int ID_Group);
 private:
     QSqlDatabase* sqlDatabase;
 

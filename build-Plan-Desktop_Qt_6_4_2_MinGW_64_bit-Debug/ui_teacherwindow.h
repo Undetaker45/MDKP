@@ -38,33 +38,33 @@ public:
     QWidget *ProfileTab;
     QGridLayout *gridLayout_4;
     QGridLayout *gridLayout;
-    QLineEdit *lineEdit_4;
-    QLineEdit *lineEdit_3;
+    QLineEdit *SpecialnostEdit;
+    QLineEdit *MiddleNameEdit;
     QLabel *label_2;
-    QLineEdit *lineEdit;
+    QLineEdit *SurnameEdit;
     QLabel *label_3;
     QSpacerItem *horizontalSpacer;
     QLabel *label_5;
     QSpacerItem *verticalSpacer;
-    QLineEdit *lineEdit_5;
+    QLineEdit *PhoneNumberEdit;
     QLabel *label;
-    QLineEdit *lineEdit_6;
+    QLineEdit *WorkExpEdit;
     QLabel *label_4;
-    QLineEdit *lineEdit_2;
+    QLineEdit *NameEdit;
     QLabel *label_6;
     QSpacerItem *verticalSpacer_2;
     QSpacerItem *horizontalSpacer_2;
     QSpacerItem *verticalSpacer_3;
     QVBoxLayout *verticalLayout_2;
     QSpacerItem *verticalSpacer_4;
-    QPushButton *pushButton;
+    QPushButton *ExitBtn;
     QWidget *MyLessonsTab;
     QGridLayout *gridLayout_2;
     QGridLayout *gridLayout_5;
     QHBoxLayout *horizontalLayout;
     QSpacerItem *horizontalSpacer_4;
-    QPushButton *pushButton_2;
-    QTableView *tableView;
+    QPushButton *TimeBtn;
+    QTableView *ViewLesson;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -72,7 +72,7 @@ public:
     {
         if (TeacherWindow->objectName().isEmpty())
             TeacherWindow->setObjectName("TeacherWindow");
-        TeacherWindow->resize(910, 674);
+        TeacherWindow->resize(910, 677);
         centralwidget = new QWidget(TeacherWindow);
         centralwidget->setObjectName("centralwidget");
         gridLayout_3 = new QGridLayout(centralwidget);
@@ -90,25 +90,25 @@ public:
         gridLayout_4->setObjectName("gridLayout_4");
         gridLayout = new QGridLayout();
         gridLayout->setObjectName("gridLayout");
-        lineEdit_4 = new QLineEdit(ProfileTab);
-        lineEdit_4->setObjectName("lineEdit_4");
+        SpecialnostEdit = new QLineEdit(ProfileTab);
+        SpecialnostEdit->setObjectName("SpecialnostEdit");
 
-        gridLayout->addWidget(lineEdit_4, 8, 1, 1, 1);
+        gridLayout->addWidget(SpecialnostEdit, 8, 1, 1, 1);
 
-        lineEdit_3 = new QLineEdit(ProfileTab);
-        lineEdit_3->setObjectName("lineEdit_3");
+        MiddleNameEdit = new QLineEdit(ProfileTab);
+        MiddleNameEdit->setObjectName("MiddleNameEdit");
 
-        gridLayout->addWidget(lineEdit_3, 6, 1, 1, 1);
+        gridLayout->addWidget(MiddleNameEdit, 6, 1, 1, 1);
 
         label_2 = new QLabel(ProfileTab);
         label_2->setObjectName("label_2");
 
         gridLayout->addWidget(label_2, 3, 1, 1, 1);
 
-        lineEdit = new QLineEdit(ProfileTab);
-        lineEdit->setObjectName("lineEdit");
+        SurnameEdit = new QLineEdit(ProfileTab);
+        SurnameEdit->setObjectName("SurnameEdit");
 
-        gridLayout->addWidget(lineEdit, 2, 1, 1, 1);
+        gridLayout->addWidget(SurnameEdit, 2, 1, 1, 1);
 
         label_3 = new QLabel(ProfileTab);
         label_3->setObjectName("label_3");
@@ -128,30 +128,30 @@ public:
 
         gridLayout->addItem(verticalSpacer, 0, 1, 1, 1);
 
-        lineEdit_5 = new QLineEdit(ProfileTab);
-        lineEdit_5->setObjectName("lineEdit_5");
+        PhoneNumberEdit = new QLineEdit(ProfileTab);
+        PhoneNumberEdit->setObjectName("PhoneNumberEdit");
 
-        gridLayout->addWidget(lineEdit_5, 10, 1, 1, 1);
+        gridLayout->addWidget(PhoneNumberEdit, 10, 1, 1, 1);
 
         label = new QLabel(ProfileTab);
         label->setObjectName("label");
 
         gridLayout->addWidget(label, 1, 1, 1, 1);
 
-        lineEdit_6 = new QLineEdit(ProfileTab);
-        lineEdit_6->setObjectName("lineEdit_6");
+        WorkExpEdit = new QLineEdit(ProfileTab);
+        WorkExpEdit->setObjectName("WorkExpEdit");
 
-        gridLayout->addWidget(lineEdit_6, 12, 1, 1, 1);
+        gridLayout->addWidget(WorkExpEdit, 12, 1, 1, 1);
 
         label_4 = new QLabel(ProfileTab);
         label_4->setObjectName("label_4");
 
         gridLayout->addWidget(label_4, 7, 1, 1, 1);
 
-        lineEdit_2 = new QLineEdit(ProfileTab);
-        lineEdit_2->setObjectName("lineEdit_2");
+        NameEdit = new QLineEdit(ProfileTab);
+        NameEdit->setObjectName("NameEdit");
 
-        gridLayout->addWidget(lineEdit_2, 4, 1, 1, 1);
+        gridLayout->addWidget(NameEdit, 4, 1, 1, 1);
 
         label_6 = new QLabel(ProfileTab);
         label_6->setObjectName("label_6");
@@ -176,10 +176,10 @@ public:
 
         verticalLayout_2->addItem(verticalSpacer_4);
 
-        pushButton = new QPushButton(ProfileTab);
-        pushButton->setObjectName("pushButton");
+        ExitBtn = new QPushButton(ProfileTab);
+        ExitBtn->setObjectName("ExitBtn");
 
-        verticalLayout_2->addWidget(pushButton);
+        verticalLayout_2->addWidget(ExitBtn);
 
 
         gridLayout->addLayout(verticalLayout_2, 14, 3, 1, 1);
@@ -200,18 +200,18 @@ public:
 
         horizontalLayout->addItem(horizontalSpacer_4);
 
-        pushButton_2 = new QPushButton(MyLessonsTab);
-        pushButton_2->setObjectName("pushButton_2");
+        TimeBtn = new QPushButton(MyLessonsTab);
+        TimeBtn->setObjectName("TimeBtn");
 
-        horizontalLayout->addWidget(pushButton_2);
+        horizontalLayout->addWidget(TimeBtn);
 
 
         gridLayout_5->addLayout(horizontalLayout, 1, 0, 1, 1);
 
-        tableView = new QTableView(MyLessonsTab);
-        tableView->setObjectName("tableView");
+        ViewLesson = new QTableView(MyLessonsTab);
+        ViewLesson->setObjectName("ViewLesson");
 
-        gridLayout_5->addWidget(tableView, 0, 0, 1, 1);
+        gridLayout_5->addWidget(ViewLesson, 0, 0, 1, 1);
 
 
         gridLayout_2->addLayout(gridLayout_5, 0, 0, 1, 1);
@@ -249,9 +249,9 @@ public:
         label->setText(QCoreApplication::translate("TeacherWindow", "\320\244\320\260\320\274\320\270\320\273\320\270\321\217", nullptr));
         label_4->setText(QCoreApplication::translate("TeacherWindow", "\320\241\320\277\320\265\321\206\320\270\320\260\320\273\321\214\320\275\320\276\321\201\321\202\321\214", nullptr));
         label_6->setText(QCoreApplication::translate("TeacherWindow", "\320\241\321\202\320\260\320\266 \321\200\320\260\320\261\320\276\321\202\321\213", nullptr));
-        pushButton->setText(QCoreApplication::translate("TeacherWindow", "\320\222\321\213\321\205\320\276\320\264", nullptr));
+        ExitBtn->setText(QCoreApplication::translate("TeacherWindow", "\320\222\321\213\321\205\320\276\320\264", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(ProfileTab), QCoreApplication::translate("TeacherWindow", "\320\237\321\200\320\276\321\204\320\270\320\273\321\214", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("TeacherWindow", "\320\222\321\200\320\265\320\274\321\217", nullptr));
+        TimeBtn->setText(QCoreApplication::translate("TeacherWindow", "\320\222\321\200\320\265\320\274\321\217", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(MyLessonsTab), QCoreApplication::translate("TeacherWindow", "\320\234\320\276\320\270 \320\267\320\260\320\275\321\217\321\202\320\270\321\217", nullptr));
     } // retranslateUi
 

@@ -11,7 +11,7 @@ Lesson::Lesson(QString ID, QString ID_Teacher, QString TypeOfActivity, QString T
     id_group = ID_Group.toInt();
     id_speciazation = ID_Specialization.toInt();
     id_lecturehall = ID_LectureHall.toInt();
-    time =  QDateTime::fromString(Time,"yyyy-MM-dd hh:mm");
+    time =  Time;
     payment = Payment.toDouble();
     valid = true;
 }
@@ -36,9 +36,9 @@ void Lesson::operator << (QSqlQuery& query){
     id_speciazation = Id_Specialization;
     int ID_LectoreHall = query.value("Lessons.ID_LectoreHall").toString().toInt();
     id_lecturehall = ID_LectoreHall;
-    QDateTime Time = QDateTime::fromString(query.value("Lessons.Time").toString(), "yyyy-MM-dd hh:mm");
+    QString Time = query.value("Lessons.Time").toString();
     time = Time;
-    payment = query.value("Lessons.Payment").toString().toInt();
+    payment = query.value("Lessons.Payment").toString().toDouble();
 }
 
 
@@ -70,7 +70,7 @@ int Lesson::GetIdLectureHall() const{
     return id_lecturehall;
 }
 
-QDateTime Lesson::GetTime() const{
+QString Lesson::GetTime() const{
     return time;
 }
 
@@ -101,7 +101,7 @@ void Lesson::SetIdSpecialization(int ID_Specialization){
 void Lesson::SetIdLectureHall(int ID_LectureHall){
     this->id_lecturehall = ID_LectureHall;
 }
-void Lesson::SetTime(QDateTime Time){
+void Lesson::SetTime(QString Time){
     this->time = Time;
 }
 void Lesson::SetPayment(double Payment){
@@ -255,41 +255,41 @@ QString Lesson::convertIdTeacherToString(int ID_Teacher){
     return query.value(0).toString();
 }
 
-int Lesson::convertLectureHallToInt(QString LectureHall){
+int Lesson::convertLectureHallToInt(QString LectureHall) {
     QSqlQuery query;
-    QString Name = LectureHall.section(' ', 0, 1);
-    QString Academic = LectureHall.section(' ', 1, 2);
+    QString Name = LectureHall.section(' ', 0, 0);
+    QString Academic = LectureHall.section(' ', 1, 1);
     query.prepare("SELECT * "
                   "FROM LectoreHall "
                   "WHERE Name = :name AND "
-                  "AcademicBuilding = :acadenic;");
+                  "AcademicBuilding = :academic;");
     query.bindValue(":name", Name);
     query.bindValue(":academic", Academic);
     bool queryResult = query.exec();
 
-    if(!queryResult){
+    if (!queryResult) {
         qDebug() << query.lastError();
-        throw std::runtime_error("Не удалось осуществить поис аудитории.");
+        throw std::runtime_error("Не удалось осуществить поиск аудитории.");
     }
 
-    if(query.next() && query.value(0).isNull()){
+    if (query.next() && query.value(0).isNull()) {
         return 0;
     }
 
     return query.value("ID").toInt();
 }
 
-int Lesson::convertTeacherToInt(QString Teacher, int ID_Specialization){
-    QString Surname = Teacher.section(' ', 0, 1);
-    QString Name = Teacher.section(' ', 1, 2);
-    QString MiddleName = Teacher.section(' ', 2, 3);
+int Lesson::convertTeacherToInt(QString Teacher, int ID_Specialization) {
+    QString Surname = Teacher.section(' ', 0, 0);
+    QString Name = Teacher.section(' ', 1, 1);
+    QString MiddleName = Teacher.section(' ', 2, 2);
     QSqlQuery query;
     query.prepare("SELECT * "
                   "FROM Teacher "
-                  "join User on User.ID = Teacher.ID_User "
+                  "JOIN User ON User.ID = Teacher.ID_User "
                   "WHERE Teacher.ID_Specialization = :id_specialization AND "
-                  "User.Surname = :surname AND"
-                  "User.Name = :name AND"
+                  "User.Surname = :surname AND "
+                  "User.Name = :name AND "
                   "User.MiddleName = :middlename;");
     query.bindValue(":id_specialization", ID_Specialization);
     query.bindValue(":surname", Surname);
@@ -297,13 +297,12 @@ int Lesson::convertTeacherToInt(QString Teacher, int ID_Specialization){
     query.bindValue(":middlename", MiddleName);
     bool queryResult = query.exec();
 
-
-    if(!queryResult){
+    if (!queryResult) {
         qDebug() << query.lastError();
-        throw std::runtime_error("Не удалось осуществить поис аудитории.");
+        throw std::runtime_error("Не удалось осуществить поиск аудитории.");
     }
 
-    if(query.next() && query.value(0).isNull()){
+    if (query.next() && query.value(0).isNull()) {
         return 0;
     }
 

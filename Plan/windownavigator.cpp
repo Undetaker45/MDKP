@@ -24,14 +24,15 @@ void WindowNavigator::slotLoginSuccessful(const User& user){
     break;
 
     case Teacher:{
-        TeacherWindow* window = new TeacherWindow(user,db);
+        TeacherWindow* window = new TeacherWindow(user);
         windowForRole.reset(window);
     }
     break;
     case Listener:{
-        ListenerWindow* window = new ListenerWindow(user, db);
+        ListenerWindow* window = new ListenerWindow(user);
         windowForRole.reset(window);
     }
+    break;
     default:
         Q_ASSERT(false);
     }

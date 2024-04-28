@@ -26,7 +26,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 namespace {
 struct qt_meta_stringdata_SettingsWindow_t {
-    uint offsetsAndSizes[30];
+    uint offsetsAndSizes[32];
     char stringdata0[15];
     char stringdata1[23];
     char stringdata2[1];
@@ -35,13 +35,14 @@ struct qt_meta_stringdata_SettingsWindow_t {
     char stringdata5[7];
     char stringdata6[16];
     char stringdata7[19];
-    char stringdata8[16];
-    char stringdata9[6];
-    char stringdata10[25];
-    char stringdata11[15];
-    char stringdata12[18];
-    char stringdata13[5];
-    char stringdata14[21];
+    char stringdata8[25];
+    char stringdata9[16];
+    char stringdata10[6];
+    char stringdata11[25];
+    char stringdata12[15];
+    char stringdata13[18];
+    char stringdata14[5];
+    char stringdata15[21];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_SettingsWindow_t::offsetsAndSizes) + ofs), len 
@@ -55,13 +56,14 @@ Q_CONSTINIT static const qt_meta_stringdata_SettingsWindow_t qt_meta_stringdata_
         QT_MOC_LITERAL(67, 6),  // "lesson"
         QT_MOC_LITERAL(74, 15),  // "signalAddLesson"
         QT_MOC_LITERAL(90, 18),  // "signalClearBackBtn"
-        QT_MOC_LITERAL(109, 15),  // "slotBlockedPole"
-        QT_MOC_LITERAL(125, 5),  // "index"
-        QT_MOC_LITERAL(131, 24),  // "slotChangeSpecialization"
-        QT_MOC_LITERAL(156, 14),  // "Specialization"
-        QT_MOC_LITERAL(171, 17),  // "slotDateSelection"
-        QT_MOC_LITERAL(189, 4),  // "Data"
-        QT_MOC_LITERAL(194, 20)   // "slotBackButtonCliked"
+        QT_MOC_LITERAL(109, 24),  // "slotConfirmButtonClicked"
+        QT_MOC_LITERAL(134, 15),  // "slotBlockedPole"
+        QT_MOC_LITERAL(150, 5),  // "index"
+        QT_MOC_LITERAL(156, 24),  // "slotChangeSpecialization"
+        QT_MOC_LITERAL(181, 14),  // "Specialization"
+        QT_MOC_LITERAL(196, 17),  // "slotDateSelection"
+        QT_MOC_LITERAL(214, 4),  // "Data"
+        QT_MOC_LITERAL(219, 20)   // "slotBackButtonCliked"
     },
     "SettingsWindow",
     "signalBackButtonCliked",
@@ -71,6 +73,7 @@ Q_CONSTINIT static const qt_meta_stringdata_SettingsWindow_t qt_meta_stringdata_
     "lesson",
     "signalAddLesson",
     "signalClearBackBtn",
+    "slotConfirmButtonClicked",
     "slotBlockedPole",
     "index",
     "slotChangeSpecialization",
@@ -88,7 +91,7 @@ Q_CONSTINIT static const uint qt_meta_data_SettingsWindow[] = {
       10,       // revision
        0,       // classname
        0,    0, // classinfo
-       8,   14, // methods
+       9,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -96,16 +99,17 @@ Q_CONSTINIT static const uint qt_meta_data_SettingsWindow[] = {
        4,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   62,    2, 0x06,    1 /* Public */,
-       3,    1,   63,    2, 0x06,    2 /* Public */,
-       6,    1,   66,    2, 0x06,    4 /* Public */,
-       7,    0,   69,    2, 0x06,    6 /* Public */,
+       1,    0,   68,    2, 0x06,    1 /* Public */,
+       3,    1,   69,    2, 0x06,    2 /* Public */,
+       6,    1,   72,    2, 0x06,    4 /* Public */,
+       7,    0,   75,    2, 0x06,    6 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       8,    1,   70,    2, 0x08,    7 /* Private */,
-      10,    1,   73,    2, 0x08,    9 /* Private */,
-      12,    1,   76,    2, 0x08,   11 /* Private */,
-      14,    0,   79,    2, 0x08,   13 /* Private */,
+       8,    0,   76,    2, 0x08,    7 /* Private */,
+       9,    1,   77,    2, 0x08,    8 /* Private */,
+      11,    1,   80,    2, 0x08,   10 /* Private */,
+      13,    1,   83,    2, 0x08,   12 /* Private */,
+      15,    0,   86,    2, 0x08,   14 /* Private */,
 
  // signals: parameters
     QMetaType::Void,
@@ -114,9 +118,10 @@ Q_CONSTINIT static const uint qt_meta_data_SettingsWindow[] = {
     QMetaType::Void,
 
  // slots: parameters
-    QMetaType::Void, QMetaType::Int,    9,
-    QMetaType::Void, QMetaType::QString,   11,
-    QMetaType::Void, QMetaType::QDate,   13,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int,   10,
+    QMetaType::Void, QMetaType::QString,   12,
+    QMetaType::Void, QMetaType::QDate,   14,
     QMetaType::Void,
 
        0        // eod
@@ -141,12 +146,14 @@ Q_CONSTINIT const QMetaObject SettingsWindow::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<Lesson &, std::false_type>,
         // method 'signalClearBackBtn'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'slotConfirmButtonClicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'slotBlockedPole'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
         // method 'slotChangeSpecialization'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         // method 'slotDateSelection'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QDate, std::false_type>,
@@ -166,10 +173,11 @@ void SettingsWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         case 1: _t->signalRefreshLesson((*reinterpret_cast< std::add_pointer_t<Lesson&>>(_a[1]))); break;
         case 2: _t->signalAddLesson((*reinterpret_cast< std::add_pointer_t<Lesson&>>(_a[1]))); break;
         case 3: _t->signalClearBackBtn(); break;
-        case 4: _t->slotBlockedPole((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
-        case 5: _t->slotChangeSpecialization((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 6: _t->slotDateSelection((*reinterpret_cast< std::add_pointer_t<QDate>>(_a[1]))); break;
-        case 7: _t->slotBackButtonCliked(); break;
+        case 4: _t->slotConfirmButtonClicked(); break;
+        case 5: _t->slotBlockedPole((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 6: _t->slotChangeSpecialization((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 7: _t->slotDateSelection((*reinterpret_cast< std::add_pointer_t<QDate>>(_a[1]))); break;
+        case 8: _t->slotBackButtonCliked(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -224,13 +232,13 @@ int SettingsWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 8)
+        if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 8;
+        _id -= 9;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 8)
+        if (_id < 9)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 8;
+        _id -= 9;
     }
     return _id;
 }

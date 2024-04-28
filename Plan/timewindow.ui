@@ -105,7 +105,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="GroupBox_2">
+      <widget class="QComboBox" name="GroupBox">
        <property name="font">
         <font>
          <pointsize>12</pointsize>

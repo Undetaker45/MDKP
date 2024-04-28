@@ -14,8 +14,12 @@ MethodistWindow::MethodistWindow(const User& us,Database* database, QWidget *par
     AddShadowToChildren(Settings);
     connect(ui->ExitBtn, SIGNAL(clicked()),SIGNAL(signalLogoutButtonClicked()));
     connect(ui->AddBtn, SIGNAL(clicked()), SLOT(slotClicedOnButtonAdd()));
+    connect(ui->TimeBtn, SIGNAL(clicked(bool)), SLOT(slotClicedOnButtonTime()));
+    connect(Settings, SIGNAL(signalAddLesson(Lesson&)),SLOT(slotAddLessonInDatabase(Lesson&)));
+    connect(Settings, SIGNAL(signalRefreshLesson(Lesson&)),SLOT(slotRefreshLessonInDatabase(Lesson&)));
     connect(ui->ViewLessons, SIGNAL(doubleClicked(QModelIndex)), SLOT(slotDoubleClikedOnLesson(QModelIndex)));
     connect(Settings, SIGNAL(signalClearBackBtn()),SLOT(slotBackButtonSettingsWidgetCliked()));
+
 
 
 }
@@ -100,3 +104,19 @@ void MethodistWindow::slotClicedOnButtonAdd(){
     ShowSettings();
 }
 
+void MethodistWindow::slotRefreshLessonInDatabase(Lesson& lesson){
+    db->RefreshLessonById(lesson);
+    RefreshDataView();
+    ShowViewLesson();
+}
+
+void MethodistWindow::slotAddLessonInDatabase(Lesson& lesson){
+    db->AddLesson(lesson);
+    RefreshDataView();
+    ShowViewLesson();
+}
+
+void MethodistWindow::slotClicedOnButtonTime(){
+    TimeWindow *time = new TimeWindow(user);
+    time->show();
+}
