@@ -14,6 +14,7 @@ debug/teacherwindow.o
 debug/timewindow.o
 debug/user.o
 debug/windownavigator.o
+debug/qrc_resources.o
 debug/moc_abstractuserwindow.o
 debug/moc_adminwindow.o
 debug/moc_changeuser.o

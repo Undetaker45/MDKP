@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
@@ -27,7 +28,8 @@ class Ui_LoginWindow
 {
 public:
     QWidget *centralwidget;
-    QVBoxLayout *verticalLayout_2;
+    QHBoxLayout *horizontalLayout;
+    QSpacerItem *horizontalSpacer_2;
     QVBoxLayout *verticalLayout;
     QSpacerItem *verticalSpacer_2;
     QLabel *label;
@@ -36,6 +38,7 @@ public:
     QLineEdit *Password;
     QPushButton *pbvhod;
     QSpacerItem *verticalSpacer;
+    QSpacerItem *horizontalSpacer;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -43,11 +46,15 @@ public:
     {
         if (LoginWindow->objectName().isEmpty())
             LoginWindow->setObjectName("LoginWindow");
-        LoginWindow->resize(363, 600);
+        LoginWindow->resize(419, 452);
         centralwidget = new QWidget(LoginWindow);
         centralwidget->setObjectName("centralwidget");
-        verticalLayout_2 = new QVBoxLayout(centralwidget);
-        verticalLayout_2->setObjectName("verticalLayout_2");
+        horizontalLayout = new QHBoxLayout(centralwidget);
+        horizontalLayout->setObjectName("horizontalLayout");
+        horizontalSpacer_2 = new QSpacerItem(20, 20, QSizePolicy::MinimumExpanding, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer_2);
+
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName("verticalLayout");
         verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
@@ -61,6 +68,7 @@ public:
 
         Login = new QLineEdit(centralwidget);
         Login->setObjectName("Login");
+        Login->setMinimumSize(QSize(200, 20));
 
         verticalLayout->addWidget(Login);
 
@@ -71,11 +79,27 @@ public:
 
         Password = new QLineEdit(centralwidget);
         Password->setObjectName("Password");
+        Password->setMinimumSize(QSize(200, 20));
 
         verticalLayout->addWidget(Password);
 
         pbvhod = new QPushButton(centralwidget);
         pbvhod->setObjectName("pbvhod");
+        pbvhod->setMinimumSize(QSize(200, 20));
+        pbvhod->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"font: 500 20pt \"Montserrat Medium\";\n"
+"    background-color: #AC0808; \n"
+"    color: white; \n"
+"    border: none;\n"
+"    font-size: 20px;\n"
+"    border-radius: 5px; \n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: #C61010;\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: #9C0707; \n"
+"}"));
 
         verticalLayout->addWidget(pbvhod);
 
@@ -84,12 +108,16 @@ public:
         verticalLayout->addItem(verticalSpacer);
 
 
-        verticalLayout_2->addLayout(verticalLayout);
+        horizontalLayout->addLayout(verticalLayout);
+
+        horizontalSpacer = new QSpacerItem(20, 20, QSizePolicy::MinimumExpanding, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer);
 
         LoginWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(LoginWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 363, 26));
+        menubar->setGeometry(QRect(0, 0, 419, 26));
         LoginWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(LoginWindow);
         statusbar->setObjectName("statusbar");

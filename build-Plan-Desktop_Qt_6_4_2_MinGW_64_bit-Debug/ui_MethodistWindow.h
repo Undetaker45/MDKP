@@ -53,6 +53,7 @@ public:
     QSpacerItem *verticalSpacer_4;
     QPushButton *ExitBtn;
     QLabel *label_3;
+    QSpacerItem *horizontalSpacer_4;
     QWidget *tab_2;
     QVBoxLayout *verticalLayout_4;
     QStackedWidget *stackedWidgetLessonManagement;
@@ -143,6 +144,21 @@ public:
 
         ExitBtn = new QPushButton(tab);
         ExitBtn->setObjectName("ExitBtn");
+        ExitBtn->setMinimumSize(QSize(200, 20));
+        ExitBtn->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"font: 500 20pt \"Montserrat Medium\";\n"
+"    background-color: #AC0808; \n"
+"    color: white; \n"
+"    border: none;\n"
+"    font-size: 20px;\n"
+"    border-radius: 5px; \n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: #C61010;\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: #9C0707; \n"
+"}"));
 
         verticalLayout_2->addWidget(ExitBtn);
 
@@ -153,6 +169,10 @@ public:
         label_3->setObjectName("label_3");
 
         gridLayout->addWidget(label_3, 5, 1, 1, 1);
+
+        horizontalSpacer_4 = new QSpacerItem(150, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        gridLayout->addItem(horizontalSpacer_4, 4, 3, 1, 1);
 
 
         verticalLayout_6->addLayout(gridLayout);
@@ -178,11 +198,45 @@ public:
 
         TimeBtn = new QPushButton(page);
         TimeBtn->setObjectName("TimeBtn");
+        TimeBtn->setMinimumSize(QSize(100, 20));
+        TimeBtn->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"font: 500 20pt \"Montserrat Medium\";\n"
+"    background-color: #AC0808; \n"
+"    color: white; \n"
+"    border: none;\n"
+"    font-size: 20px;\n"
+"\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: #C61010;\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: #9C0707; \n"
+"}"));
 
         horizontalLayout_2->addWidget(TimeBtn);
 
         AddBtn = new QPushButton(page);
         AddBtn->setObjectName("AddBtn");
+        QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(AddBtn->sizePolicy().hasHeightForWidth());
+        AddBtn->setSizePolicy(sizePolicy);
+        AddBtn->setMinimumSize(QSize(200, 20));
+        AddBtn->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"font: 500 20pt \"Montserrat Medium\";\n"
+"    background-color: #AC0808; \n"
+"    color: white; \n"
+"    border: none;\n"
+"    font-size: 20px;\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: #C61010;\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: #9C0707; \n"
+"}"));
 
         horizontalLayout_2->addWidget(AddBtn);
 

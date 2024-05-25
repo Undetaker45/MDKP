@@ -262,6 +262,28 @@
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
         <widget class="QPushButton" name="RefreshBtn">
+         <property name="minimumSize">
+          <size>
+           <width>200</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+font: 500 20pt &quot;Montserrat Medium&quot;;
+    background-color: #AC0808; 
+    color: white; 
+    border: none;
+    font-size: 20px;
+    border-radius: 5px; 
+}
+QPushButton:hover {
+    background-color: #C61010;
+}
+QPushButton:pressed {
+    background-color: #9C0707; 
+}</string>
+         </property>
          <property name="text">
           <string>Назад</string>
          </property>
@@ -445,6 +467,28 @@
        </item>
        <item>
         <widget class="QPushButton" name="ConfirmBtn">
+         <property name="minimumSize">
+          <size>
+           <width>200</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+font: 500 20pt &quot;Montserrat Medium&quot;;
+    background-color: #AC0808; 
+    color: white; 
+    border: none;
+    font-size: 20px;
+    border-radius: 5px; 
+}
+QPushButton:hover {
+    background-color: #C61010;
+}
+QPushButton:pressed {
+    background-color: #9C0707; 
+}</string>
+         </property>
          <property name="text">
           <string>Подтвердить</string>
          </property>

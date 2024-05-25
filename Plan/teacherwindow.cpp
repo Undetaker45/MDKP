@@ -8,6 +8,8 @@ TeacherWindow::TeacherWindow(const User& us, QWidget *parent) :
     ui->setupUi(this);
     fillProfile(user);
     configuringInterface(user);
+    AddShadowToChildren(ui->ProfileTab);
+    AddShadowToChildren(ui->MyLessonsTab);
     connect(ui->ExitBtn, SIGNAL(clicked()),SIGNAL(signalLogoutButtonClicked()));
     connect(ui->TimeBtn, SIGNAL(clicked(bool)), SLOT(slotClicedOnButtonTime()));
 

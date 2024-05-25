@@ -34,7 +34,7 @@
          <number>-1</number>
         </property>
         <property name="currentIndex">
-         <number>2</number>
+         <number>1</number>
         </property>
         <property name="tabBarAutoHide">
          <bool>false</bool>
@@ -167,6 +167,28 @@
               </item>
               <item>
                <widget class="QPushButton" name="ExitBtn">
+                <property name="minimumSize">
+                 <size>
+                  <width>200</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton {
+font: 500 20pt &quot;Montserrat Medium&quot;;
+    background-color: #AC0808; 
+    color: white; 
+    border: none;
+    font-size: 20px;
+    border-radius: 5px; 
+}
+QPushButton:hover {
+    background-color: #C61010;
+}
+QPushButton:pressed {
+    background-color: #9C0707; 
+}</string>
+                </property>
                 <property name="text">
                  <string>Выход</string>
                 </property>
@@ -447,6 +469,28 @@
               </item>
               <item>
                <widget class="QPushButton" name="DobavitBtn">
+                <property name="minimumSize">
+                 <size>
+                  <width>200</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton {
+font: 500 20pt &quot;Montserrat Medium&quot;;
+    background-color: #AC0808; 
+    color: white; 
+    border: none;
+    font-size: 20px;
+    border-radius: 5px; 
+}
+QPushButton:hover {
+    background-color: #C61010;
+}
+QPushButton:pressed {
+    background-color: #9C0707; 
+}</string>
+                </property>
                 <property name="text">
                  <string>Добавить</string>
                 </property>

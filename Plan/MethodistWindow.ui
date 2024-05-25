@@ -145,6 +145,28 @@
               </item>
               <item>
                <widget class="QPushButton" name="ExitBtn">
+                <property name="minimumSize">
+                 <size>
+                  <width>200</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton {
+font: 500 20pt &quot;Montserrat Medium&quot;;
+    background-color: #AC0808; 
+    color: white; 
+    border: none;
+    font-size: 20px;
+    border-radius: 5px; 
+}
+QPushButton:hover {
+    background-color: #C61010;
+}
+QPushButton:pressed {
+    background-color: #9C0707; 
+}</string>
+                </property>
                 <property name="text">
                  <string>Выход</string>
                 </property>
@@ -158,6 +180,22 @@
                <string>Отчество</string>
               </property>
              </widget>
+            </item>
+            <item row="4" column="3">
+             <spacer name="horizontalSpacer_4">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeType">
+               <enum>QSizePolicy::Fixed</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>150</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
             </item>
            </layout>
           </item>
@@ -194,6 +232,28 @@
                   </item>
                   <item>
                    <widget class="QPushButton" name="TimeBtn">
+                    <property name="minimumSize">
+                     <size>
+                      <width>100</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">QPushButton {
+font: 500 20pt &quot;Montserrat Medium&quot;;
+    background-color: #AC0808; 
+    color: white; 
+    border: none;
+    font-size: 20px;
+
+}
+QPushButton:hover {
+    background-color: #C61010;
+}
+QPushButton:pressed {
+    background-color: #9C0707; 
+}</string>
+                    </property>
                     <property name="text">
                      <string>Время</string>
                     </property>
@@ -201,6 +261,33 @@
                   </item>
                   <item>
                    <widget class="QPushButton" name="AddBtn">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>200</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">QPushButton {
+font: 500 20pt &quot;Montserrat Medium&quot;;
+    background-color: #AC0808; 
+    color: white; 
+    border: none;
+    font-size: 20px;
+}
+QPushButton:hover {
+    background-color: #C61010;
+}
+QPushButton:pressed {
+    background-color: #9C0707; 
+}</string>
+                    </property>
                     <property name="text">
                      <string>Добавление</string>
                     </property>

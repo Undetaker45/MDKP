@@ -180,6 +180,21 @@ public:
 
         ExitBtn = new QPushButton(ProfileTab);
         ExitBtn->setObjectName("ExitBtn");
+        ExitBtn->setMinimumSize(QSize(200, 20));
+        ExitBtn->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"font: 500 20pt \"Montserrat Medium\";\n"
+"    background-color: #AC0808; \n"
+"    color: white; \n"
+"    border: none;\n"
+"    font-size: 20px;\n"
+"    border-radius: 5px; \n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: #C61010;\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: #9C0707; \n"
+"}"));
 
         verticalLayout_4->addWidget(ExitBtn);
 
@@ -356,6 +371,21 @@ public:
 
         DobavitBtn = new QPushButton(AddUserTab);
         DobavitBtn->setObjectName("DobavitBtn");
+        DobavitBtn->setMinimumSize(QSize(200, 20));
+        DobavitBtn->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"font: 500 20pt \"Montserrat Medium\";\n"
+"    background-color: #AC0808; \n"
+"    color: white; \n"
+"    border: none;\n"
+"    font-size: 20px;\n"
+"    border-radius: 5px; \n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: #C61010;\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: #9C0707; \n"
+"}"));
 
         verticalLayout_3->addWidget(DobavitBtn);
 
@@ -387,7 +417,7 @@ public:
 
         retranslateUi(AdminWindow);
 
-        tabWidget->setCurrentIndex(2);
+        tabWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(AdminWindow);

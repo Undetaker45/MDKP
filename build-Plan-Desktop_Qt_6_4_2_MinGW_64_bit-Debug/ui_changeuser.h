@@ -181,6 +181,21 @@ public:
         horizontalLayout->setObjectName("horizontalLayout");
         RefreshBtn = new QPushButton(ChangeUser);
         RefreshBtn->setObjectName("RefreshBtn");
+        RefreshBtn->setMinimumSize(QSize(200, 20));
+        RefreshBtn->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"font: 500 20pt \"Montserrat Medium\";\n"
+"    background-color: #AC0808; \n"
+"    color: white; \n"
+"    border: none;\n"
+"    font-size: 20px;\n"
+"    border-radius: 5px; \n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: #C61010;\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: #9C0707; \n"
+"}"));
 
         horizontalLayout->addWidget(RefreshBtn);
 
@@ -264,6 +279,21 @@ public:
 
         ConfirmBtn = new QPushButton(ChangeUser);
         ConfirmBtn->setObjectName("ConfirmBtn");
+        ConfirmBtn->setMinimumSize(QSize(200, 20));
+        ConfirmBtn->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"font: 500 20pt \"Montserrat Medium\";\n"
+"    background-color: #AC0808; \n"
+"    color: white; \n"
+"    border: none;\n"
+"    font-size: 20px;\n"
+"    border-radius: 5px; \n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: #C61010;\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: #9C0707; \n"
+"}"));
 
         horizontalLayout_2->addWidget(ConfirmBtn);
 

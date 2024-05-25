@@ -234,7 +234,26 @@ public:
         horizontalLayout->setObjectName("horizontalLayout");
         ExitBtn = new QPushButton(SettingsWindow);
         ExitBtn->setObjectName("ExitBtn");
-        ExitBtn->setFont(font1);
+        ExitBtn->setMinimumSize(QSize(100, 20));
+        QFont font2;
+        font2.setFamilies({QString::fromUtf8("Montserrat Medium")});
+        font2.setBold(false);
+        font2.setItalic(false);
+        ExitBtn->setFont(font2);
+        ExitBtn->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"font: 500 20pt \"Montserrat Medium\";\n"
+"    background-color: #AC0808; \n"
+"    color: white; \n"
+"    border: none;\n"
+"    font-size: 20px;\n"
+"    border-radius: 5px; \n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: #C61010;\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: #9C0707; \n"
+"}"));
 
         horizontalLayout->addWidget(ExitBtn);
 
@@ -244,7 +263,22 @@ public:
 
         ConfirmBtn = new QPushButton(SettingsWindow);
         ConfirmBtn->setObjectName("ConfirmBtn");
-        ConfirmBtn->setFont(font1);
+        ConfirmBtn->setMinimumSize(QSize(100, 20));
+        ConfirmBtn->setFont(font2);
+        ConfirmBtn->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"font: 500 20pt \"Montserrat Medium\";\n"
+"    background-color: #AC0808; \n"
+"    color: white; \n"
+"    border: none;\n"
+"    font-size: 20px;\n"
+"    border-radius: 5px; \n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: #C61010;\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: #9C0707; \n"
+"}"));
 
         horizontalLayout->addWidget(ConfirmBtn);
 

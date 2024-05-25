@@ -57,6 +57,7 @@ public:
     QVBoxLayout *verticalLayout_2;
     QSpacerItem *verticalSpacer_4;
     QPushButton *ExitBtn;
+    QSpacerItem *horizontalSpacer_3;
     QWidget *MyLessonsTab;
     QGridLayout *gridLayout_2;
     QTableView *LessonView;
@@ -173,11 +174,30 @@ public:
 
         ExitBtn = new QPushButton(ProfileTab);
         ExitBtn->setObjectName("ExitBtn");
+        ExitBtn->setMinimumSize(QSize(200, 20));
+        ExitBtn->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"font: 500 20pt \"Montserrat Medium\";\n"
+"    background-color: #AC0808; \n"
+"    color: white; \n"
+"    border: none;\n"
+"    font-size: 20px;\n"
+"    border-radius: 5px; \n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: #C61010;\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: #9C0707; \n"
+"}"));
 
         verticalLayout_2->addWidget(ExitBtn);
 
 
         gridLayout->addLayout(verticalLayout_2, 14, 3, 1, 1);
+
+        horizontalSpacer_3 = new QSpacerItem(150, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        gridLayout->addItem(horizontalSpacer_3, 2, 3, 1, 1);
 
 
         gridLayout_3->addLayout(gridLayout, 0, 0, 1, 1);

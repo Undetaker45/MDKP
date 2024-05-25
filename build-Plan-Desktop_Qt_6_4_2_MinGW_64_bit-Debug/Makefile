@@ -219,7 +219,8 @@ Makefile: ../Plan/Plan.pro C:/Osnova/Qt/6.4.2/mingw_64/mkspecs/win32-g++/qmake.c
 		C:/Osnova/Qt/6.4.2/mingw_64/lib/Qt6Sql.prl \
 		C:/Osnova/Qt/6.4.2/mingw_64/lib/Qt6Core.prl \
 		C:/Osnova/Qt/6.4.2/mingw_64/lib/Qt6EntryPoint.prl \
-		C:/Osnova/Qt/6.4.2/mingw_64/mkspecs/features/build_pass.prf
+		C:/Osnova/Qt/6.4.2/mingw_64/mkspecs/features/build_pass.prf \
+		../Plan/resources/resources.qrc
 	$(QMAKE) -o Makefile ..\Plan\Plan.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
 C:/Osnova/Qt/6.4.2/mingw_64/mkspecs/features/spec_pre.prf:
 C:/Osnova/Qt/6.4.2/mingw_64/mkspecs/features/device_config.prf:
@@ -371,6 +372,7 @@ C:/Osnova/Qt/6.4.2/mingw_64/lib/Qt6Sql.prl:
 C:/Osnova/Qt/6.4.2/mingw_64/lib/Qt6Core.prl:
 C:/Osnova/Qt/6.4.2/mingw_64/lib/Qt6EntryPoint.prl:
 C:/Osnova/Qt/6.4.2/mingw_64/mkspecs/features/build_pass.prf:
+../Plan/resources/resources.qrc:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ..\Plan\Plan.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
 

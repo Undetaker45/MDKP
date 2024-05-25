@@ -42,7 +42,8 @@ void AdminWindow::configuringInterface(){
     usersModel = new QSqlQueryModel(this);
     usersModel->setQuery("SELECT User.ID, "
                          "      Surname ||' '|| Name ||' '||COALESCE(MiddleName,'') as [ФИО],"
-                         "      Role as [Должность]"
+                         "      Role as [Должность],"
+                         "      CASE WHEN Flag = 1 THEN 'Активирован' ELSE 'Дизактивирован' END AS [Статус пользователя]"
                          " FROM User");
     viewUsers->setModel(usersModel);
     viewUsers->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -124,10 +125,10 @@ void AdminWindow::ClearDataRegistrationUserWidget(){
     ui->GroupEdit->clear();
     ui->SpecialnostEdit->clear();
     ui->WorkEdit->clear();
-    ui->DepartmentBox->setCurrentIndex(-1);
+    ui->DepartmentBox->setCurrentIndex(0);
     ui->LoginEdit->clear();
     ui->PasswordEdit->clear();
-    ui->RoleBox->setCurrentIndex(-1);
+    ui->RoleBox->setCurrentIndex(0);
 }
 
 void AdminWindow::CheckingFieldsEmpty(){
