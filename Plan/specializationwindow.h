@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "database.h"
+#include <QMessageBox>
 
 namespace Ui {
 class SpecializationWindow;
@@ -23,6 +24,8 @@ private:
     void ChangeSpecialization();
     void SetValidationOnCreateSpecialization();
     void ClearSpecialization();
+    void CheckingFieldsEmptyAdd();
+    void CheckingFieldsEmptyDel();
 signals:
     void signalChangeSpecialization();
 private slots:

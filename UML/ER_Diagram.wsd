@@ -1,0 +1,65 @@
+@startuml ER_Diagram.wsd
+
+entity User{
+    ** ID **
+    ** Surname **
+    ** MiddleName **
+    ** Name **
+    ** Password **
+    ** Login **
+    ** Role **
+}
+
+entity Specialization{
+    ** ID **
+    ** Name **
+}
+
+entity Groups{
+    ** ID **
+    ** Name **
+}
+
+entity Teacher{
+    ** ID **
+    ** ID_Specialization **
+    ** PhoneNumber **
+    ** WorkExperience **
+    ** ID_User **
+}
+
+entity Listener{
+    ** ID **
+    ** Department **
+    ** ID_Group **
+    ** ID_User **
+}
+
+entity LectorHall{
+    ** ID **
+    ** Name **
+    ** AcademicBuilding **
+}
+
+entity Lessons{
+    ** ID **
+    ** ID_Teacher **
+    ** TypeOfActivity **
+    ** Title **
+    ** ID_Group **
+    ** ID_Specialization **
+    ** ID_LectorHall **
+    ** Time **
+    ** Payment **
+}
+
+LectorHall ||--|{ Lessons
+User ||--o| Teacher
+User ||--o| Listener
+Listener }|--|| Groups
+Lessons }|--|| Groups
+Lessons }|--|| Teacher
+Teacher }|--|| Specialization
+Listener }|--|| Specialization
+Lessons }|--|| Specialization
+@endstartuml

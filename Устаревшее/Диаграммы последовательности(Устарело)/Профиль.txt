@@ -1,0 +1,21 @@
+@startuml
+
+actor "Пользователь" as pl
+
+control "Открытие окна\n Профиль" as co
+
+boundary "Окно Профиль" as bo1
+boundary "Домашнее окно пользователя" as bo
+
+entity "Файловая система" as en1
+
+pl -> bo
+
+bo -> co : Нажата кнопка профиль
+
+co <-> en1
+
+co -> bo1
+
+
+@enduml

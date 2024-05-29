@@ -1,0 +1,26 @@
+@startuml
+
+actor "Методист" as pl
+
+control "Открытие окна\n настройки" as co
+control "Проверка данных" as co1
+control "Запись данных" as co2
+
+boundary "Окно настройки" as bo1
+boundary "Вкладка просмотра готовых занятий" as bo
+
+entity "Файловая система" as en
+entity "База данных занятий" as en1
+boundary "Окно ошибки" as err
+
+pl --> bo
+bo --> co : Нажата кнопка Настройки
+co --> bo1
+bo1 --> co1 : Нажата кнопка Готово
+co1 -- en
+co1 --> err
+err -- pl
+co1 --> co2
+co2 --> en1
+
+@enduml

@@ -1,0 +1,45 @@
+@startuml
+
+actor "Методист" as pl
+
+boundary "Вкладка просмотра готовых занятий" as bo
+
+control "Открытие окна\n настройки" as co
+control "Проверка данных" as co1
+control "Запись данных" as co2
+
+boundary "Окно настройки" as bo1
+
+entity "Файловая система" as en
+entity "База данных занятий" as en1
+boundary "Окно ошибки" as err
+
+pl -> bo
+
+bo -> co : Нажата кнопка Настройки
+
+co -> bo1
+
+bo1 -> co1 : Нажата кнопка Готово
+
+co1 -> en : Запрос
+
+en --> co1 : Ответ
+
+co1 --> co1 : Проверка ответа
+
+alt Данные корректны
+
+co1 -> co2 : Данные корректны
+
+co2 -> en1
+
+else Данные не корректны
+
+co1 -> err : Данные не корректны
+
+err -> pl
+
+end
+
+@enduml

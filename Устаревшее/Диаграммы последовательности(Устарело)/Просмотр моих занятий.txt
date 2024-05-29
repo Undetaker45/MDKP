@@ -1,0 +1,25 @@
+@startuml
+
+actor "Пользователя" as pl
+
+control "Открытие вкладки\n Мои занятия" as co
+control "Открытие следующей страницы" as co1
+
+boundary "Домашнее окно пользователя" as bo
+boundary "Вкладка Мои занятия" as bo1
+
+entity "Файловая система" as en
+
+pl -> bo
+
+bo -> co : Нажата вкладка Мои занятия
+
+co <-> en
+
+co -> bo1
+
+bo1 -> co1 : Нажата стрелочка
+
+co1 <-> en
+
+@enduml

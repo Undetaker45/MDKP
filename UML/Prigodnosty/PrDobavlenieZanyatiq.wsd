@@ -1,0 +1,32 @@
+@startuml PrDobavlenieZanyatiq.wsd
+
+actor "Методист" as pl
+
+control "Открытие вкладки\n Просмотр готовых занятий" as co
+control "Открытие окна\n настройки занятия" as co2 
+control "Проверка данных" as co3
+control "Закрытие окна" as co4
+control "Запись данных" as co5
+
+boundary "Домашнее окно методиста" as bo
+boundary "Вкладка Просмотр\n готовых занятий" as bo1
+boundary "Окно настройки занятия" as bo2
+
+entity "База данных" as en
+
+boundary "Окно ошибки" as err
+
+pl -left-> bo
+bo -right-> co : Нажата вкладка\n Просмотр готовых занятий
+co --> bo1
+bo1 --> co2 : Нажата кнопка\n Добавление
+co2 --> bo2
+bo2 --> co3 : Внесены данные и\n нажата кнопка Готово
+co3 -- en
+co3 --> err
+co3 --> co5
+co5 --> en
+co5 --> co4
+err -- pl
+
+@enduml

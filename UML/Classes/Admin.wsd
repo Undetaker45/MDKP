@@ -1,0 +1,80 @@
+@startuml Admin.wsd
+
+class User{
+    -int id
+    -int role
+    -int isWork
+    -QString surname
+    -QString name
+    -QString middlename
+    -int id_specialization
+    -QString phone
+    -int worktime
+    -int department
+    -int id_group
+    -QString login
+    -QString password
+}
+
+class  LoginWindow{
+   QString login
+   QString password
+   Database db
+   void checkUser()
+}
+
+class ChangeUserWindow{
+   -User user
+   -void ChangeUser()
+}
+
+class AbstractUserWindow{
+    +User getUser()
+    #User user
+
+}
+
+class WindowNavigator{
+    -Database db
+    -AbstractWindowForRole WindowForRole
+    -LoginWindow login
+}
+
+class Database {
+    +Lesson GetLessonById()
+    +User GetUserById()
+    +User CheckLogin()
+    +void RegisterUser()
+    +void AddLesson()
+    +void RefreshLessonById()
+    +int Time()
+}
+
+class AdminWindow{
+    -ChangeUser changeUser
+    -Database db
+    -void fillProfile()
+}
+
+class SpecializaciaWindow{
+    -void addSpecializacia()
+    -void DeleteSpecializacia()
+}
+
+class GroupWindow{
+    -void addGroup()
+    -void DeleteGroup()
+}
+
+WindowNavigator --> AbstractUserWindow
+WindowNavigator --> LoginWindow
+AdminWindow --> ChangeUserWindow
+AdminWindow --> GroupWindow
+AdminWindow --> SpecializaciaWindow
+AdminWindow --> User
+ChangeUserWindow --> User
+LoginWindow o-- Database
+AdminWindow o-- Database
+AbstractUserWindow <|-- AdminWindow
+
+@enduml

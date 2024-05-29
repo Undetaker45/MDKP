@@ -1,0 +1,22 @@
+@startuml PrVivedenieVremeniMethodist.wsd
+
+actor "Методист" as pl
+
+control "Открытие окна\n Время" as co
+control "Обработка данных" as co2
+control "Выведение времени" as co3
+
+boundary "Окно Время" as bo1
+boundary "Вкладка Просмотр готовых занятий" as bo
+
+entity "База данных" as en1
+
+pl --> bo
+bo --> co : Нажата кнопка Время
+co --> bo1
+bo1 -left-> co2 : Внесены данные
+co2 -- en1
+co2 -up-> co3
+
+
+@enduml

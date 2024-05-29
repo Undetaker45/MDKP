@@ -51,6 +51,12 @@ void GroupWindow::createModelGroup(){
 }
 
 void GroupWindow::slotDButtonCliked(){
+    try {
+        CheckingFieldsEmptyAdd();
+    } catch (std::runtime_error& err) {
+        QMessageBox::information(this,"Предупреждение",err.what());
+        return;
+    }
     QString Group = ui->GroupEdit->text();
     if(Database::SearchGroup(Group) != 0){
         throw std::runtime_error("Данная группа уже существует");
@@ -63,6 +69,12 @@ void GroupWindow::slotDButtonCliked(){
 }
 
 void GroupWindow::slotDeleteButtonCliked(){
+    try {
+        CheckingFieldsEmptyDel();
+    } catch (std::runtime_error& err) {
+        QMessageBox::information(this,"Предупреждение",err.what());
+        return;
+    }
     QString Group = ui->GroupBox->currentText();
     Database::DeleteGroup(Group);
     ChangeGroup();
@@ -72,6 +84,21 @@ void GroupWindow::slotDeleteButtonCliked(){
 
 void GroupWindow::ChangeGroup(){
     createModelGroup();
+}
+
+void GroupWindow::CheckingFieldsEmptyAdd(){
+    if(ui->GroupEdit->text().trimmed().isEmpty()){
+        throw std::runtime_error("Поле группы не может быть пустым.");
+    }
+    if(ui->SpecializaciaBox->currentIndex() == -1 || ui->SpecializaciaBox->currentIndex() == 0){
+        throw std::runtime_error("Не указана специализация.");
+    }
+}
+
+void GroupWindow::CheckingFieldsEmptyDel(){
+    if(ui->GroupBox->currentIndex() == -1 || ui->GroupBox->currentIndex() == 0){
+        throw std::runtime_error("Не указана группа.");
+    }
 }
 
 void GroupWindow::SetValidationOnCreateGroups(){

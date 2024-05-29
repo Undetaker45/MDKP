@@ -1,0 +1,51 @@
+@startuml
+state "Окно входа в программу" as loginWindow
+@startuml
+state "Окно входа в программу" as loginWindow
+state "Домашнее окно" as homeWindow
+state "Окно разработки\n плана обучения" as trainingplanWindow
+state "Окно просмотра\n готовых занятий" as cursWindow
+state "Окно профиля пользователя" as profileWindow
+state "Окно настройки занятия" as settingsWindow
+state "Окно просмотра времени" as timesWindow
+
+loginWindow : Пользователь может:
+loginWindow : -Ввести логин
+loginWindow : -Ввести пароль
+loginWindow : -Войти
+
+homeWindow : Пользователь может:
+homeWindow : -Открыть окно разработки\n плана обучения
+homeWindow : -Открыть окно просмотра готовых занятий
+homeWindow : -Открыть профиль пользователя
+homeWindow : -Закрыть программу
+
+trainingplanWindow : Пользователь может:
+trainingplanWindow : -Добавить занятия
+trainingplanWindow : -Открыть настройки занятия
+
+cursWindow : Пользователь может:
+cursWindow : -Просматривать информацию\n по готовым занятиям
+cursWindow : -Открыть окно просмотра времени
+
+profileWindow : Пользователь может:
+profileWindow : -Просмотреть свои ФИО
+
+settingsWindow : Пользователь может:
+settingsWindow : -Изменить поля\n настроек занятия
+
+timesWindow : Пользователь может:
+timesWindow : -Просмотреть кол-во учебных часов\n преподавателя с группой
+
+
+[*] --> loginWindow
+loginWindow -up-> homeWindow : Нажата кнопка вход
+homeWindow -> trainingplanWindow : Нажата кнопка\n разработка плана обучения
+homeWindow -up-> cursWindow : Нажата кнопка\n просмотреть готовые занятия
+homeWindow -down-> profileWindow : Нажата кнопка\n профиля
+trainingplanWindow -up-> settingsWindow : Нажата кнопка\n настройки занятия
+cursWindow -> settingsWindow : Нажата кнопка изменение\n занятия
+cursWindow -left-> timesWindow : Нажата кнопа время
+homeWindow -left->[*] : Окно закрыто
+
+@enduml

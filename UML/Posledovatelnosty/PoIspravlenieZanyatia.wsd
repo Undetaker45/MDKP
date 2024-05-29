@@ -1,0 +1,40 @@
+@startuml PoIspravlenieZanyatia.wsd
+
+actor "Методист" as pl
+
+boundary "Вкладка просмотра готовых занятий" as bo
+boundary "Окно настройки" as bo1
+
+control "Проверка данных" as co1
+
+entity "База данных" as en
+
+boundary "Окно ошибки" as err
+
+pl --> bo : Дважды клинуто занятие
+
+bo -> bo1 : Открытие окна настройки
+
+pl --> bo1 : Изменены поля и нажата кнопка Готово
+
+bo1 -> co1
+
+co1 -> en : Запрос
+
+en --> co1 : Ответ
+
+co1 --> co1 : Проверка ответа
+
+alt Данные корректны
+
+co1 -> en : Запись данных
+
+else Данные не корректны
+
+co1 -> err : Вызов окна ошибки
+
+err --> pl
+
+end
+
+@enduml

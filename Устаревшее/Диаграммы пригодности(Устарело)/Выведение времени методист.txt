@@ -1,0 +1,28 @@
+@startuml
+
+actor "Методист" as pl
+
+control "Открытие окна\n Время" as co
+control "Проверка данных" as co1
+control "Обработка данных" as co2
+control "Выведение времени" as co3
+
+boundary "Окно Время" as bo1
+boundary "Вкладка просмотра готовых занятий" as bo
+
+entity "База данных занятий" as en1
+boundary "Окно ошибки" as err
+
+pl --> bo
+bo --> co : Нажата кнопка Время
+co --> bo1
+bo1 --> co1 : Нажата кнопка Готово
+co1 -- en1
+co1 --> co2
+co2 -- en1
+co2 --> co3
+co1 --> err
+err -- pl
+
+
+@enduml

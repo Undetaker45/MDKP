@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "database.h"
+#include "QMessageBox"
 
 namespace Ui {
 class GroupWindow;
@@ -26,6 +27,8 @@ private:
     void ChangeGroup();
     void SetValidationOnCreateGroups();
     void ClearGroup();
+    void CheckingFieldsEmptyAdd();
+    void CheckingFieldsEmptyDel();
 signals:
     void signalChangeGroup();
 private slots:

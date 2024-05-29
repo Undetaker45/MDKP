@@ -1,0 +1,138 @@
+@startuml Classes.wsd
+
+class User{
+    -int id
+    -int role
+    -int isWork
+    -QString surname
+    -QString name
+    -QString middlename
+    -int id_specialization
+    -QString phone
+    -int worktime
+    -int department
+    -int id_group
+    -QString login
+    -QString password
+}
+
+class Lesson{
+    -int id
+    -int id_teacher
+    -int typeofactivity
+    -QString title
+    -int id_group
+    -int id_speciazation
+    -int id_lecturehall
+    -QString time
+    -double payment
+}
+
+class  LoginWindow{
+   QString login
+   QString password
+   Database db
+   void checkUser()
+}
+
+
+class ChangeUserWindow{
+   -User user
+   -void ChangeUser()
+}
+
+class SettingsWindow{
+    -Lesson lesson
+    -bool Change
+    void addLessom()
+}
+
+class TimeWindow{
+    void Timededuction()
+    -User user
+}
+
+class AbstractUserWindow{
+    +User getUser()
+    #User user
+}
+
+class WindowNavigator{
+    -Database db
+    -AbstractWindowForRole WindowForRole
+    -LoginWindow login
+}
+
+class Database {
+    +Lesson GetLessonById()
+    +User GetUserById()
+    +User CheckLogin()
+    +void RegisterUser()
+    +void AddLesson()
+    +void RefreshLessonById()
+    +int Time()
+}
+
+class AdminWindow{
+    -ChangeUser changeUser
+    -Database db
+    -void fillProfile()
+}
+
+class SpecializaciaWindow{
+    -void addSpecializacia()
+    -void DeleteSpecializacia()
+}
+
+class GroupWindow{
+    -void addGroup()
+    -void DeleteGroup()
+}
+
+class MethodistWindow{
+    -void fillProfile()
+    -void configuringInterface()
+    -Database db
+    -SettingsWindow Settings
+    -void viewLesson()
+
+}
+
+class TeacherWindow{
+    -void fillProfile()
+    -void viewLesson()
+}
+
+Class ListenerWindow{
+    -void fillProfile()
+        -void viewLesson()
+
+}
+
+AbstractUserWindow <|-- AdminWindow
+AbstractUserWindow <|-- MethodistWindow
+AbstractUserWindow <|-- TeacherWindow
+AbstractUserWindow <|-- ListenerWindow
+MethodistWindow o-- Database
+AdminWindow o-- Database
+TeacherWindow o-- Database
+ListenerWindow o-- Database
+WindowNavigator --> AbstractUserWindow
+WindowNavigator --> LoginWindow
+AdminWindow --> ChangeUserWindow
+AdminWindow --> GroupWindow
+AdminWindow --> SpecializaciaWindow
+MethodistWindow --> SettingsWindow
+MethodistWindow --> TimeWindow
+TeacherWindow --> TimeWindow
+MethodistWindow --> Lesson
+TeacherWindow --> Lesson
+ListenerWindow --> Lesson
+AdminWindow --> User
+MethodistWindow --> User
+TeacherWindow --> User
+ListenerWindow --> User
+ChangeUserWindow --> User
+LoginWindow o-- Database
+
+@enduml

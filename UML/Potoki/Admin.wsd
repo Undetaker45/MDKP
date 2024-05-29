@@ -1,0 +1,50 @@
+@startuml Admin.wsd
+state "Окно входа в программу" as loginWindow
+state "Домашнее окно" as homeWindow
+state "Вкладка добавления пользователей" as addWindow
+state "Вкладка изменения пользователей" as delWindow
+state "Вкладка профиля пользователя" as profileWindow
+state "Окно Группа" as groupWindow
+state "Окно Специализация" as specializaciaWindow
+
+loginWindow : Пользователь может:
+loginWindow : -Ввести данные для входа
+loginWindow : -войти
+
+homeWindow : Пользователь может:
+homeWindow : -Открыть вкладку добавления пользователей
+homeWindow : -Открыть вкладку изменение пользователей
+homeWindow : -Открыть вкладку профиля пользователя
+homeWindow : -Закрыть программу
+
+addWindow : Пользователь может:
+addWindow : -Заполнить необходимые данные
+addWindow : -Зарегистрировать пользователя
+
+delWindow : Пользователь может:
+delWindow : -просмотреть готовых пользователей
+delWindow : -Выбрать и изменить пользователя
+
+profileWindow : Пользователь может:
+profileWindow : -Просмотреть свои ФИО
+profileWindow : -Выйти из системы
+
+groupWindow : Пользователь может:
+groupWindow : -Добавить группу
+groupWindow : -Удалить группу
+
+specializaciaWindow : Пользователь может:
+specializaciaWindow : -Добавить специализацию
+specializaciaWindow : -Удалить специализацию
+
+[*] -up-> loginWindow
+loginWindow -up-> homeWindow : Нажата кнопка Войти
+homeWindow -left-> addWindow : Нажата вкладка\n добавить пользователя
+homeWindow -up-> delWindow : Нажата вкладка\n изменить пользователя
+homeWindow -down-> profileWindow : Нажата вкладка\n профиля
+profileWindow --> loginWindow : Нажата кнопка Выход
+homeWindow -right->[*] : Окно закрыто
+addWindow --> groupWindow : Нажата кнопка Группа
+addWindow --> specializaciaWindow : Нажата кнопка Специализация
+
+@enduml

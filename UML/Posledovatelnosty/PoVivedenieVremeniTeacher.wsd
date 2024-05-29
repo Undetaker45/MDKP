@@ -1,0 +1,29 @@
+@startuml PoVivedenieVremeniTeacher.wsd
+
+actor "Преподаватель\n или методист" as pl
+
+boundary "Вкладка\n просмотра занятий" as bo
+
+control "Обработка данных" as co2
+
+boundary "Окно Время" as bo1
+
+entity "База данных" as en1
+
+pl -> bo: Нажата кнопка Время
+
+bo -> bo1: Открытие окна\n Время
+
+pl --> bo1: Введены данные
+
+bo1 -> co2
+
+co2 -> en1 : Запрос
+
+en1 --> co2 : Ответ
+
+co2 --> co2 : Проверка ответа
+
+co2 -> bo1: Выведение времени
+
+@enduml

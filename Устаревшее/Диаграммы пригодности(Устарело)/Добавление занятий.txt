@@ -1,0 +1,35 @@
+@startuml
+
+actor "Методист" as pl
+
+control "Открытие вкладки\n Разработка плана обучения" as co
+control "Добавление пустого занятия" as co1
+control "Открытие окна\n настройки занятия" as co2 
+control "Проверка данных" as co3
+control "Закрытие окна" as co4
+control "Запись данных" as co5
+
+boundary "Домашнее окно методиста" as bo
+boundary "Вкладка Разработка\n плана обучения" as bo1
+boundary "Окно настройки занятия" as bo2
+
+entity "Файловая система" as en
+entity "База данных занятий" as en1
+
+boundary "Окно ошибки" as err
+
+pl -left-> bo
+bo -right-> co : Нажата вкладка\n Разработка плана обучения
+co --> bo1
+bo1 --> co1 : нажата кнопка\n Добавление занятия
+bo1 --> co2 : нажата кнопка Настройки
+co2 --> bo2
+bo2 --> co3 : нажата кнопка Готово
+co3 -- en
+co3 --> err
+co3 --> co5
+co5 --> en1
+co5 --> co4
+err -- pl
+
+@enduml

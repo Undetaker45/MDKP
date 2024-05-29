@@ -1,0 +1,162 @@
+@startuml
+
+class LoginWindow{
+-UI:ui*
++bool CheckingTheData
+}
+
+class DataBase{
++QString UserSearch
++bool AddUser
++bool DeletingUser
++bool RecordingClasses
++QString ViewingClasses
++bool ChangingClasses
++bool DeletingClasses
++QString ViewingProfileData
++int TimeСounting
+}
+
+class AdminWindow{
+-UI:ui*
++bool CheckingTheData
++bool AddUser
+DataBase database
+}
+
+class AdminModel{
+}
+
+class DeletingWindow{
+-UI:ui*
++bool CheckingTheData
+}
+
+class TeacherWindow{
+-UI:ui*
++TurningPages
+DataBase database
+}
+
+class TeacherModel{
+vector <Lessons> lessons
+}
+
+class ListenerWindow{
+-UI:ui*
++TurningPages
+DataBase database
+}
+
+class ListenerModel{
+vector <Lessons> lessons
+}
+
+class MethodologistWindow{
+-UI:ui*
++TurningPages
+DataBase database
+}
+
+class MethodologistModel{
+vector <Lessons> lessons
+}
+
+class TimeWindow{
+-UI:ui*
++bool CheckingTheData
+}
+
+class TimeModel{
+}
+
+class SettingsWindow{
+-UI:ui*
++bool CheckingTheData
+}
+
+class ProfileWindow{
+-UI:ui*
+}
+
+class ProfileModel{
+User user
+}
+
+class Lessons{
+-int Id
+-QString Lastname
+-QStirng Secondname
+-QString Firstname
+-bool TypeOfActivity
+-QString Title
+-QString Group
+-QString LectureHall
+-QString Time
+-float Payment
+}
+
+class User{
+-Role role
+-int Id
+-QString FirstName
+-QStirng SecondName
+-QString LastName
+-QString Specialization
+-QString Department|PhoneNumber
+-QString Group|WorkExperience
+}
+
+TeacherWindow <-- TeacherModel
+
+AdminWindow <-- AdminModel
+
+MethodologistWindow <-- MethodologistModel
+
+ListenerWindow <-- ListenerModel
+
+TimeWindow <-- TimeModel
+
+ProfileWindow <-- ProfileModel
+
+AdminWindow --> ProfileWindow
+
+MethodologistWindow --> ProfileWindow
+
+ListenerWindow --> ProfileWindow
+
+TeacherWindow --> ProfileWindow
+
+LoginWindow --> TeacherWindow
+
+LoginWindow --> ListenerWindow
+
+LoginWindow --> MethodologistWindow
+
+LoginWindow --> AdminWindow
+
+AdminWindow --> DeletingWindow
+
+TeacherWindow --> TimeWindow
+
+MethodologistWindow --> TimeWindow
+
+MethodologistWindow --> SettingsWindow
+
+DataBase --o MethodologistWindow
+
+DataBase --o AdminWindow
+
+DataBase --o TeacherWindow
+
+DataBase --o ListenerWindow
+
+Lessons <-- TeacherModel
+
+Lessons <-- MethodologistModel
+
+Lessons <-- ListenerModel
+
+User <-- ProfileModel
+
+@enduml

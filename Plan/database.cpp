@@ -553,7 +553,7 @@ void Database::RegisterUser(QString Surname, QString Name, QString MiddleName, Q
         query.bindValue(":id_group", ID_Group);
         if (query.exec() && query.next()) {
             int count = query.value("cGroup").toInt();
-            if (count > 4) {
+            if (count > 9) {
                 throw std::runtime_error("В данной группе слишком много студентов.");
             }
         } else {
@@ -856,7 +856,7 @@ void Database::RefreshUserById(User user){
             query.bindValue(":id", user.GetId());
             if (query.exec() && query.next()) {
                 int count = query.value("cGroup").toInt();
-                if (count > 4) {
+                if (count > 9) {
                     throw std::runtime_error("В данной группе слишком много студентов.");
                 }
             } else {
@@ -924,7 +924,7 @@ void Database::RefreshUserById(User user){
             query.bindValue(":id_group", user.GetIdGroup());
             if (query.exec() && query.next()) {
                 int count = query.value("cGroup").toInt();
-                if (count > 4) {
+                if (count > 9) {
                     throw std::runtime_error("В данной группе слишком много студентов.");
                 }
             } else {

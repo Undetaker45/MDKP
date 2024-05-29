@@ -1,0 +1,40 @@
+@startuml
+
+actor "Пользователь" as pl
+
+boundary "Окно входа" as bo
+
+control "Проверка данных" as co
+
+control "Открытие домашнего\n окна пользователя" as co1
+
+boundary "Домашнее окно\n пользователя" as bom
+
+boundary "Окно ошибки" as bo2
+
+entity "Файловая система" as en
+
+pl -> bo
+
+bo -> co : Нажата кнопка Войти
+
+co -> en : Запрос
+
+en --> co : Результат
+
+co --> co : Проверка ответа
+
+alt Данные корректны
+
+co -> co1 : Данные корректны
+
+co1 -> bom
+
+bom -> pl
+
+else Данные не корректны
+co -> bo2 : Данные некорректны
+
+bo2 -> pl
+end
+@enduml

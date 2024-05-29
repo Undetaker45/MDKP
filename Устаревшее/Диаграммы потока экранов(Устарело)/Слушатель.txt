@@ -1,0 +1,35 @@
+@startuml
+
+state "Окно входа в программу" as loginWindow
+state "Домашнее окно" as homeWindow
+state "Окно просмотра своих занятий" as cursWindow
+state "Окно профиля пользователя" as profileWindow
+
+loginWindow : Пользователь может:
+loginWindow : -Ввести логин
+loginWindow : -Ввести пароль
+loginWindow : -Войти
+
+homeWindow : Пользователь может:
+homeWindow : -Открыть окно просмотра своих занятий
+homeWindow : -Открыть профиль пользователя
+homeWindow : -Закрыть программу
+
+cursWindow : Пользователь может:
+cursWindow : -Просматривать иформацию\n о своих занятиях
+
+profileWindow : Пользователь может:
+profileWindow : -Просмотреть свои ФИО
+profileWindow : -Просмотреть свою специальность
+profileWindow : -Просмотреть свое отделение
+profileWindow : -Просмотреть свою группу
+
+
+[*] --> loginWindow
+loginWindow -> homeWindow : Нажата кнопка вход
+homeWindow -up-> cursWindow : Нажата кнопка\n просмотреть мои занятия
+homeWindow -down-> profileWindow : Нажата кнопка\n профиля
+homeWindow -right->[*] : Окно закрыто
+
+
+@enduml

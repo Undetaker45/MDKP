@@ -1,0 +1,40 @@
+@startuml PrDobavleniePolzovatelya.wsd
+
+actor "Администратор" as pl
+
+control "Открытие вкладки\n Добавить пользователя" as co
+
+control "Открытие полей" as co1
+
+control "Проверка данных" as co2
+
+control "Запись данных" as co3
+
+boundary "Домашнее окно администратора" as bo
+
+boundary "Вкладка Добавить пользователя" as bo1
+
+entity "База данных" as en
+
+boundary "Вкладка с полями\n метадиста" as bom
+boundary "Вкладка с полями\n слушателя" as bos
+boundary "Вкладка с полями\n преподавателя" as bop
+boundary "Окно ошибки" as err
+
+pl --> bo
+bo --> co : Нажата вкладка\n Добавить пользователя 
+co --> bo1
+bo1 --> co1 : Выбрана роль
+co1 --> bom
+co1 --> bos
+co1 --> bop
+bom --> co2
+bos --> co2
+bop --> co2
+co2 -- en
+co2 --> err
+co2 --> co3
+co3 --> en
+err -- pl
+
+@enduml

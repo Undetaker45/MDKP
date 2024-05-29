@@ -1,0 +1,21 @@
+@startuml Admin.wsd
+
+left to right direction
+
+actor "Администратор" as fc
+
+usecase "Войти в систему" as UC1
+usecase "Добавить пользователя" as UC2
+usecase "Изменить пользователя" as UC3
+usecase "Просмотреть свой профиль" as UC4
+usecase "Добавить или удалить группу" as UC5
+usecase "Добавить или удалить специализацию" as UC6
+
+fc --> UC1
+fc --> UC2
+fc --> UC3
+fc --> UC4
+fc --> UC5
+fc --> UC6
+
+@enduml

@@ -1,0 +1,40 @@
+@startuml Teacher.wsd
+
+state "Окно входа в программу" as loginWindow
+state "Домашнее окно" as homeWindow
+state "Окно просмотра своих занятий" as cursWindow
+state "Окно профиля пользователя" as profileWindow
+state "Окно просмотра времени" as timesWindow
+
+loginWindow : Пользователь может:
+loginWindow : -Ввести данные для входа
+loginWindow : -Войти
+
+homeWindow : Пользователь может:
+homeWindow : -Открыть вкладку просмотра своих занятий
+homeWindow : -Открыть вкладку профиля пользователя
+homeWindow : -Закрыть программу
+
+cursWindow : Пользователь может:
+cursWindow : -Просматривать иформацию\n о своих занятиях
+cursWindow : -Открыть окно просмотра времени
+
+profileWindow : Пользователь может:
+profileWindow : -Просмотреть свои ФИО
+profileWindow : -Просмотреть свой номер телефона
+profileWindow : -Просмотреть свой стаж работы
+profileWindow : -Просмотреть свою специальность
+profileWindow : -Выйти из системы
+
+timesWindow : Пользователь может:
+timesWindow : -Просмотреть кол-во\n своих учебных часов с группой
+
+[*] --> loginWindow
+loginWindow -> homeWindow : Нажата кнопка Войти
+homeWindow -up-> cursWindow : Нажата вкладка\n Мои занятия
+homeWindow -down-> profileWindow : Нажата вкладка\n Профиль
+cursWindow -> timesWindow : Нажата кнопа Время
+homeWindow -right->[*] : Окно закрыто
+profileWindow --> loginWindow : Нажата кнопка Выход
+
+@enduml

@@ -1,0 +1,19 @@
+@startuml Methodist.wsd
+
+left to right direction
+
+actor "Методист " as fc
+
+usecase "Войти в систему" as UC1
+usecase "Составить программу обучения" as UC2
+usecase "Просмотреть готовые занятия" as UC3
+usecase "Просмотреть кол-во учебных часов\n преподавателя с учебной группой" as UC4
+usecase "Просмотреть свой профиль" as UC5
+
+fc --> UC1
+fc --> UC2
+fc --> UC3
+fc --> UC4
+fc --> UC5
+
+@enduml

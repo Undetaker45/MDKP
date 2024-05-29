@@ -1,0 +1,25 @@
+@startuml PrIspravlenieZanyatia.wsd
+
+actor "Методист" as pl
+
+control "Открытие окна\n настройки" as co
+control "Проверка данных" as co1
+control "Запись данных" as co2
+
+boundary "Окно настройки" as bo1
+boundary "Вкладка Просмотр готовых занятий" as bo
+
+entity "База данных" as en
+boundary "Окно ошибки" as err
+
+pl --> bo
+bo --> co : Дважды кликнуто занятие
+co --> bo1
+bo1 --> co1 : Изменены данные\n и нажата кнопка Готово
+co1 -- en
+co1 --> err
+err -- pl
+co1 --> co2
+co2 --> en
+
+@enduml

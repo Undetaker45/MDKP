@@ -1,0 +1,16 @@
+@startuml Listener.wsd
+
+left to right direction
+
+actor "Слушатель " as fc
+
+usecase "Войти в систему" as UC1
+usecase "Просмотреть свои занятия" as UC2
+usecase "Просмотреть свой профиль" as UC3
+
+fc --> UC1
+fc --> UC2
+fc --> UC3
+
+
+@enduml

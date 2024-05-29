@@ -1,0 +1,18 @@
+@startuml Teacher.wsd
+
+left to right direction
+
+actor "Преподаватель " as fc
+
+usecase "Войти в систему" as UC1
+usecase "Просмотреть свои занятия" as UC2
+usecase "Просмотреть кол-во учебных часов с группой" as UC3
+usecase "Просмотреть свой профиль" as UC4
+
+
+fc --> UC1
+fc --> UC2
+fc --> UC3
+fc --> UC4
+
+@enduml

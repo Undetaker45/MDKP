@@ -34,6 +34,12 @@ void SpecializationWindow::createModelSpecialization(){
 }
 
 void SpecializationWindow::slotDButtonCliked(){
+    try {
+        CheckingFieldsEmptyAdd();
+    } catch (std::runtime_error& err) {
+        QMessageBox::information(this,"Предупреждение",err.what());
+        return;
+    }
     QString Specialization = ui->SpecializationEdit->text();
     if (Database::SearchSpecialization(Specialization) != 0){
         throw std::runtime_error("Данная специализация уже существует");
@@ -45,6 +51,12 @@ void SpecializationWindow::slotDButtonCliked(){
 }
 
 void SpecializationWindow::slotDeleteButtonCliked(){
+    try {
+        CheckingFieldsEmptyDel();
+    } catch (std::runtime_error& err) {
+        QMessageBox::information(this,"Предупреждение",err.what());
+        return;
+    }
     QString Specialization = ui->SpecializaciaBox->currentText();
     Database::DeleteSpecialization(Specialization);
     ChangeSpecialization();
@@ -54,6 +66,18 @@ void SpecializationWindow::slotDeleteButtonCliked(){
 
 void SpecializationWindow::ChangeSpecialization(){
     createModelSpecialization();
+}
+
+void SpecializationWindow::CheckingFieldsEmptyAdd(){
+    if(ui->SpecializationEdit->text().trimmed().isEmpty()){
+        throw std::runtime_error("Поле специализация не может быть пустым.");
+    }
+}
+
+void SpecializationWindow::CheckingFieldsEmptyDel(){
+    if(ui->SpecializaciaBox->currentIndex() == -1 || ui->SpecializaciaBox->currentIndex() == 0){
+        throw std::runtime_error("Не указана специализация.");
+    }
 }
 
 void SpecializationWindow::SetValidationOnCreateSpecialization(){

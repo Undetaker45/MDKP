@@ -1,0 +1,35 @@
+@startuml PVhod.wsd
+
+actor "Пользователь" as pl
+
+control "Проверка данных" as co
+
+control "Открытие домашнего\n окна пользователя" as co1
+
+boundary "Окно входа" as bo
+
+entity "База данных" as en
+
+boundary "Домашнее окно\n метадиста" as bom
+boundary "Домашнее окно\n слушателя" as bos
+boundary "Домашнее окно\n преподавателя" as bop
+boundary "Домашнее окно\n администратора" as boa
+boundary "Окно ошибки" as bo2
+
+pl -down-> bo
+bo -up-> co : Нажата кнопка Войти 
+co --> co1 : Данные корректны
+co --> bo2 : Данные некорректны
+co -- en
+co1 --> bom
+co1 --> bos
+co1 --> bop
+co1 --> boa
+
+bo2 --> pl
+boa -- pl
+bos -- pl
+bop -- pl
+bom -- pl
+
+@enduml

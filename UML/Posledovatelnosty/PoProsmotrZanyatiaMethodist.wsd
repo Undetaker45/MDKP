@@ -1,0 +1,20 @@
+@startuml PoProsmotrZanyatiaMethodist.wsd
+
+actor "Методист" as pl
+
+control "Открытие вкладки\n Просмотр готовых занятий" as co
+
+boundary "Домашнее окно методиста" as bo
+boundary "Вкладка просмотра готовых занятий" as bo1
+
+entity "Файловая система" as en
+
+pl --> bo: Нажата вкладка просмотр готовых занятий
+
+bo -> co
+
+co <-> en
+
+co -> bo1
+
+@enduml

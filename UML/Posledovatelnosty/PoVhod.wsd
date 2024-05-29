@@ -1,0 +1,36 @@
+@startuml PoVhod.wsd
+
+actor "Пользователь" as pl
+
+boundary "Окно входа" as bo
+
+control "Проверка данных" as co
+
+boundary "Домашнее окно\n пользователя" as bom
+
+boundary "Окно ошибки" as bo2
+
+entity "База данных" as en
+
+pl --> bo: Нажата кнопка Войти
+
+bo -> co
+
+co -> en : Запрос
+
+en --> co : Результат
+
+co --> co : Проверка ответа
+
+alt Данные корректны
+
+co -> bom : Открытие домашнего окна
+
+bom --> pl
+
+else Данные не корректны
+co -> bo2 : Вызов окна ошибки
+
+bo2 --> pl
+end
+@enduml

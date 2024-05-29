@@ -1,0 +1,18 @@
+@startuml PoProfil.wsd
+
+actor "Пользователь" as pl
+
+boundary "Домашнее окно пользователя" as bo
+
+control "Открытие вкладки\n Профиль" as co
+
+boundary "Вкладка Профиль" as bo1
+
+pl --> bo: Нажата вкладка профиль
+
+bo -> co
+
+co -> bo1
+
+
+@enduml

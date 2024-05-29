@@ -1,0 +1,48 @@
+@startuml Methodis.wsd
+
+state "Окно входа в программу" as loginWindow
+state "Домашнее окно" as homeWindow
+state "Вкладка просмотра\n готовых занятий" as cursWindow
+state "Вкладка профиля пользователя" as profileWindow
+state "Окно настройки занятия" as settingsWindow
+state "Окно просмотра времени" as timesWindow
+
+loginWindow : Пользователь может:
+loginWindow : -Ввести данные для входа
+loginWindow : -Войти
+
+homeWindow : Пользователь может:
+homeWindow : -Открыть вкладку просмотра готовых занятий
+homeWindow : -Открыть вкладу профиля пользователя
+homeWindow : -Закрыть программу
+
+cursWindow : Пользователь может:
+cursWindow : -Просматривать информацию\n по готовым занятиям
+cursWindow : -Открыть окно просмотра времени
+cursWindow : -Изменять готовые занятия
+cursWindow : -Добавлять занятия
+
+profileWindow : Пользователь может:
+profileWindow : -Просмотреть свои ФИО
+profileWindow : -Выйти из системы
+
+settingsWindow : Пользователь может:
+settingsWindow : -Заполять поля
+settingsWindow : -Изменить занятие
+settingsWindow : -Добавить занятие
+
+timesWindow : Пользователь может:
+timesWindow : -Просмотреть кол-во учебных часов\n преподавателя с группой
+
+
+[*] --> loginWindow
+loginWindow -up-> homeWindow : Нажата кнопка Войти
+homeWindow -up-> cursWindow : Нажата вкладка\n Просмотр готовых занятий
+homeWindow -down-> profileWindow : Нажата вкладка\n Профиль
+cursWindow --> settingsWindow : Нажата кнопка Добавить
+cursWindow --> settingsWindow : Дважды нажато\n нужное занятие
+cursWindow -left-> timesWindow : Нажата кнопа Время
+homeWindow -left->[*] : Окно закрыто
+profileWindow --> loginWindow : Нажата кнопка Выход
+
+@enduml

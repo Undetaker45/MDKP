@@ -1,0 +1,38 @@
+@startuml PrYdaleniePolzovatelya.wsd
+
+actor "Администратор" as pl
+
+control "Открытие вкладка\n Изменение пользователя" as co
+
+control "Проверка данных" as co2
+
+control "Закрытие окна" as co3
+
+control "Добавление данных" as co4
+
+control "Открытие окна\n Изменение пользователя" as co5
+
+boundary "Домашнее окно администратора" as bo
+
+boundary "Вкладка Изменение пользователя" as bo1
+
+boundary "Окно изменение пользователя " as bo2
+
+entity "База данных" as en
+
+boundary "Окно ошибки" as err
+
+pl --> bo
+bo --> co : Нажата вкладка\n Изменение пользователя 
+co --> bo1
+bo1 --> co5 : Дважды кликнут пользователь
+co5 --> bo2
+bo2 --> co2 : Нажата кнопка\n Подтвердить
+bo2 --> co3 : Нажата кнопка\n Отмена
+co2 -- en
+co2 --> co4
+co4 --> en
+co2 --> err
+err -- pl
+
+@enduml
