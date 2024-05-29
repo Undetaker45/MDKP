@@ -35,6 +35,7 @@ private:
     void configuringInterface(const User& user);
     QSqlQueryModel* LessonModel;
     QTableView* viewLesson;
+    TimeWindow *time = new TimeWindow(user);
 signals:
     void signalLogoutButtonClicked();
 private slots:

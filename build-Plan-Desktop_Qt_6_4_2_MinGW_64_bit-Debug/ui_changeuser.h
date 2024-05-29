@@ -27,7 +27,6 @@ class Ui_ChangeUser
 public:
     QHBoxLayout *horizontalLayout_3;
     QGridLayout *gridLayout;
-    QLineEdit *Group;
     QLineEdit *Surname;
     QSpacerItem *verticalSpacer;
     QLabel *label_6;
@@ -62,7 +61,8 @@ public:
     QSpacerItem *horizontalSpacer_6;
     QPushButton *ConfirmBtn;
     QLabel *label_3;
-    QLineEdit *Specializacia;
+    QComboBox *SpecializationBox;
+    QComboBox *GroupBox;
 
     void setupUi(QWidget *ChangeUser)
     {
@@ -73,16 +73,10 @@ public:
         horizontalLayout_3->setObjectName("horizontalLayout_3");
         gridLayout = new QGridLayout();
         gridLayout->setObjectName("gridLayout");
-        Group = new QLineEdit(ChangeUser);
-        Group->setObjectName("Group");
-        QFont font;
-        font.setPointSize(12);
-        Group->setFont(font);
-
-        gridLayout->addWidget(Group, 9, 3, 1, 1);
-
         Surname = new QLineEdit(ChangeUser);
         Surname->setObjectName("Surname");
+        QFont font;
+        font.setPointSize(12);
         Surname->setFont(font);
 
         gridLayout->addWidget(Surname, 2, 1, 1, 1);
@@ -306,11 +300,17 @@ public:
 
         gridLayout->addWidget(label_3, 6, 1, 1, 1);
 
-        Specializacia = new QLineEdit(ChangeUser);
-        Specializacia->setObjectName("Specializacia");
-        Specializacia->setFont(font);
+        SpecializationBox = new QComboBox(ChangeUser);
+        SpecializationBox->setObjectName("SpecializationBox");
+        SpecializationBox->setFont(font);
 
-        gridLayout->addWidget(Specializacia, 2, 3, 1, 1);
+        gridLayout->addWidget(SpecializationBox, 2, 3, 1, 1);
+
+        GroupBox = new QComboBox(ChangeUser);
+        GroupBox->setObjectName("GroupBox");
+        GroupBox->setFont(font);
+
+        gridLayout->addWidget(GroupBox, 9, 3, 1, 1);
 
 
         horizontalLayout_3->addLayout(gridLayout);

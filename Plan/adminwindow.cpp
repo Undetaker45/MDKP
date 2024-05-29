@@ -12,22 +12,63 @@ AdminWindow::AdminWindow(const User& us, Database* database, QWidget *parent) :
     configuringInterface();
     ClearDataRegistrationUserWidget();
     SetValidationOnCreateUsers();
+    createModelGroup();
+    createModelSpecialization();
     fillProfile(user);
     AddShadowToChildren(ui->ProfileTab);
     AddShadowToChildren(changeUser);
     AddShadowToChildren(ui->AddUserTab);
+    AddShadowToChildren(groupwindow);
+    AddShadowToChildren(specializationwindow);
+    ClearDataRegistrationUserWidget();
     connect(ui->ExitBtn, SIGNAL(clicked()),SIGNAL(signalLogoutButtonClicked()));
     connect(viewUsers,SIGNAL(doubleClicked(QModelIndex)),SLOT(slotDoubleClikedOnUser(QModelIndex)));
     connect(changeUser, SIGNAL(signalBackButtonCliked()),SLOT(slotBackButtonChangeUserWidgetCliked()));
     connect(ui->DobavitBtn, SIGNAL(clicked()),SLOT(slotRegistrationButtonClicked()));
     connect(changeUser, SIGNAL(signalRefreshUser(User&)),SLOT(slotRefreshUserInDatabase(User&)));
     connect(ui->RoleBox, SIGNAL(currentIndexChanged(int)), SLOT(slotBlocedPole(int)));
+    connect(ui->GroupButton, SIGNAL(clicked()), SLOT(slotGroupButtonClicked()));
+    connect(ui->SpecializationButton, SIGNAL(clicked()), SLOT(slotSpecializationButtonClicked()));
+    connect(groupwindow, SIGNAL(signalChangeGroup()), SLOT(slotChangeGroup()));
+    connect(specializationwindow, SIGNAL(signalChangeSpecialization()), SLOT(slotChangeSpecialization()));
 }
 
 AdminWindow::~AdminWindow()
 {
     qDebug() << "call destructor";
     delete ui;
+}
+
+void AdminWindow::createModelGroup(){
+    groupModel = new QSqlQueryModel(this);
+    groupModel->setQuery("SELECT Groups.Name "
+                         "FROM Groups ;");
+    QStringList items;
+    items << "Выберите группу";
+    for (int row = 0; row < groupModel->rowCount(); ++row) {
+        items << groupModel->record(row).value("Name").toString();
+    }
+
+    QStringListModel* comboModel = new QStringListModel(this);
+    comboModel->setStringList(items);
+    ui->GroupBox->setModel(comboModel);
+    ui->GroupBox->setCurrentIndex(0);
+}
+
+void AdminWindow::createModelSpecialization(){
+    specializationModel = new QSqlQueryModel(this);
+    specializationModel->setQuery("SELECT Specialization.Name "
+                                  "FROM Specialization ");
+    QStringList items;
+    items << "Выберите специализацию";
+    for (int row = 0; row < specializationModel->rowCount(); ++row) {
+        items << specializationModel->record(row).value("Name").toString();
+    }
+
+    QStringListModel* comboModel = new QStringListModel(this);
+    comboModel->setStringList(items);
+    ui->SpecializationBox->setModel(comboModel);
+    ui->SpecializationBox->setCurrentIndex(0);
 }
 
 void AdminWindow::configuringInterface(){
@@ -89,8 +130,8 @@ void AdminWindow::slotRegistrationButtonClicked(){
     QString MiddleName = ui->MiddleNameEdit->text();
     QString Phone = ui->NomberPhoneEdit->text();
     QString Role = ui->RoleBox->currentText();
-    QString Specialnost = ui->SpecialnostEdit->text();
-    QString Group = ui->GroupEdit->text();
+    QString Specialnost = ui->SpecializationBox->currentText();
+    QString Group = ui->GroupBox->currentText();
     QString WorkTime = ui->WorkEdit->text();
     QString Login = ui->LoginEdit->text();
     QString Password = ui->PasswordEdit->text();
@@ -102,7 +143,7 @@ void AdminWindow::slotRegistrationButtonClicked(){
         QMessageBox::critical(this,"Ошибка",err.what());
         return;
     }
-
+    QMessageBox::information(this, "Информация", "Пользователь добавлен");
     ClearDataRegistrationUserWidget();
     RefreshDataView();
 }
@@ -112,7 +153,15 @@ void AdminWindow::RefreshDataView(){
 }
 
 void AdminWindow::slotRefreshUserInDatabase(User& user){
-    db->RefreshUserById(user);
+
+    try {
+        db->RefreshUserById(user);
+    } catch (const std::runtime_error& err) {
+        QMessageBox::critical(this,"Ошибка",err.what());
+        return;
+    }
+    QMessageBox::information(this, "Информация", "Пользователь изменен");
+
     RefreshDataView();
     ShowViewUsers();
 }
@@ -122,8 +171,8 @@ void AdminWindow::ClearDataRegistrationUserWidget(){
     ui->NameEdit->clear();
     ui->MiddleNameEdit->clear();
     ui->NomberPhoneEdit->clear();
-    ui->GroupEdit->clear();
-    ui->SpecialnostEdit->clear();
+    ui->GroupBox->setCurrentIndex(0);
+    ui->SpecializationBox->setCurrentIndex(0);
     ui->WorkEdit->clear();
     ui->DepartmentBox->setCurrentIndex(0);
     ui->LoginEdit->clear();
@@ -144,7 +193,7 @@ void AdminWindow::CheckingFieldsEmpty(){
     if(ui->PasswordEdit->text().trimmed().isEmpty()){
         throw std::runtime_error("Поле пароля не может быть пустым.");
     }
-    if(ui->RoleBox->currentIndex() == -1){
+    if(ui->RoleBox->currentIndex() == -1 || ui->RoleBox->currentIndex() == 0){
         throw std::runtime_error("Не указана роль пользователя.");
     }
 }
@@ -154,20 +203,15 @@ void AdminWindow::SetValidationOnCreateUsers(){
     ui->SurnameEdit->setValidator(new QRegularExpressionValidator(regExpOnFIO,this));
     ui->NameEdit->setValidator(new QRegularExpressionValidator(regExpOnFIO,this));
     ui->MiddleNameEdit->setValidator(new QRegularExpressionValidator(regExpOnFIO,this));
-    ui->SpecialnostEdit->setValidator(new QRegularExpressionValidator(regExpOnFIO,this));
-
-    QRegularExpression regExpOnGroupAndSpec("[A-Za-zA-яа-я0-9\\s\\-,.]*");
-    ui->GroupEdit->setValidator(new QRegularExpressionValidator(regExpOnGroupAndSpec,this));
-    ui->SpecialnostEdit->setValidator(new QRegularExpressionValidator(regExpOnGroupAndSpec,this));
-
-
+    QRegularExpression regExpOnPhoneNumber("^[0-9]{1,13}\\.{0,1}[0-9]{0,2}$");
+    ui->NomberPhoneEdit->setValidator(new QRegularExpressionValidator(regExpOnPhoneNumber,this));
     QRegularExpression regExpOnLogin("[A-Za-zA-яа-я0-9\\s\\-_.]*");
     ui->LoginEdit->setValidator(new QRegularExpressionValidator(regExpOnLogin,this));
 
     QRegularExpression regExpOnWorkTime("[0-9]*");
     ui->WorkEdit->setValidator(new QRegularExpressionValidator(regExpOnWorkTime,this));
 }
-
+//"^[0-9]{1,13}\\.{0,1}[0-9]{0,2}$"
 void AdminWindow::fillProfile(const User& user){
     if(!user.isEmpty()){
         ui->PMidleNameEdit->setText(user.GetMiddleName());
@@ -180,25 +224,44 @@ void AdminWindow::fillProfile(const User& user){
 }
 
 void AdminWindow::slotBlocedPole(int index){
-    if (index == 0 || index == 1 || index == -1){
-        ui->SpecialnostEdit->setReadOnly(true);
-        ui->GroupEdit->setReadOnly(true);
+    if (index == 0 || index == 1 || index == -1 || index == 2){
+        ui->SpecializationBox->setEnabled(false);
+        ui->GroupBox->setEnabled(false);
         ui->WorkEdit->setReadOnly(true);
         ui->DepartmentBox->setEnabled(false);
         ui->NomberPhoneEdit->setReadOnly(true);
     }
-    else if(index == 2){
-        ui->SpecialnostEdit->setReadOnly(false);
+    else if(index == 4){
+        ui->SpecializationBox->setEnabled(true);
         ui->WorkEdit->setReadOnly(false);
         ui->NomberPhoneEdit->setReadOnly(false);
         ui->DepartmentBox->setEnabled(false);
-        ui->GroupEdit->setReadOnly(true);
+        ui->GroupBox->setEnabled(false);
     }
     else if(index == 3){
-        ui->SpecialnostEdit->setReadOnly(false);
+        ui->SpecializationBox->setEnabled(true);
         ui->WorkEdit->setReadOnly(true);
         ui->NomberPhoneEdit->setReadOnly(true);
         ui->DepartmentBox->setEnabled(true);
-        ui->GroupEdit->setReadOnly(false);
+        ui->GroupBox->setEnabled(true);
     }
+}
+
+void AdminWindow::slotChangeGroup(){
+    createModelGroup();
+    changeUser->change();
+}
+
+void AdminWindow::slotChangeSpecialization(){
+    createModelSpecialization();
+    changeUser->change();
+    groupwindow->Change();
+}
+
+void AdminWindow::slotGroupButtonClicked(){
+    groupwindow->show();
+}
+
+void AdminWindow::slotSpecializationButtonClicked(){
+    specializationwindow->show();
 }

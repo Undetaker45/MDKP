@@ -105,18 +105,34 @@ void MethodistWindow::slotClicedOnButtonAdd(){
 }
 
 void MethodistWindow::slotRefreshLessonInDatabase(Lesson& lesson){
-    db->RefreshLessonById(lesson);
+
+    try {
+        db->RefreshLessonById(lesson);
+    } catch (const std::runtime_error& err) {
+        QMessageBox::critical(this,"Ошибка",err.what());
+        RefreshDataView();
+        ShowViewLesson();
+        return;
+    }
+    QMessageBox::information(this, "Информация", "Занятие изменено");
+
     RefreshDataView();
     ShowViewLesson();
 }
 
 void MethodistWindow::slotAddLessonInDatabase(Lesson& lesson){
-    db->AddLesson(lesson);
+
+    try {
+        db->AddLesson(lesson);
+    } catch (const std::runtime_error& err) {
+        QMessageBox::critical(this,"Ошибка",err.what());
+        return;
+    }
+    QMessageBox::information(this, "Информация", "Занятие добавлено");
     RefreshDataView();
     ShowViewLesson();
 }
 
 void MethodistWindow::slotClicedOnButtonTime(){
-    TimeWindow *time = new TimeWindow(user);
     time->show();
 }

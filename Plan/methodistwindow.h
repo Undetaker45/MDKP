@@ -47,6 +47,7 @@ private:
     Database* db;
     SettingsWindow* Settings;
     QStackedWidget* stackedWidgetLessonManagement;
+    TimeWindow *time = new TimeWindow(user);
     void ShowSettings();
     void ShowViewLesson();
     void RefreshDataView();

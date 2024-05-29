@@ -70,6 +70,5 @@ void TeacherWindow::configuringInterface(const User& user){
 }
 
 void TeacherWindow::slotClicedOnButtonTime(){
-    TimeWindow *time = new TimeWindow(user);
     time->show();
 }

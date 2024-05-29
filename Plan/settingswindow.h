@@ -32,7 +32,6 @@ private:
     void SetValidationOnCreateLessons();
     void CheckingFieldsEmpty();
     void cleari();
-
 signals:
     void signalBackButtonCliked();
     void signalRefreshLesson(Lesson& lesson);

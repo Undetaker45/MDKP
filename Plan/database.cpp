@@ -141,7 +141,7 @@ void Database::InsertTestData(){
             qDebug() << query.lastError();
         }
         str_query = "INSERT INTO Specialization (Name) VALUES "
-                    "('Аккультные дела');";
+                    "('ИВТ');";
         queryResult = query.exec(str_query);
         if(!queryResult){
             qDebug() << "Не удаётся вставить данные";
@@ -169,7 +169,7 @@ void Database::InsertTestData(){
             qDebug() << query.lastError();
         }
         str_query = "INSERT INTO Lessons (ID_Teacher, TypeOfActivity, Title, ID_Group, ID_Specialization, ID_LectoreHall, Time, Payment) VALUES "
-                    "(1, 'Лекция', 'Вызов Сатаны', 1, 1, 3, '2024.04.26 15:55', 1500);";
+                    "(1, 'Лекция', 'Информатика', 1, 1, 3, '2024.04.26 15:55', 1500);";
         queryResult = query.exec(str_query);
         if(!queryResult){
             qDebug() << "Не удаётся вставить данные";
@@ -311,14 +311,12 @@ int Database::SearchSpecialization(QString Specialization){
     return query.value("ID").toInt();
 }
 
-int Database::SearchGroup(QString Group, int ID_Specialization){
+int Database::SearchGroup(QString Group){
     QSqlQuery query;
     query.prepare("SELECT * "
                   "FROM Groups "
-                  "WHERE Name = :name AND "
-                  "ID_Specialization = :id_specialization;");
+                  "WHERE Name = :name;");
     query.bindValue(":name", Group);
-    query.bindValue(":id_specialization", ID_Specialization);
     bool queryResult = query.exec();
 
     if(!queryResult){
@@ -335,11 +333,25 @@ int Database::SearchGroup(QString Group, int ID_Specialization){
 
 int Database::AddSpecialization(QString Specialization){
     QSqlQuery query;
+    bool queryResult;
+    query.prepare("SELECT * "
+                  "FROM Specialization "
+                  "WHERE Name = ':name';");
+    query.bindValue(":name", Specialization);
+    queryResult = query.exec();
+    if(!queryResult){
+        qDebug() << query.lastError();
+        throw std::runtime_error("Не удалось выполнить запрос.");
+    }
+
+    if(query.next() && !query.value(0).isNull()){
+        throw std::runtime_error("Данное имя уже используется.");
+    }
     query.prepare("INSERT INTO Specialization (Name) VALUES"
                   "(:name)");
     query.bindValue(":name", Specialization);
 
-    bool queryResult = query.exec();;
+    queryResult = query.exec();;
 
     if(!queryResult){
         qDebug() << query.lastError();
@@ -350,18 +362,96 @@ int Database::AddSpecialization(QString Specialization){
 }
 int Database::AddGroup(QString Group, int ID_Specialization){
     QSqlQuery query;
+    bool queryResult;
+    query.prepare("SELECT * "
+                  "FROM Groups "
+                  "WHERE Name = ':name';");
+    query.bindValue(":name", Group);
+    queryResult = query.exec();
+    if(!queryResult){
+        qDebug() << query.lastError();
+        throw std::runtime_error("Не удалось выполнить запрос.");
+    }
+
+    if(query.next() && !query.value(0).isNull()){
+        throw std::runtime_error("Данное имя уже используется.");
+    }
     query.prepare("INSERT INTO Groups (Name, ID_Specialization) VALUES"
                   "(:name, :id_specialization)");
     query.bindValue(":name", Group);
     query.bindValue(":id_specialization", ID_Specialization);
-    bool queryResult = query.exec();;
+    queryResult = query.exec();
 
     if(!queryResult){
         qDebug() << query.lastError();
         throw std::runtime_error("Не удалось вставить данные о группе в БД.");
     }
-    int ID_Group = SearchGroup(Group, ID_Specialization);
+    int ID_Group = SearchGroup(Group);
     return ID_Group;
+}
+
+void Database::DeleteGroup(QString Group){
+    QSqlQuery query;
+    query.prepare("SELECT COUNT(*) AS Uhast "
+                  "FROM Groups "
+                  "JOIN Listener on Listener.ID_Group = Groups.ID "
+                  "WHERE Groups.Name = :group");
+    query.bindValue(":group", Group);
+    if (query.exec() && query.next()) {
+        int count = query.value("Uhast").toInt();
+        if (count > 0) {
+            throw std::runtime_error("В данной группе остались участники.");
+        }
+    } else {
+        qDebug() << query.lastError();
+        throw std::runtime_error("Не удалось выполнить запрос.");
+    }
+    query.prepare("DELETE FROM Groups WHERE Name = :group");
+    query.bindValue(":group", Group);
+    bool queryResult = query.exec();
+    if(!queryResult){
+        qDebug() << query.lastError();
+        throw std::runtime_error("Не удалось удалить данные о группе в БД.");
+    }
+}
+
+void Database::DeleteSpecialization(QString Specialization){
+    QSqlQuery query;
+    query.prepare("SELECT COUNT(*) AS Uhast "
+                  "FROM Specialization "
+                  "JOIN Teacher on Teacher.ID_Specialization = Specialization.ID "
+                  "WHERE Specialization.Name = :specialization");
+    query.bindValue(":specialization", Specialization);
+    if (query.exec() && query.next()) {
+        int count = query.value("Uhast").toInt();
+        if (count > 0) {
+            throw std::runtime_error("По данной специализации остались преподаватели.");
+        }
+    } else {
+        qDebug() << query.lastError();
+        throw std::runtime_error("Не удалось выполнить запрос.");
+    }
+    int ID_Specialization = SearchSpecialization(Specialization);
+    query.prepare("SELECT COUNT(*) AS UhastLect "
+                  "FROM Lessons "
+                  "WHERE ID_Specialization = :id_specialization");
+    query.bindValue(":id_specialization", ID_Specialization);
+    if (query.exec() && query.next()) {
+        int Lcount = query.value("UhastLect").toInt();
+        if (Lcount > 0) {
+            throw std::runtime_error("По данной специализации остались лекции.");
+        }
+    } else {
+        qDebug() << query.lastError();
+        throw std::runtime_error("Не удалось выполнить запрос.");
+    }
+    query.prepare("DELETE FROM Specialization WHERE Name = :specialization");
+    query.bindValue(":specialization", Specialization);
+    bool queryResult = query.exec();
+    if(!queryResult){
+        qDebug() << query.lastError();
+        throw std::runtime_error("Не удалось удалить данные о специализации в БД.");
+    }
 }
 
 void Database::RegisterUser(QString Surname, QString Name, QString MiddleName, QString Specialization, QString Phone, QString WorkTime, QString Department, QString Group, QString Login, QString Password, QString Role){
@@ -371,19 +461,11 @@ void Database::RegisterUser(QString Surname, QString Name, QString MiddleName, Q
     int ID_Specialization;
     if (Specialization != ""){
         ID_Specialization = SearchSpecialization(Specialization);
-
-        if (ID_Specialization == 0){
-            ID_Specialization = AddSpecialization(Specialization);
-        }
     }
     int Post = User::convertRoleToInt(Role);
     int ID_Group;
     if (Group != ""){
-        ID_Group = SearchGroup(Group,  ID_Specialization);
-
-        if (ID_Group == 0){
-            ID_Group = AddGroup(Group, ID_Specialization);
-        }
+        ID_Group = SearchGroup(Group);
     }
 
     bool queryResult;
@@ -499,9 +581,9 @@ void Database::RegisterUser(QString Surname, QString Name, QString MiddleName, Q
 
 void Database::AddLesson(Lesson lesson){
     QSqlQuery query;
-    query.prepare("SELECT COUNT(*) as LectTime "
+    query.prepare("SELECT COUNT(*) AS LectTime "
                   "FROM Lessons "
-                  "WHERE ID_LectureHall = :id_lecturehall AND "
+                  "WHERE ID_LectoreHall = :id_lecturehall AND "
                   "Time = :time;");
     query.bindValue(":id_lecturehall", lesson.GetIdLectureHall());
     query.bindValue(":time", lesson.GetTime());
@@ -514,8 +596,22 @@ void Database::AddLesson(Lesson lesson){
         qDebug() << query.lastError();
         throw std::runtime_error("Не удалось выполнить запрос.");
     }
-
-    query.prepare("SELECT COUNT(*) as TeachTime "
+    query.prepare("SELECT COUNT(*) AS LectTime "
+                  "FROM Lessons "
+                  "WHERE ID_Group = :id_group AND "
+                  "Time = :time;");
+    query.bindValue(":id_group", lesson.GetIdGroup());
+    query.bindValue(":time", lesson.GetTime());
+    if (query.exec() && query.next()) {
+        int lectTimeCount = query.value("LectTime").toInt();
+        if (lectTimeCount > 0) {
+            throw std::runtime_error("У данной группы есть занятие в данное время.");
+        }
+    } else {
+        qDebug() << query.lastError();
+        throw std::runtime_error("Не удалось выполнить запрос.");
+    }
+    query.prepare("SELECT COUNT(*) AS TeachTime "
                   "FROM Lessons "
                   "WHERE ID_Teacher = :id_teacher AND "
                   "Time = :time;");
@@ -530,6 +626,22 @@ void Database::AddLesson(Lesson lesson){
         qDebug() << query.lastError();
         throw std::runtime_error("Не удалось выполнить запрос.");
     }
+    query.prepare("SELECT COUNT(*) AS GroupC "
+                  "FROM Listener "
+                  "JOIN User ON Listener.ID_User = User.ID "
+                  "WHERE ID_Group = :id_group AND "
+                  "User.Flag = 1;");
+    query.bindValue(":id_group", lesson.GetIdGroup());
+    if (query.exec() && query.next()) {
+        int GroupC = query.value("GroupC").toInt();
+        if (GroupC == 0) {
+            throw std::runtime_error("В данной группе нет слушателей.");
+        }
+    } else {
+        qDebug() << query.lastError();
+        throw std::runtime_error("Не удалось выполнить запрос.");
+    }
+
     query.prepare("INSERT INTO Lessons (ID_Teacher, TypeOfActivity, Title, ID_Group, ID_Specialization, ID_LectoreHall, Time, Payment) VALUES "
                   "(:id_teacher, :typeofactivity, :title, :id_group, :id_specialization, :id_lecturehall, :time, :payment);");
     query.bindValue(":id_teacher", lesson.GetIdTeacher());
@@ -550,14 +662,15 @@ void Database::AddLesson(Lesson lesson){
 
 void Database::RefreshLessonById(Lesson lesson){
     QSqlQuery query;
-    query.prepare("SELECT COUNT(*) as LectTime "
+    query.prepare("SELECT COUNT(*) AS LectTime "
                   "FROM Lessons "
-                  "WHERE ID_LectureHall = :id_lecturehall AND "
+                  "WHERE ID_LectoreHall = :id_lectorehall AND "
                   "Time = :time AND "
-                  "ID != :id;");
-    query.bindValue(":id_lecturehall", lesson.GetIdLectureHall());
+                  "ID <> :id;");
+    query.bindValue(":id_lectorehall", lesson.GetIdLectureHall());
     query.bindValue(":time", lesson.GetTime());
     query.bindValue(":id", lesson.GetId());
+
     if (query.exec() && query.next()) {
         int lectTimeCount = query.value("LectTime").toInt();
         if (lectTimeCount > 0) {
@@ -567,12 +680,44 @@ void Database::RefreshLessonById(Lesson lesson){
         qDebug() << query.lastError();
         throw std::runtime_error("Не удалось выполнить запрос.");
     }
+    query.prepare("SELECT COUNT(*) AS LectTime "
+                  "FROM Lessons "
+                  "WHERE ID_Group = :id_group AND "
+                  "Time = :time AND "
+                  "ID <> :id;");
+    query.bindValue(":id_group", lesson.GetIdGroup());
+    query.bindValue(":time", lesson.GetTime());
+    query.bindValue(":id", lesson.GetId());
+    if (query.exec() && query.next()) {
+        int lectTimeCount = query.value("LectTime").toInt();
+        if (lectTimeCount > 0) {
+            throw std::runtime_error("У данной группы есть занятие в данное время.");
+        }
+    } else {
+        qDebug() << query.lastError();
+        throw std::runtime_error("Не удалось выполнить запрос.");
+    }
+    query.prepare("SELECT COUNT(*) AS GroupC "
+                  "FROM Listener "
+                  "JOIN User ON Listener.ID_User = User.ID "
+                  "WHERE ID_Group = :id_group AND "
+                  "User.Flag = 1");
+    query.bindValue(":id_group", lesson.GetIdGroup());
+    if (query.exec() && query.next()) {
+        int GroupC = query.value("GroupC").toInt();
+        if (GroupC == 0) {
+            throw std::runtime_error("В данной группе нет слушателей.");
+        }
+    } else {
+        qDebug() << query.lastError();
+        throw std::runtime_error("Не удалось выполнить запрос.");
+    }
 
-    query.prepare("SELECT COUNT(*) as TeachTime "
+    query.prepare("SELECT COUNT(*) AS TeachTime "
                   "FROM Lessons "
                   "WHERE ID_Teacher = :id_teacher AND "
                   "Time = :time AND "
-                  "ID != :id;");
+                  "ID <> :id;");
     query.bindValue(":id_teacher", lesson.GetIdTeacher());
     query.bindValue(":time", lesson.GetTime());
     query.bindValue(":id", lesson.GetId());
@@ -604,6 +749,7 @@ void Database::RefreshLessonById(Lesson lesson){
     query.bindValue(":time", lesson.GetTime());
     query.bindValue(":payment", lesson.GetPayment());
     query.bindValue(":id", lesson.GetId());
+
     bool queryResult = query.exec();
     if (!queryResult) {
         qDebug() << query.lastError();
@@ -615,12 +761,13 @@ void Database::RefreshUserById(User user){
     QSqlQuery query;
     bool queryResult;
 
-    QString str_query = QString("SELECT * "
-                                "FROM User "
-                                "WHERE Login = '%1' AND "
-                                "ID != '%2';").arg(user.GetLogin(), user.GetId());
-
-    queryResult = query.exec(str_query);
+    query.prepare("SELECT * "
+                  "FROM User "
+                  "WHERE Login = :login AND "
+                  "ID <> :id;");
+    query.bindValue(":id", user.GetId());
+    query.bindValue(":login", user.GetLogin());
+    queryResult = query.exec();
     if(!queryResult){
         qDebug() << query.lastError();
         throw std::runtime_error("Не удалось выполнить запрос.");
@@ -630,6 +777,17 @@ void Database::RefreshUserById(User user){
         throw std::runtime_error("Данный логин уже используется.");
     }
 
+    query.prepare("SELECT Role AS Flagi FROM User "
+                  "WHERE ID = :id;");
+    query.bindValue(":id", user.GetId());
+    queryResult = query.exec();
+    if(!queryResult){
+        qDebug() << query.lastError();
+        throw std::runtime_error("Не удалось выполнить запрос.");
+    }
+    query.next();
+    QString Flag = query.value("Flagi").toString();
+    int IFlag = User::convertRoleToInt(Flag);
     query.prepare("UPDATE User "
                   "SET  Flag = :flag, "
                   "     Login = :login, "
@@ -652,55 +810,160 @@ void Database::RefreshUserById(User user){
         qDebug() << query.lastError();
         throw std::runtime_error("Обновление данных не выполнено.");
     }
-
-    switch(user.GetRole()){
-    case (1):
+    if (IFlag == user.GetRole()){
+        switch(user.GetRole()){
+        case (1):
 //  Admin
-        break;
-    case (2):
+            break;
+        case (2):
 //  Methodist
-        break;
-    case (3):
+            break;
+        case (3):
 //  Teacher
-        query.prepare("UPDATE Teacher "
-                      "SET  ID_Specialization = :id_specialization, "
-                      "     PhoneNumber = :phonenumber, "
-                      "     WorkExperience = :workexperience "
-                      "WHERE ID_User = :id_user;");
-        query.bindValue(":id_specialization", user.GetIdSpecialization());
-        query.bindValue(":phonenumber", user.GetPhone());
-        query.bindValue(":workexperience", user.GetWorkTime());
-        query.bindValue(":id_user", user.GetId());
-        queryResult = query.exec();
+            query.prepare("SELECT ID "
+                          "FROM Teacher "
+                          "WHERE PhoneNumber = :phone AND "
+                          "ID_User <> :id;");
+            query.bindValue(":phone",user.GetPhone());
+            query.bindValue(":id", user.GetId());
+            query.exec();
+            if(query.next() && !query.value(0).isNull()){
+                throw std::runtime_error("Данный номер телефона уже используется.");
+            }
+            query.prepare("UPDATE Teacher "
+                          "SET  ID_Specialization = :id_specialization, "
+                          "     PhoneNumber = :phonenumber, "
+                          "     WorkExperience = :workexperience "
+                          "WHERE ID_User = :id_user;");
+            query.bindValue(":id_specialization", user.GetIdSpecialization());
+            query.bindValue(":phonenumber", user.GetPhone());
+            query.bindValue(":workexperience", user.GetWorkTime());
+            query.bindValue(":id_user", user.GetId());
+            queryResult = query.exec();
 
-        if(!queryResult){
-            qDebug() << query.lastError();
-            throw std::runtime_error("Обновление данных не выполнено.");
-        }
-        break;
-    case (4):
+            if(!queryResult){
+                qDebug() << query.lastError();
+                throw std::runtime_error("Обновление данных не выполнено.");
+            }
+            break;
+        case (4):
 //  Listener
-        query.prepare("UPDATE Listener "
-                      "SET Department = :department, "
-                      "    ID_Group = :id_group "
-                      "WHERE ID_User = :id;");
-        query.bindValue(":id_specialization", user.GetIdSpecialization());
-        query.bindValue(":department", user.GetDepartment());
-        query.bindValue(":id_group", user.GetIdGroup());
-        query.bindValue(":id", user.GetId());
-        queryResult = query.exec();
+            query.prepare("SELECT COUNT(*) as cGroup "
+                          "FROM Listener "
+                          "WHERE ID_Group = :id_group AND "
+                          "ID_User <> :id");
+            query.bindValue(":id_group", user.GetIdGroup());
+            query.bindValue(":id", user.GetId());
+            if (query.exec() && query.next()) {
+                int count = query.value("cGroup").toInt();
+                if (count > 4) {
+                    throw std::runtime_error("В данной группе слишком много студентов.");
+                }
+            } else {
+                qDebug() << query.lastError();
+                throw std::runtime_error("Не удалось выполнить запрос.");
+            }
 
+            query.prepare("UPDATE Listener "
+                          "SET Department = :department, "
+                          "    ID_Group = :id_group "
+                          "WHERE ID_User = :id;");
+            query.bindValue(":id_specialization", user.GetIdSpecialization());
+            query.bindValue(":department", user.convertDepartmentToString(user.GetDepartment()));
+            query.bindValue(":id_group", user.GetIdGroup());
+            query.bindValue(":id", user.GetId());
+            queryResult = query.exec();
+
+            if(!queryResult){
+                qDebug() << query.lastError();
+                throw std::runtime_error("Обновление данных не выполнено.");
+            }
+            break;
+        default:
+            break;
+        };
+    }
+    else{
+        switch(user.GetRole()){
+        case (1):
+//  Admin
+            break;
+        case (2):
+//  Methodist
+            break;
+        case (3):
+//  Teacher INSERT INTO
+            query.prepare("SELECT ID "
+                          "FROM Teacher "
+                          "WHERE PhoneNumber = :phone;");
+            query.bindValue(":phone",user.GetPhone());
+            query.exec();
+            if(query.next() && !query.value(0).isNull()){
+                throw std::runtime_error("Данный номер телефона уже используется.");
+            }
+
+            query.prepare("INSERT INTO Teacher (ID_Specialization, PhoneNumber, WorkExperience, ID_User) VALUES "
+                          "(:id_specialization, :phonenumber, :workexperience, :id_user);");
+            query.bindValue(":id_specialization", user.GetIdSpecialization());
+            query.bindValue(":phonenumber", user.GetPhone());
+            query.bindValue(":workexperience", user.GetWorkTime());
+            query.bindValue(":id_user", user.GetId());
+            queryResult = query.exec();
+
+            if(!queryResult){
+                qDebug() << query.lastError();
+                throw std::runtime_error("Вставка данных не выполнена.");
+            }
+            break;
+        case (4):
+    //  Listener
+
+            query.prepare("SELECT COUNT(*) as cGroup "
+                          "FROM Listener "
+                          "WHERE ID_Group = :id_group");
+            query.bindValue(":id_group", user.GetIdGroup());
+            if (query.exec() && query.next()) {
+                int count = query.value("cGroup").toInt();
+                if (count > 4) {
+                    throw std::runtime_error("В данной группе слишком много студентов.");
+                }
+            } else {
+                qDebug() << query.lastError();
+                throw std::runtime_error("Не удалось выполнить запрос.");
+            }
+
+            query.prepare("INSERT INTO Listener (Department, ID_Group, ID_User) VALUES "
+                          "(:department, :id_group, :id_user);");
+            query.bindValue(":department", user.convertDepartmentToString(user.GetDepartment()));
+            query.bindValue(":id_group", user.GetIdGroup());
+            query.bindValue(":id_user", user.GetId());
+            queryResult = query.exec();
+
+            if(!queryResult){
+                qDebug() << query.lastError();
+                throw std::runtime_error("Вставка данных не выполнена.");
+            }
+            break;
+        default:
+            break;
+        };
+        if (IFlag == 3){
+            query.prepare("DELETE FROM Teacher WHERE ID_User = :id");
+            query.bindValue(":id", user.GetId());
+        }
+        else if (IFlag == 4){
+            query.prepare("DELETE FROM Listener WHERE ID_User = :id");
+            query.bindValue(":id", user.GetId());
+        }
+        bool queryResult = query.exec();
         if(!queryResult){
             qDebug() << query.lastError();
-            throw std::runtime_error("Обновление данных не выполнено.");
+            throw std::runtime_error("Не удалось удалить данные о пользователе в БД.");
         }
-        break;
-    default:
-        break;
-    };
+    }
 }
 
-void Database::InsertAdmin(){
+void Database::InsertAdminAndSmallTestData(){
     QSqlQuery query;
     query.prepare("SELECT ID "
                   "FROM User "
@@ -714,10 +977,22 @@ void Database::InsertAdmin(){
     }
     else{
         query.prepare("INSERT INTO User (Flag, Login, Password, Name, Surname, MiddleName, Role) VALUES "
-                      "(1, 'admin', 'admin', 'Супер', 'Юзер', 'Викторович', 'Администратор')");
+                      "(1, 'admin', 'admin', 'Супер', 'Юзер', '', 'Администратор')");
         query.exec();
     }
+    QString str_query = "INSERT INTO LectoreHall (Name, AcademicBuilding) VALUES "
+                        "('206','IKIT'),"
+                        "('207','IKIT'),"
+                        "('203','ISIT'),"
+                        "('206','ISIT'),"
+                        "('101','IKEA');";
+    bool queryResult = query.exec(str_query);
+    if(!queryResult){
+        qDebug() << "Не удаётся вставить данные";
+        qDebug() << query.lastError();
+    }
 }
+
 int Database::Time(int ID_Teacher, int ID_Group){
     QSqlQuery query;
     query.prepare("SELECT COUNT(*) as sTime "

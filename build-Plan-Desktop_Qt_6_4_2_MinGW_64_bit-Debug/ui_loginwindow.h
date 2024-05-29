@@ -36,8 +36,8 @@ public:
     QLineEdit *Login;
     QLabel *label_2;
     QLineEdit *Password;
-    QPushButton *pbvhod;
     QSpacerItem *verticalSpacer;
+    QPushButton *pbvhod;
     QSpacerItem *horizontalSpacer;
     QMenuBar *menubar;
     QStatusBar *statusbar;
@@ -46,7 +46,9 @@ public:
     {
         if (LoginWindow->objectName().isEmpty())
             LoginWindow->setObjectName("LoginWindow");
-        LoginWindow->resize(419, 452);
+        LoginWindow->resize(278, 346);
+        LoginWindow->setMinimumSize(QSize(278, 346));
+        LoginWindow->setMaximumSize(QSize(278, 346));
         centralwidget = new QWidget(LoginWindow);
         centralwidget->setObjectName("centralwidget");
         horizontalLayout = new QHBoxLayout(centralwidget);
@@ -83,6 +85,10 @@ public:
 
         verticalLayout->addWidget(Password);
 
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout->addItem(verticalSpacer);
+
         pbvhod = new QPushButton(centralwidget);
         pbvhod->setObjectName("pbvhod");
         pbvhod->setMinimumSize(QSize(200, 20));
@@ -103,10 +109,6 @@ public:
 
         verticalLayout->addWidget(pbvhod);
 
-        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout->addItem(verticalSpacer);
-
 
         horizontalLayout->addLayout(verticalLayout);
 
@@ -117,7 +119,7 @@ public:
         LoginWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(LoginWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 419, 26));
+        menubar->setGeometry(QRect(0, 0, 278, 26));
         LoginWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(LoginWindow);
         statusbar->setObjectName("statusbar");

@@ -284,13 +284,13 @@ int Lesson::convertTeacherToInt(QString Teacher, int ID_Specialization) {
     QString Name = Teacher.section(' ', 1, 1);
     QString MiddleName = Teacher.section(' ', 2, 2);
     QSqlQuery query;
-    query.prepare("SELECT * "
+    query.prepare("SELECT Teacher.ID AS TeacherI "
                   "FROM Teacher "
                   "JOIN User ON User.ID = Teacher.ID_User "
                   "WHERE Teacher.ID_Specialization = :id_specialization AND "
                   "User.Surname = :surname AND "
                   "User.Name = :name AND "
-                  "User.MiddleName = :middlename;");
+                  "(User.MiddleName = :middlename OR User.MiddleName = '');");
     query.bindValue(":id_specialization", ID_Specialization);
     query.bindValue(":surname", Surname);
     query.bindValue(":name", Name);
@@ -299,12 +299,12 @@ int Lesson::convertTeacherToInt(QString Teacher, int ID_Specialization) {
 
     if (!queryResult) {
         qDebug() << query.lastError();
-        throw std::runtime_error("Не удалось осуществить поиск аудитории.");
+        throw std::runtime_error("Не удалось осуществить поиск преподавателя.");
     }
 
     if (query.next() && query.value(0).isNull()) {
         return 0;
     }
 
-    return query.value("Teacher.ID").toInt();
+    return query.value("TeacherI").toInt();
 }

@@ -29,7 +29,8 @@ void SettingsWindow::createModelTeacher(int ID_Specialization) {
     query.prepare("SELECT User.Surname ||' '|| User.Name ||' '|| User.MiddleName "
                   "FROM Teacher "
                   "JOIN User ON User.ID = Teacher.ID_User "
-                  "WHERE Teacher.ID_Specialization = :id_specialization;");
+                  "WHERE Teacher.ID_Specialization = :id_specialization AND "
+                  "User.Flag = 1;");
     query.bindValue(":id_specialization", ID_Specialization);
     query.exec();
 
@@ -49,7 +50,12 @@ void SettingsWindow::createModelTeacher(int ID_Specialization) {
 void SettingsWindow::createModelGroup(){
     groupModel = new QSqlQueryModel(this);
     groupModel->setQuery("SELECT Groups.Name "
-                         "FROM Groups; ");
+                         "FROM Groups "
+                         "WHERE EXISTS ( "
+                         "      SELECT 1 "
+                         "      FROM Listener "
+                         "      JOIN User ON User.ID = Listener.ID_User "
+                         "      WHERE Listener.ID_Group = Groups.ID AND User.Flag = 1);");
     QStringList items;
     items << "Выберите группу";
     for (int row = 0; row < groupModel->rowCount(); ++row) {
@@ -64,7 +70,12 @@ void SettingsWindow::createModelGroup(){
 void SettingsWindow::createModelSpecialization(){
     specializationModel = new QSqlQueryModel(this);
     specializationModel->setQuery("SELECT Specialization.Name "
-                                  "FROM Specialization");
+                                  "FROM Specialization "
+                                  "WHERE EXISTS ( "
+                                  "      SELECT 1 "
+                                  "      FROM Teacher "
+                                  "      JOIN User ON User.ID = Teacher.ID_User "
+                                  "      WHERE Teacher.ID_Specialization = Specialization.ID AND User.Flag = 1);");
     QStringList items;
     items << "Выберите предметную область";
     for (int row = 0; row < specializationModel->rowCount(); ++row) {
@@ -206,33 +217,6 @@ void SettingsWindow::slotBackButtonCliked(){
 
 }
 
-void SettingsWindow::CheckingFieldsEmpty(){
-    if(ui->TeacherBox->currentIndex() == 0){
-       throw std::runtime_error("Не указан преподаватель.");
-    }
-    if(ui->SpecializaciaBox->currentIndex() == 0){
-        throw std::runtime_error("Не указана предметная область.");
-    }
-    if(ui->LectorHall->currentIndex() == 0){
-        throw std::runtime_error("Не указана аудитория.");
-    }
-    if(ui->groupBox->currentIndex() == 0){
-        throw std::runtime_error("Не указана группа.");
-    }
-    if(ui->Time->currentIndex() == 0){
-        throw std::runtime_error("Не указано время проведения.");
-    }
-    if(ui->DataEdit->text().trimmed().isEmpty()){
-        throw std::runtime_error("Поле даты не может быть пустым.");
-    }
-    if(ui->PaymentEdit->text().trimmed().isEmpty()){
-        throw std::runtime_error("Поле оплаты не может быть пустым.");
-    }
-    if(ui->TitleEdit->text().trimmed().isEmpty()){
-        throw std::runtime_error("Поле названия предмета не может быть пустым.");
-    }
-}
-
 void SettingsWindow::SetValidationOnCreateLessons(){
 
     QRegularExpression regExpOnTitle("[A-Za-zA-яа-я0-9\\s\\-_.]*");
@@ -240,4 +224,31 @@ void SettingsWindow::SetValidationOnCreateLessons(){
 
     QRegularExpression regExpOnPayment("[0-9.\\s-]*");
     ui->PaymentEdit->setValidator(new QRegularExpressionValidator(regExpOnPayment,this));
+}
+
+void SettingsWindow::CheckingFieldsEmpty(){
+    if(ui->SpecializaciaBox->currentIndex() == -1 || ui->SpecializaciaBox->currentIndex() == 0){
+        throw std::runtime_error("Не указана прежметная область.");
+    }
+    if(ui->TeacherBox->currentIndex() == -1 || ui->TeacherBox->currentIndex() == 0){
+        throw std::runtime_error("Не указан преподаватель.");
+    }
+    if(ui->TitleEdit->text().trimmed().isEmpty()){
+        throw std::runtime_error("Поле название предмета не может быть пустым.");
+    }
+    if(ui->groupBox->currentIndex() == -1 || ui->groupBox->currentIndex() == 0){
+        throw std::runtime_error("Не указана группа.");
+    }
+    if(ui->LectorHall->currentIndex() == -1 || ui->LectorHall->currentIndex() == 0){
+        throw std::runtime_error("Не указана аудитория.");
+    }
+    if(ui->DataEdit->text().trimmed().isEmpty()){
+        throw std::runtime_error("Поле даты проведения не может быть пустым.");
+    }
+    if(ui->Time->currentIndex() == -1 || ui->Time->currentIndex() == 0){
+        throw std::runtime_error("Не указано время.");
+    }
+    if(ui->PaymentEdit->text().trimmed().isEmpty()){
+        throw std::runtime_error("Поле оплата не может быть пустым.");
+    }
 }

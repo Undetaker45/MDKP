@@ -60,37 +60,43 @@ public:
     QWidget *AddUserTab;
     QVBoxLayout *verticalLayout_2;
     QGridLayout *gridLayout;
-    QSpacerItem *verticalSpacer;
-    QLabel *label_11;
-    QSpacerItem *verticalSpacer_3;
-    QLabel *label_7;
-    QLineEdit *GroupEdit;
-    QLineEdit *PasswordEdit;
-    QLabel *label_15;
-    QSpacerItem *horizontalSpacer;
-    QLabel *label_8;
-    QLabel *label_5;
-    QLabel *label_4;
-    QLabel *label_12;
-    QLabel *label_6;
-    QLineEdit *LoginEdit;
-    QLineEdit *NomberPhoneEdit;
     QSpacerItem *horizontalSpacer_5;
-    QLabel *label_14;
-    QLineEdit *WorkEdit;
-    QSpacerItem *horizontalSpacer_2;
-    QComboBox *RoleBox;
-    QSpacerItem *verticalSpacer_2;
-    QLineEdit *NameEdit;
-    QLineEdit *SurnameEdit;
-    QLabel *label_13;
-    QLineEdit *MiddleNameEdit;
-    QLabel *label_9;
-    QLineEdit *SpecialnostEdit;
+    QLabel *label_8;
+    QLabel *label_4;
     QVBoxLayout *verticalLayout_3;
     QSpacerItem *verticalSpacer_4;
     QPushButton *DobavitBtn;
+    QSpacerItem *horizontalSpacer;
+    QLineEdit *WorkEdit;
     QComboBox *DepartmentBox;
+    QComboBox *RoleBox;
+    QLineEdit *SurnameEdit;
+    QLabel *label_5;
+    QVBoxLayout *verticalLayout_5;
+    QSpacerItem *verticalSpacer_10;
+    QPushButton *SpecializationButton;
+    QLineEdit *NameEdit;
+    QLabel *label_7;
+    QLabel *label_13;
+    QLabel *label_15;
+    QLabel *label_6;
+    QSpacerItem *verticalSpacer;
+    QLineEdit *MiddleNameEdit;
+    QSpacerItem *verticalSpacer_3;
+    QSpacerItem *horizontalSpacer_2;
+    QLabel *label_14;
+    QLabel *label_11;
+    QLineEdit *NomberPhoneEdit;
+    QLineEdit *LoginEdit;
+    QLineEdit *PasswordEdit;
+    QLabel *label_9;
+    QSpacerItem *verticalSpacer_2;
+    QLabel *label_12;
+    QVBoxLayout *verticalLayout;
+    QSpacerItem *verticalSpacer_9;
+    QPushButton *GroupButton;
+    QComboBox *GroupBox;
+    QComboBox *SpecializationBox;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *AdminWindow)
@@ -229,139 +235,19 @@ public:
         verticalLayout_2->setObjectName("verticalLayout_2");
         gridLayout = new QGridLayout();
         gridLayout->setObjectName("gridLayout");
-        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::MinimumExpanding);
+        horizontalSpacer_5 = new QSpacerItem(60, 20, QSizePolicy::MinimumExpanding, QSizePolicy::Minimum);
 
-        gridLayout->addItem(verticalSpacer, 15, 3, 1, 1);
-
-        label_11 = new QLabel(AddUserTab);
-        label_11->setObjectName("label_11");
-
-        gridLayout->addWidget(label_11, 3, 3, 1, 1);
-
-        verticalSpacer_3 = new QSpacerItem(20, 20, QSizePolicy::Minimum, QSizePolicy::MinimumExpanding);
-
-        gridLayout->addItem(verticalSpacer_3, 14, 3, 1, 1);
-
-        label_7 = new QLabel(AddUserTab);
-        label_7->setObjectName("label_7");
-
-        gridLayout->addWidget(label_7, 7, 1, 1, 1);
-
-        GroupEdit = new QLineEdit(AddUserTab);
-        GroupEdit->setObjectName("GroupEdit");
-
-        gridLayout->addWidget(GroupEdit, 8, 3, 1, 1);
-
-        PasswordEdit = new QLineEdit(AddUserTab);
-        PasswordEdit->setObjectName("PasswordEdit");
-
-        gridLayout->addWidget(PasswordEdit, 10, 1, 1, 1);
-
-        label_15 = new QLabel(AddUserTab);
-        label_15->setObjectName("label_15");
-
-        gridLayout->addWidget(label_15, 9, 3, 1, 1);
-
-        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::MinimumExpanding, QSizePolicy::Minimum);
-
-        gridLayout->addItem(horizontalSpacer, 6, 0, 1, 1);
+        gridLayout->addItem(horizontalSpacer_5, 8, 2, 1, 1);
 
         label_8 = new QLabel(AddUserTab);
         label_8->setObjectName("label_8");
 
         gridLayout->addWidget(label_8, 9, 1, 1, 1);
 
-        label_5 = new QLabel(AddUserTab);
-        label_5->setObjectName("label_5");
-
-        gridLayout->addWidget(label_5, 3, 1, 1, 1);
-
         label_4 = new QLabel(AddUserTab);
         label_4->setObjectName("label_4");
 
         gridLayout->addWidget(label_4, 1, 1, 1, 1);
-
-        label_12 = new QLabel(AddUserTab);
-        label_12->setObjectName("label_12");
-
-        gridLayout->addWidget(label_12, 5, 3, 1, 1);
-
-        label_6 = new QLabel(AddUserTab);
-        label_6->setObjectName("label_6");
-
-        gridLayout->addWidget(label_6, 5, 1, 1, 1);
-
-        LoginEdit = new QLineEdit(AddUserTab);
-        LoginEdit->setObjectName("LoginEdit");
-
-        gridLayout->addWidget(LoginEdit, 8, 1, 1, 1);
-
-        NomberPhoneEdit = new QLineEdit(AddUserTab);
-        NomberPhoneEdit->setObjectName("NomberPhoneEdit");
-
-        gridLayout->addWidget(NomberPhoneEdit, 4, 3, 1, 1);
-
-        horizontalSpacer_5 = new QSpacerItem(60, 20, QSizePolicy::MinimumExpanding, QSizePolicy::Minimum);
-
-        gridLayout->addItem(horizontalSpacer_5, 8, 2, 1, 1);
-
-        label_14 = new QLabel(AddUserTab);
-        label_14->setObjectName("label_14");
-
-        gridLayout->addWidget(label_14, 7, 3, 1, 1);
-
-        WorkEdit = new QLineEdit(AddUserTab);
-        WorkEdit->setObjectName("WorkEdit");
-
-        gridLayout->addWidget(WorkEdit, 6, 3, 1, 1);
-
-        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::MinimumExpanding, QSizePolicy::Minimum);
-
-        gridLayout->addItem(horizontalSpacer_2, 6, 4, 1, 1);
-
-        RoleBox = new QComboBox(AddUserTab);
-        RoleBox->addItem(QString());
-        RoleBox->addItem(QString());
-        RoleBox->addItem(QString());
-        RoleBox->addItem(QString());
-        RoleBox->addItem(QString());
-        RoleBox->setObjectName("RoleBox");
-
-        gridLayout->addWidget(RoleBox, 13, 3, 1, 1);
-
-        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        gridLayout->addItem(verticalSpacer_2, 0, 3, 1, 1);
-
-        NameEdit = new QLineEdit(AddUserTab);
-        NameEdit->setObjectName("NameEdit");
-
-        gridLayout->addWidget(NameEdit, 4, 1, 1, 1);
-
-        SurnameEdit = new QLineEdit(AddUserTab);
-        SurnameEdit->setObjectName("SurnameEdit");
-
-        gridLayout->addWidget(SurnameEdit, 2, 1, 1, 1);
-
-        label_13 = new QLabel(AddUserTab);
-        label_13->setObjectName("label_13");
-
-        gridLayout->addWidget(label_13, 1, 3, 1, 1);
-
-        MiddleNameEdit = new QLineEdit(AddUserTab);
-        MiddleNameEdit->setObjectName("MiddleNameEdit");
-
-        gridLayout->addWidget(MiddleNameEdit, 6, 1, 1, 1);
-
-        label_9 = new QLabel(AddUserTab);
-        label_9->setObjectName("label_9");
-
-        gridLayout->addWidget(label_9, 12, 3, 1, 1);
-
-        SpecialnostEdit = new QLineEdit(AddUserTab);
-        SpecialnostEdit->setObjectName("SpecialnostEdit");
-
-        gridLayout->addWidget(SpecialnostEdit, 2, 3, 1, 1);
 
         verticalLayout_3 = new QVBoxLayout();
         verticalLayout_3->setObjectName("verticalLayout_3");
@@ -392,6 +278,15 @@ public:
 
         gridLayout->addLayout(verticalLayout_3, 15, 5, 1, 1);
 
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::MinimumExpanding, QSizePolicy::Minimum);
+
+        gridLayout->addItem(horizontalSpacer, 6, 0, 1, 1);
+
+        WorkEdit = new QLineEdit(AddUserTab);
+        WorkEdit->setObjectName("WorkEdit");
+
+        gridLayout->addWidget(WorkEdit, 6, 3, 1, 1);
+
         DepartmentBox = new QComboBox(AddUserTab);
         DepartmentBox->addItem(QString());
         DepartmentBox->addItem(QString());
@@ -399,6 +294,173 @@ public:
         DepartmentBox->setObjectName("DepartmentBox");
 
         gridLayout->addWidget(DepartmentBox, 10, 3, 1, 1);
+
+        RoleBox = new QComboBox(AddUserTab);
+        RoleBox->addItem(QString());
+        RoleBox->addItem(QString());
+        RoleBox->addItem(QString());
+        RoleBox->addItem(QString());
+        RoleBox->addItem(QString());
+        RoleBox->setObjectName("RoleBox");
+
+        gridLayout->addWidget(RoleBox, 13, 3, 1, 1);
+
+        SurnameEdit = new QLineEdit(AddUserTab);
+        SurnameEdit->setObjectName("SurnameEdit");
+
+        gridLayout->addWidget(SurnameEdit, 2, 1, 1, 1);
+
+        label_5 = new QLabel(AddUserTab);
+        label_5->setObjectName("label_5");
+
+        gridLayout->addWidget(label_5, 3, 1, 1, 1);
+
+        verticalLayout_5 = new QVBoxLayout();
+        verticalLayout_5->setObjectName("verticalLayout_5");
+        verticalSpacer_10 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_5->addItem(verticalSpacer_10);
+
+        SpecializationButton = new QPushButton(AddUserTab);
+        SpecializationButton->setObjectName("SpecializationButton");
+        SpecializationButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"font: 500 20pt \"Montserrat Medium\";\n"
+"    background-color: #AC0808; \n"
+"    color: white; \n"
+"    border: none;\n"
+"    font-size: 20px;\n"
+"    border-radius: 5px; \n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: #C61010;\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: #9C0707; \n"
+"}"));
+
+        verticalLayout_5->addWidget(SpecializationButton);
+
+
+        gridLayout->addLayout(verticalLayout_5, 15, 1, 1, 1);
+
+        NameEdit = new QLineEdit(AddUserTab);
+        NameEdit->setObjectName("NameEdit");
+
+        gridLayout->addWidget(NameEdit, 4, 1, 1, 1);
+
+        label_7 = new QLabel(AddUserTab);
+        label_7->setObjectName("label_7");
+
+        gridLayout->addWidget(label_7, 7, 1, 1, 1);
+
+        label_13 = new QLabel(AddUserTab);
+        label_13->setObjectName("label_13");
+
+        gridLayout->addWidget(label_13, 1, 3, 1, 1);
+
+        label_15 = new QLabel(AddUserTab);
+        label_15->setObjectName("label_15");
+
+        gridLayout->addWidget(label_15, 9, 3, 1, 1);
+
+        label_6 = new QLabel(AddUserTab);
+        label_6->setObjectName("label_6");
+
+        gridLayout->addWidget(label_6, 5, 1, 1, 1);
+
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::MinimumExpanding);
+
+        gridLayout->addItem(verticalSpacer, 15, 3, 1, 1);
+
+        MiddleNameEdit = new QLineEdit(AddUserTab);
+        MiddleNameEdit->setObjectName("MiddleNameEdit");
+
+        gridLayout->addWidget(MiddleNameEdit, 6, 1, 1, 1);
+
+        verticalSpacer_3 = new QSpacerItem(20, 20, QSizePolicy::Minimum, QSizePolicy::MinimumExpanding);
+
+        gridLayout->addItem(verticalSpacer_3, 14, 3, 1, 1);
+
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::MinimumExpanding, QSizePolicy::Minimum);
+
+        gridLayout->addItem(horizontalSpacer_2, 6, 4, 1, 1);
+
+        label_14 = new QLabel(AddUserTab);
+        label_14->setObjectName("label_14");
+
+        gridLayout->addWidget(label_14, 7, 3, 1, 1);
+
+        label_11 = new QLabel(AddUserTab);
+        label_11->setObjectName("label_11");
+
+        gridLayout->addWidget(label_11, 3, 3, 1, 1);
+
+        NomberPhoneEdit = new QLineEdit(AddUserTab);
+        NomberPhoneEdit->setObjectName("NomberPhoneEdit");
+
+        gridLayout->addWidget(NomberPhoneEdit, 4, 3, 1, 1);
+
+        LoginEdit = new QLineEdit(AddUserTab);
+        LoginEdit->setObjectName("LoginEdit");
+
+        gridLayout->addWidget(LoginEdit, 8, 1, 1, 1);
+
+        PasswordEdit = new QLineEdit(AddUserTab);
+        PasswordEdit->setObjectName("PasswordEdit");
+
+        gridLayout->addWidget(PasswordEdit, 10, 1, 1, 1);
+
+        label_9 = new QLabel(AddUserTab);
+        label_9->setObjectName("label_9");
+
+        gridLayout->addWidget(label_9, 12, 3, 1, 1);
+
+        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        gridLayout->addItem(verticalSpacer_2, 0, 3, 1, 1);
+
+        label_12 = new QLabel(AddUserTab);
+        label_12->setObjectName("label_12");
+
+        gridLayout->addWidget(label_12, 5, 3, 1, 1);
+
+        verticalLayout = new QVBoxLayout();
+        verticalLayout->setObjectName("verticalLayout");
+        verticalSpacer_9 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout->addItem(verticalSpacer_9);
+
+        GroupButton = new QPushButton(AddUserTab);
+        GroupButton->setObjectName("GroupButton");
+        GroupButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"font: 500 20pt \"Montserrat Medium\";\n"
+"    background-color: #AC0808; \n"
+"    color: white; \n"
+"    border: none;\n"
+"    font-size: 20px;\n"
+"    border-radius: 5px; \n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: #C61010;\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: #9C0707; \n"
+"}"));
+
+        verticalLayout->addWidget(GroupButton);
+
+
+        gridLayout->addLayout(verticalLayout, 15, 0, 1, 1);
+
+        GroupBox = new QComboBox(AddUserTab);
+        GroupBox->setObjectName("GroupBox");
+
+        gridLayout->addWidget(GroupBox, 8, 3, 1, 1);
+
+        SpecializationBox = new QComboBox(AddUserTab);
+        SpecializationBox->setObjectName("SpecializationBox");
+
+        gridLayout->addWidget(SpecializationBox, 2, 3, 1, 1);
 
 
         verticalLayout_2->addLayout(gridLayout);
@@ -417,7 +479,7 @@ public:
 
         retranslateUi(AdminWindow);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(AdminWindow);
@@ -432,28 +494,30 @@ public:
         ExitBtn->setText(QCoreApplication::translate("AdminWindow", "\320\222\321\213\321\205\320\276\320\264", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(ProfileTab), QCoreApplication::translate("AdminWindow", "\320\237\321\200\320\276\321\204\320\270\320\273\321\214", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(deleteTab), QCoreApplication::translate("AdminWindow", "\320\230\320\267\320\274\320\265\320\275\320\265\320\275\320\270\320\265 \320\277\320\276\320\273\321\214\320\267\320\276\320\262\320\260\321\202\320\265\320\273\321\217", nullptr));
-        label_11->setText(QCoreApplication::translate("AdminWindow", "\320\235\320\276\320\274\320\265\321\200 \321\202\320\265\320\273\320\265\321\204\320\276\320\275\320\260", nullptr));
-        label_7->setText(QCoreApplication::translate("AdminWindow", "\320\233\320\276\320\263\320\270\320\275", nullptr));
-        label_15->setText(QCoreApplication::translate("AdminWindow", "\320\236\321\202\320\264\320\265\320\273\320\265\320\275\320\270\320\265", nullptr));
         label_8->setText(QCoreApplication::translate("AdminWindow", "\320\237\320\260\321\200\320\276\320\273\321\214", nullptr));
-        label_5->setText(QCoreApplication::translate("AdminWindow", "\320\230\320\274\321\217", nullptr));
         label_4->setText(QCoreApplication::translate("AdminWindow", "\320\244\320\260\320\274\320\270\320\273\320\270\321\217", nullptr));
-        label_12->setText(QCoreApplication::translate("AdminWindow", "\320\241\321\202\320\260\320\266 \321\200\320\260\320\261\320\276\321\202\321\213", nullptr));
-        label_6->setText(QCoreApplication::translate("AdminWindow", "\320\236\321\202\321\207\320\265\321\201\321\202\320\262\320\276", nullptr));
-        label_14->setText(QCoreApplication::translate("AdminWindow", "\320\223\321\200\321\203\320\277\320\277\320\260", nullptr));
+        DobavitBtn->setText(QCoreApplication::translate("AdminWindow", "\320\224\320\276\320\261\320\260\320\262\320\270\321\202\321\214", nullptr));
+        DepartmentBox->setItemText(0, QCoreApplication::translate("AdminWindow", "\320\222\321\213\320\261\320\265\321\200\320\270\321\202\320\265 \320\276\321\202\320\264\320\265\320\273\320\265\320\275\320\270\320\265", nullptr));
+        DepartmentBox->setItemText(1, QCoreApplication::translate("AdminWindow", "\320\236\321\207\320\275\320\276\320\265", nullptr));
+        DepartmentBox->setItemText(2, QCoreApplication::translate("AdminWindow", "\320\227\320\260\320\276\321\207\320\275\320\276\320\265", nullptr));
+
         RoleBox->setItemText(0, QCoreApplication::translate("AdminWindow", "\320\222\321\213\320\261\320\265\321\200\320\270\321\202\320\265 \321\200\320\276\320\273\321\214", nullptr));
         RoleBox->setItemText(1, QCoreApplication::translate("AdminWindow", "\320\220\320\264\320\274\320\270\320\275\320\270\321\201\321\202\321\200\320\260\321\202\320\276\321\200", nullptr));
         RoleBox->setItemText(2, QCoreApplication::translate("AdminWindow", "\320\234\320\265\321\202\320\276\320\264\320\270\321\201\321\202", nullptr));
         RoleBox->setItemText(3, QCoreApplication::translate("AdminWindow", "\320\241\320\273\321\203\321\210\320\260\321\202\320\265\320\273\321\214", nullptr));
         RoleBox->setItemText(4, QCoreApplication::translate("AdminWindow", "\320\237\321\200\320\265\320\277\320\276\320\264\320\260\320\262\320\260\321\202\320\265\320\273\321\214", nullptr));
 
+        label_5->setText(QCoreApplication::translate("AdminWindow", "\320\230\320\274\321\217", nullptr));
+        SpecializationButton->setText(QCoreApplication::translate("AdminWindow", "\320\241\320\277\320\265\321\206\320\270\320\260\320\273\320\270\320\267\320\260\321\206\320\270\321\217", nullptr));
+        label_7->setText(QCoreApplication::translate("AdminWindow", "\320\233\320\276\320\263\320\270\320\275", nullptr));
         label_13->setText(QCoreApplication::translate("AdminWindow", "\320\241\320\277\320\265\321\206\320\270\320\260\320\273\321\214\320\275\320\276\321\201\321\202\321\214", nullptr));
+        label_15->setText(QCoreApplication::translate("AdminWindow", "\320\236\321\202\320\264\320\265\320\273\320\265\320\275\320\270\320\265", nullptr));
+        label_6->setText(QCoreApplication::translate("AdminWindow", "\320\236\321\202\321\207\320\265\321\201\321\202\320\262\320\276", nullptr));
+        label_14->setText(QCoreApplication::translate("AdminWindow", "\320\223\321\200\321\203\320\277\320\277\320\260", nullptr));
+        label_11->setText(QCoreApplication::translate("AdminWindow", "\320\235\320\276\320\274\320\265\321\200 \321\202\320\265\320\273\320\265\321\204\320\276\320\275\320\260", nullptr));
         label_9->setText(QCoreApplication::translate("AdminWindow", "\320\240\320\276\320\273\321\214", nullptr));
-        DobavitBtn->setText(QCoreApplication::translate("AdminWindow", "\320\224\320\276\320\261\320\260\320\262\320\270\321\202\321\214", nullptr));
-        DepartmentBox->setItemText(0, QCoreApplication::translate("AdminWindow", "\320\222\321\213\320\261\320\265\321\200\320\270\321\202\320\265 \320\276\321\202\320\264\320\265\320\273\320\265\320\275\320\270\320\265", nullptr));
-        DepartmentBox->setItemText(1, QCoreApplication::translate("AdminWindow", "\320\236\321\207\320\275\320\276\320\265", nullptr));
-        DepartmentBox->setItemText(2, QCoreApplication::translate("AdminWindow", "\320\227\320\260\320\276\321\207\320\275\320\276\320\265", nullptr));
-
+        label_12->setText(QCoreApplication::translate("AdminWindow", "\320\241\321\202\320\260\320\266 \321\200\320\260\320\261\320\276\321\202\321\213", nullptr));
+        GroupButton->setText(QCoreApplication::translate("AdminWindow", "\320\223\321\200\321\203\320\277\320\277\320\260", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(AddUserTab), QCoreApplication::translate("AdminWindow", "\320\224\320\276\320\261\320\260\320\262\320\273\320\265\320\275\320\270\320\265 \320\277\320\276\320\273\321\214\320\267\320\276\320\262\320\260\321\202\320\265\320\273\321\217", nullptr));
     } // retranslateUi
 

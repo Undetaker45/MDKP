@@ -274,7 +274,7 @@ int User::convertStatusToInt(QString status){
     if(status == "Работает"){
         return Works;
     }
-    if(status == "Уволен"){
+    if(status == "Не работает"){
         return Fired;
     }
     return UnknownStatus;
@@ -283,7 +283,7 @@ int User::convertStatusToInt(QString status){
 QString User::convertStatusToString(int status){
     switch (status) {
     case Fired:
-        return QString("Уволен");
+        return QString("Не работает");
         break;
     case Works:
         return QString("Работает");

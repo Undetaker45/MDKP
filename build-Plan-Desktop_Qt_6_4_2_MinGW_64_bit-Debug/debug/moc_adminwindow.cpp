@@ -26,7 +26,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 namespace {
 struct qt_meta_stringdata_AdminWindow_t {
-    uint offsetsAndSizes[24];
+    uint offsetsAndSizes[32];
     char stringdata0[12];
     char stringdata1[26];
     char stringdata2[1];
@@ -39,6 +39,10 @@ struct qt_meta_stringdata_AdminWindow_t {
     char stringdata9[6];
     char stringdata10[5];
     char stringdata11[15];
+    char stringdata12[16];
+    char stringdata13[25];
+    char stringdata14[23];
+    char stringdata15[32];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_AdminWindow_t::offsetsAndSizes) + ofs), len 
@@ -55,7 +59,11 @@ Q_CONSTINIT static const qt_meta_stringdata_AdminWindow_t qt_meta_stringdata_Adm
         QT_MOC_LITERAL(147, 25),  // "slotRefreshUserInDatabase"
         QT_MOC_LITERAL(173, 5),  // "User&"
         QT_MOC_LITERAL(179, 4),  // "user"
-        QT_MOC_LITERAL(184, 14)   // "slotBlocedPole"
+        QT_MOC_LITERAL(184, 14),  // "slotBlocedPole"
+        QT_MOC_LITERAL(199, 15),  // "slotChangeGroup"
+        QT_MOC_LITERAL(215, 24),  // "slotChangeSpecialization"
+        QT_MOC_LITERAL(240, 22),  // "slotGroupButtonClicked"
+        QT_MOC_LITERAL(263, 31)   // "slotSpecializationButtonClicked"
     },
     "AdminWindow",
     "signalLogoutButtonClicked",
@@ -68,7 +76,11 @@ Q_CONSTINIT static const qt_meta_stringdata_AdminWindow_t qt_meta_stringdata_Adm
     "slotRefreshUserInDatabase",
     "User&",
     "user",
-    "slotBlocedPole"
+    "slotBlocedPole",
+    "slotChangeGroup",
+    "slotChangeSpecialization",
+    "slotGroupButtonClicked",
+    "slotSpecializationButtonClicked"
 };
 #undef QT_MOC_LITERAL
 } // unnamed namespace
@@ -79,7 +91,7 @@ Q_CONSTINIT static const uint qt_meta_data_AdminWindow[] = {
       10,       // revision
        0,       // classname
        0,    0, // classinfo
-       6,   14, // methods
+      10,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -87,14 +99,18 @@ Q_CONSTINIT static const uint qt_meta_data_AdminWindow[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   50,    2, 0x06,    1 /* Public */,
+       1,    0,   74,    2, 0x06,    1 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       3,    0,   51,    2, 0x0a,    2 /* Public */,
-       4,    1,   52,    2, 0x08,    3 /* Private */,
-       7,    0,   55,    2, 0x08,    5 /* Private */,
-       8,    1,   56,    2, 0x08,    6 /* Private */,
-      11,    1,   59,    2, 0x08,    8 /* Private */,
+       3,    0,   75,    2, 0x0a,    2 /* Public */,
+       4,    1,   76,    2, 0x08,    3 /* Private */,
+       7,    0,   79,    2, 0x08,    5 /* Private */,
+       8,    1,   80,    2, 0x08,    6 /* Private */,
+      11,    1,   83,    2, 0x08,    8 /* Private */,
+      12,    0,   86,    2, 0x08,   10 /* Private */,
+      13,    0,   87,    2, 0x08,   11 /* Private */,
+      14,    0,   88,    2, 0x08,   12 /* Private */,
+      15,    0,   89,    2, 0x08,   13 /* Private */,
 
  // signals: parameters
     QMetaType::Void,
@@ -105,6 +121,10 @@ Q_CONSTINIT static const uint qt_meta_data_AdminWindow[] = {
     QMetaType::Void,
     QMetaType::Void, 0x80000000 | 9,   10,
     QMetaType::Void, QMetaType::Int,    6,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -132,7 +152,15 @@ Q_CONSTINIT const QMetaObject AdminWindow::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<User &, std::false_type>,
         // method 'slotBlocedPole'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<int, std::false_type>
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        // method 'slotChangeGroup'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'slotChangeSpecialization'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'slotGroupButtonClicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'slotSpecializationButtonClicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
 } };
@@ -149,6 +177,10 @@ void AdminWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 3: _t->slotRegistrationButtonClicked(); break;
         case 4: _t->slotRefreshUserInDatabase((*reinterpret_cast< std::add_pointer_t<User&>>(_a[1]))); break;
         case 5: _t->slotBlocedPole((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 6: _t->slotChangeGroup(); break;
+        case 7: _t->slotChangeSpecialization(); break;
+        case 8: _t->slotGroupButtonClicked(); break;
+        case 9: _t->slotSpecializationButtonClicked(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -182,13 +214,13 @@ int AdminWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 6)
+        if (_id < 10)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 6;
+        _id -= 10;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 6)
+        if (_id < 10)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 6;
+        _id -= 10;
     }
     return _id;
 }

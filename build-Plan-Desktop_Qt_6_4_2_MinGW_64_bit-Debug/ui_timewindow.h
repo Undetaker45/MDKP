@@ -44,6 +44,8 @@ public:
         if (TimeWindow->objectName().isEmpty())
             TimeWindow->setObjectName("TimeWindow");
         TimeWindow->resize(371, 436);
+        TimeWindow->setMinimumSize(QSize(371, 436));
+        TimeWindow->setMaximumSize(QSize(371, 436));
         verticalLayout_2 = new QVBoxLayout(TimeWindow);
         verticalLayout_2->setObjectName("verticalLayout_2");
         verticalLayout = new QVBoxLayout();

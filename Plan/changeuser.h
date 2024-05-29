@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "user.h"
+#include <QMessageBox>
 
 namespace Ui {
 class ChangeUser;
@@ -17,10 +18,16 @@ public:
     ~ChangeUser();
 
     void setUserToChangeWidget(User user);
+    void change();
 
 private:
     Ui::ChangeUser *ui;
     User user;
+    QSqlQueryModel* groupModel;
+    QSqlQueryModel* specializationModel;
+    void createModelGroup();
+    void createModelSpecialization();
+    void CheckingFieldsEmpty();
 signals:
     void signalBackButtonCliked();
     void signalRefreshUser(User& user);

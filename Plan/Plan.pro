@@ -14,6 +14,7 @@ SOURCES += \
     adminwindow.cpp \
     changeuser.cpp \
     database.cpp \
+    groupwindow.cpp \
     lesson.cpp \
     listenerwindow.cpp \
     loginwindow.cpp \
@@ -21,6 +22,7 @@ SOURCES += \
     mainwindow.cpp \
     methodistwindow.cpp \
     settingswindow.cpp \
+    specializationwindow.cpp \
     teacherwindow.cpp \
     timewindow.cpp \
     user.cpp \
@@ -32,12 +34,14 @@ HEADERS += \
     adminwindow.h \
     changeuser.h \
     database.h \
+    groupwindow.h \
     lesson.h \
     listenerwindow.h \
     loginwindow.h \
     mainwindow.h \
     methodistwindow.h \
     settingswindow.h \
+    specializationwindow.h \
     teacherwindow.h \
     timewindow.h \
     user.h \
@@ -47,11 +51,12 @@ FORMS += \
     MethodistWindow.ui \
     adminwindow.ui \
     changeuser.ui \
+    groupwindow.ui \
     listenerwindow.ui \
     loginwindow.ui \
     mainwindow.ui \
     settingswindow.ui \
-    settingswindow1.ui \
+    specializationwindow.ui \
     teacherwindow.ui \
     timewindow.ui
 

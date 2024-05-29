@@ -3,6 +3,7 @@ release/abstractuserwindow.o
 release/adminwindow.o
 release/changeuser.o
 release/database.o
+release/groupwindow.o
 release/lesson.o
 release/listenerwindow.o
 release/loginwindow.o
@@ -10,6 +11,7 @@ release/main.o
 release/mainwindow.o
 release/methodistwindow.o
 release/settingswindow.o
+release/specializationwindow.o
 release/teacherwindow.o
 release/timewindow.o
 release/user.o
@@ -19,11 +21,13 @@ release/moc_abstractuserwindow.o
 release/moc_adminwindow.o
 release/moc_changeuser.o
 release/moc_database.o
+release/moc_groupwindow.o
 release/moc_listenerwindow.o
 release/moc_loginwindow.o
 release/moc_mainwindow.o
 release/moc_methodistwindow.o
 release/moc_settingswindow.o
+release/moc_specializationwindow.o
 release/moc_teacherwindow.o
 release/moc_timewindow.o
 release/moc_windownavigator.o

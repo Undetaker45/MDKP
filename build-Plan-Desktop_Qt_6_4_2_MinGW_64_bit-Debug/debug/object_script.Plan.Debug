@@ -3,6 +3,7 @@ debug/abstractuserwindow.o
 debug/adminwindow.o
 debug/changeuser.o
 debug/database.o
+debug/groupwindow.o
 debug/lesson.o
 debug/listenerwindow.o
 debug/loginwindow.o
@@ -10,6 +11,7 @@ debug/main.o
 debug/mainwindow.o
 debug/methodistwindow.o
 debug/settingswindow.o
+debug/specializationwindow.o
 debug/teacherwindow.o
 debug/timewindow.o
 debug/user.o
@@ -19,11 +21,13 @@ debug/moc_abstractuserwindow.o
 debug/moc_adminwindow.o
 debug/moc_changeuser.o
 debug/moc_database.o
+debug/moc_groupwindow.o
 debug/moc_listenerwindow.o
 debug/moc_loginwindow.o
 debug/moc_mainwindow.o
 debug/moc_methodistwindow.o
 debug/moc_settingswindow.o
+debug/moc_specializationwindow.o
 debug/moc_teacherwindow.o
 debug/moc_timewindow.o
 debug/moc_windownavigator.o

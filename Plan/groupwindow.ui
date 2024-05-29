@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>GroupWindow</class>
+ <widget class="QWidget" name="GroupWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>359</width>
+    <height>303</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>359</width>
+    <height>303</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>359</width>
+    <height>303</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_3">
+   <item>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
+       <string>Добавление</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <item>
+          <spacer name="verticalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::MinimumExpanding</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_2">
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>Группа</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="GroupEdit">
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label">
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>Специализация</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="SpecializaciaBox">
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="DButton">
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+font: 500 20pt &quot;Montserrat Medium&quot;;
+    background-color: #AC0808; 
+    color: white; 
+    border: none;
+    font-size: 20px;
+    border-radius: 5px; 
+}
+QPushButton:hover {
+    background-color: #C61010;
+}
+QPushButton:pressed {
+    background-color: #9C0707; 
+}</string>
+           </property>
+           <property name="text">
+            <string>Добавить</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_2">
+      <attribute name="title">
+       <string>Удаление</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_5">
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <item>
+          <spacer name="verticalSpacer_4">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_3">
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>Группа</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="GroupBox">
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="DeleteButton">
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+font: 500 20pt &quot;Montserrat Medium&quot;;
+    background-color: #AC0808; 
+    color: white; 
+    border: none;
+    font-size: 20px;
+    border-radius: 5px; 
+}
+QPushButton:hover {
+    background-color: #C61010;
+}
+QPushButton:pressed {
+    background-color: #9C0707; 
+}</string>
+           </property>
+           <property name="text">
+            <string>Удалить</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>SpecializaciaBox</tabstop>
+  <tabstop>DButton</tabstop>
+  <tabstop>DeleteButton</tabstop>
+  <tabstop>GroupBox</tabstop>
+  <tabstop>GroupEdit</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

@@ -4,6 +4,8 @@
 #include "abstractuserwindow.h"
 #include "changeuser.h"
 #include "database.h"
+#include "groupwindow.h"
+#include "specializationwindow.h"
 
 #include <QMainWindow>
 #include <QPushButton>
@@ -43,6 +45,12 @@ private:
     ChangeUser* changeUser;
     QStackedWidget* stackedWidgetUserManagement;
     Database* db;
+    QSqlQueryModel* groupModel;
+    QSqlQueryModel* specializationModel;
+    GroupWindow* groupwindow = new GroupWindow();
+    SpecializationWindow* specializationwindow = new SpecializationWindow();
+    void createModelGroup();
+    void createModelSpecialization();
     void fillProfile(const User& user);
     void ShowViewUsers();
     void ShowChangeUser();
@@ -59,6 +67,10 @@ private slots:
     void slotRegistrationButtonClicked();
     void slotRefreshUserInDatabase(User& user);
     void slotBlocedPole(int index);
+    void slotChangeGroup();
+    void slotChangeSpecialization();
+    void slotGroupButtonClicked();
+    void slotSpecializationButtonClicked();
 };
 
 #endif // ADMINWINDOW_H

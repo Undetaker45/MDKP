@@ -16,15 +16,6 @@
   <layout class="QHBoxLayout" name="horizontalLayout_3">
    <item>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="9" column="3">
-      <widget class="QLineEdit" name="Group">
-       <property name="font">
-        <font>
-         <pointsize>12</pointsize>
-        </font>
-       </property>
-      </widget>
-     </item>
      <item row="2" column="1">
       <widget class="QLineEdit" name="Surname">
        <property name="font">
@@ -509,7 +500,16 @@ QPushButton:pressed {
       </widget>
      </item>
      <item row="2" column="3">
-      <widget class="QLineEdit" name="Specializacia">
+      <widget class="QComboBox" name="SpecializationBox">
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="3">
+      <widget class="QComboBox" name="GroupBox">
        <property name="font">
         <font>
          <pointsize>12</pointsize>
