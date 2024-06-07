@@ -14,7 +14,7 @@ boundary "Домашнее окно\n метадиста" as bom
 boundary "Домашнее окно\n слушателя" as bos
 boundary "Домашнее окно\n преподавателя" as bop
 boundary "Домашнее окно\n администратора" as boa
-boundary "Окно ошибки" as bo2
+boundary "Окно ошибки" as bo2 #Red
 
 pl -down-> bo
 bo -up-> co : Нажата кнопка Войти 

@@ -18,6 +18,8 @@ entity Specialization{
 entity Groups{
     ** ID **
     ** Name **
+    ** ID_Specialization **
+    ** Department **
 }
 
 entity Teacher{
@@ -30,7 +32,6 @@ entity Teacher{
 
 entity Listener{
     ** ID **
-    ** Department **
     ** ID_Group **
     ** ID_User **
 }
@@ -60,6 +61,6 @@ Listener }|--|| Groups
 Lessons }|--|| Groups
 Lessons }|--|| Teacher
 Teacher }|--|| Specialization
-Listener }|--|| Specialization
+Groups }|--|| Specialization
 Lessons }|--|| Specialization
 @endstartuml

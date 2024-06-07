@@ -5,7 +5,7 @@ left to right direction
 actor "Методист " as fc
 
 usecase "Войти в систему" as UC1
-usecase "Составить программу обучения" as UC2
+usecase "Добавить группу на занятие" as UC2
 usecase "Просмотреть готовые занятия" as UC3
 usecase "Просмотреть кол-во учебных часов\n преподавателя с учебной группой" as UC4
 usecase "Просмотреть свой профиль" as UC5

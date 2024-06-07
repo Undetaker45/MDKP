@@ -2,15 +2,16 @@
 
 actor "Методист" as pl
 
-control "Открытие окна\n настройки" as co
+control "Отображение окна\n настройки" as co
 control "Проверка данных" as co1
 control "Запись данных" as co2
+control "Отображение вкладки \nПросмотр готовых занятий" as co3
 
 boundary "Окно настройки" as bo1
 boundary "Вкладка Просмотр готовых занятий" as bo
 
 entity "База данных" as en
-boundary "Окно ошибки" as err
+boundary "Окно ошибки" as err #Red
 
 pl --> bo
 bo --> co : Дважды кликнуто занятие
@@ -21,5 +22,7 @@ co1 --> err
 err -- pl
 co1 --> co2
 co2 --> en
+co2 --> co3
+co3 --> bo
 
 @enduml

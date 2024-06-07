@@ -2,7 +2,7 @@
 
 actor "Преподаватель\n или методист" as pl
 
-control "Открытие окна\n Время" as co
+control "Отображение окна\n Время" as co
 control "Обработка данных" as co2
 control "Выведение времени" as co3
 
