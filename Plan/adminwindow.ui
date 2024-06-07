@@ -359,12 +359,12 @@ QPushButton:pressed {
               </item>
               <item>
                <property name="text">
-                <string>Слушатель</string>
+                <string>Преподаватель</string>
                </property>
               </item>
               <item>
                <property name="text">
-                <string>Преподаватель</string>
+                <string>Слушатель</string>
                </property>
               </item>
              </widget>

@@ -231,15 +231,15 @@ void AdminWindow::slotBlocedPole(int index){
         ui->DepartmentBox->setEnabled(false);
         ui->NomberPhoneEdit->setReadOnly(true);
     }
-    else if(index == 4){
+    else if(index == 3){
         ui->SpecializationBox->setEnabled(true);
         ui->WorkEdit->setReadOnly(false);
         ui->NomberPhoneEdit->setReadOnly(false);
         ui->DepartmentBox->setEnabled(false);
         ui->GroupBox->setEnabled(false);
     }
-    else if(index == 3){
-        ui->SpecializationBox->setEnabled(true);
+    else if(index == 4){
+        ui->SpecializationBox->setEnabled(false);
         ui->WorkEdit->setReadOnly(true);
         ui->NomberPhoneEdit->setReadOnly(true);
         ui->DepartmentBox->setEnabled(true);

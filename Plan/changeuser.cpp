@@ -138,7 +138,7 @@ void ChangeUser::slotBlocedPole(int index){
         ui->GroupBox->setEnabled(false);
     }
     else if(index == 4){
-        ui->SpecializationBox->setEnabled(true);
+        ui->SpecializationBox->setEnabled(false);
         ui->WorkExperience->setReadOnly(true);
         ui->PhoneNumber->setReadOnly(true);
         ui->Otdelenie->setEnabled(true);
