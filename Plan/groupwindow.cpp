@@ -62,7 +62,8 @@ void GroupWindow::slotDButtonCliked(){
         throw std::runtime_error("Данная группа уже существует");
     }
     int Specialization = ui->SpecializaciaBox->currentIndex();
-    Database::AddGroup(Group, Specialization);
+    QString Department = ui->DepartmentBox->currentText();
+    Database::AddGroup(Group, Specialization, Department);
     ChangeGroup();
     ClearGroup();
     emit signalChangeGroup();
@@ -109,6 +110,7 @@ void GroupWindow::SetValidationOnCreateGroups(){
 void GroupWindow::ClearGroup(){
     ui->GroupBox->setCurrentIndex(0);
     ui->SpecializaciaBox->setCurrentIndex(0);
+    ui->DepartmentBox->setCurrentIndex(0);
     ui->GroupEdit->clear();
 }
 

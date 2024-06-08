@@ -69,7 +69,6 @@ void ChangeUser::setUserToChangeWidget(User user){
          ui->SpecializationBox->setCurrentIndex(0);
          ui->WorkExperience->setText("");
          ui->GroupBox->setCurrentIndex(0);
-         ui->Otdelenie->setCurrentIndex(0);
     }
     else if(role == 3){
         ui->PhoneNumber->setText(user.GetPhone());
@@ -78,8 +77,6 @@ void ChangeUser::setUserToChangeWidget(User user){
         ui->SpecializationBox->setCurrentText(Specializacia);
         ui->WorkExperience->setText(QString::number(user.GetWorkTime()));
         ui->GroupBox->setCurrentIndex(0);
-        QString DepartmentStr = User::convertDepartmentToString(user.GetDepartment());
-        ui->Otdelenie->setCurrentText(DepartmentStr);
     }
     else if(role == 4){
         ui->PhoneNumber->setText("");
@@ -88,8 +85,6 @@ void ChangeUser::setUserToChangeWidget(User user){
         QString Specializacia = user.convertIdSpecializationToString(Id_Specialization);
         ui->SpecializationBox->setCurrentText(Specializacia);
         ui->GroupBox->setCurrentText(user.convertIdGroupToString(user.GetIdGroup()));
-        QString DepartmentStr = User::convertDepartmentToString(user.GetDepartment());
-        ui->Otdelenie->setCurrentText(DepartmentStr);
     }
 }
 
@@ -117,8 +112,6 @@ void ChangeUser::slotConfirmButtonClicked(){
     changeUser.SetIsWork(status);
     changeUser.SetLogin(ui->Login->text());
     changeUser.SetPassword(ui->Password->text());
-    int Department = User::convertDepartmentToInt(ui->Otdelenie->currentText());
-    changeUser.SetDepartment(Department);
     emit signalRefreshUser(changeUser);
 }
 
@@ -127,21 +120,18 @@ void ChangeUser::slotBlocedPole(int index){
         ui->SpecializationBox->setEnabled(false);
         ui->GroupBox->setEnabled(false);
         ui->WorkExperience->setReadOnly(true);
-        ui->Otdelenie->setEnabled(false);
         ui->PhoneNumber->setReadOnly(true);
     }
     else if(index == 3){
         ui->SpecializationBox->setEnabled(true);
         ui->WorkExperience->setReadOnly(false);
         ui->PhoneNumber->setReadOnly(false);
-        ui->Otdelenie->setEnabled(false);
         ui->GroupBox->setEnabled(false);
     }
     else if(index == 4){
-        ui->SpecializationBox->setEnabled(false);
+        ui->SpecializationBox->setEnabled(true);
         ui->WorkExperience->setReadOnly(true);
         ui->PhoneNumber->setReadOnly(true);
-        ui->Otdelenie->setEnabled(true);
         ui->GroupBox->setEnabled(true);
     }
 }

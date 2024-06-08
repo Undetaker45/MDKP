@@ -23,10 +23,10 @@ public:
     static int SearchSpecialization(QString Specialization);
     static int SearchGroup(QString Group);
     static int AddSpecialization(QString Specialization);
-    static int AddGroup(QString Group, int ID_Specialization);
+    static int AddGroup(QString Group, int ID_Specialization, QString Department);
     static void DeleteGroup(QString Group);
     static void DeleteSpecialization(QString Specialization);
-    void RegisterUser(QString Surname, QString Name, QString MidleName, QString Specialization, QString Phone, QString WorkTime, QString Department, QString Group, QString Login, QString Password, QString Role);
+    void RegisterUser(QString Surname, QString Name, QString MidleName, QString Specialization, QString Phone, QString WorkTime, QString Group, QString Login, QString Password, QString Role);
     void RefreshUserById(User user);
     void AddLesson(Lesson lesson);
     void RefreshLessonById(Lesson lesson);

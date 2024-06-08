@@ -53,30 +53,6 @@
        </property>
       </widget>
      </item>
-     <item row="11" column="3">
-      <widget class="QComboBox" name="Otdelenie">
-       <property name="font">
-        <font>
-         <pointsize>12</pointsize>
-        </font>
-       </property>
-       <item>
-        <property name="text">
-         <string>Выберите отделение</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Очное</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Заочное</string>
-        </property>
-       </item>
-      </widget>
-     </item>
      <item row="8" column="3">
       <widget class="QLabel" name="label_12">
        <property name="font">
@@ -166,40 +142,6 @@
        </property>
       </widget>
      </item>
-     <item row="13" column="3">
-      <widget class="QComboBox" name="Role">
-       <property name="font">
-        <font>
-         <pointsize>12</pointsize>
-        </font>
-       </property>
-       <item>
-        <property name="text">
-         <string>Выберите роль</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Администратор</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Методист</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Преподаватель</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Слушатель</string>
-        </property>
-       </item>
-      </widget>
-     </item>
      <item row="11" column="1">
       <widget class="QLineEdit" name="Password">
        <property name="font">
@@ -218,18 +160,6 @@
        </property>
        <property name="text">
         <string>Фамилия</string>
-       </property>
-      </widget>
-     </item>
-     <item row="12" column="3">
-      <widget class="QLabel" name="label_11">
-       <property name="font">
-        <font>
-         <pointsize>12</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>Роль</string>
        </property>
       </widget>
      </item>
@@ -393,18 +323,6 @@ QPushButton:pressed {
        </property>
       </widget>
      </item>
-     <item row="10" column="3">
-      <widget class="QLabel" name="label_10">
-       <property name="font">
-        <font>
-         <pointsize>12</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>Отделение</string>
-       </property>
-      </widget>
-     </item>
      <item row="8" column="1">
       <widget class="QLabel" name="label_4">
        <property name="font">
@@ -423,6 +341,9 @@ QPushButton:pressed {
         <font>
          <pointsize>12</pointsize>
         </font>
+       </property>
+       <property name="text">
+        <string/>
        </property>
       </widget>
      </item>
@@ -515,6 +436,52 @@ QPushButton:pressed {
          <pointsize>12</pointsize>
         </font>
        </property>
+      </widget>
+     </item>
+     <item row="10" column="3">
+      <widget class="QLabel" name="label_11">
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Роль</string>
+       </property>
+      </widget>
+     </item>
+     <item row="11" column="3">
+      <widget class="QComboBox" name="Role">
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <item>
+        <property name="text">
+         <string>Выберите роль</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Администратор</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Методист</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Преподаватель</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Слушатель</string>
+        </property>
+       </item>
       </widget>
      </item>
     </layout>

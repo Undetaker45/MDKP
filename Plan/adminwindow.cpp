@@ -135,10 +135,9 @@ void AdminWindow::slotRegistrationButtonClicked(){
     QString WorkTime = ui->WorkEdit->text();
     QString Login = ui->LoginEdit->text();
     QString Password = ui->PasswordEdit->text();
-    QString Department = ui->DepartmentBox->currentText();
 
     try {
-        db->RegisterUser(Surname,Name,MiddleName,Specialnost,Phone,WorkTime,Department,Group,Login,Password, Role);
+        db->RegisterUser(Surname,Name,MiddleName,Specialnost,Phone,WorkTime,Group,Login,Password, Role);
     } catch (const std::runtime_error& err) {
         QMessageBox::critical(this,"Ошибка",err.what());
         return;
@@ -174,7 +173,6 @@ void AdminWindow::ClearDataRegistrationUserWidget(){
     ui->GroupBox->setCurrentIndex(0);
     ui->SpecializationBox->setCurrentIndex(0);
     ui->WorkEdit->clear();
-    ui->DepartmentBox->setCurrentIndex(0);
     ui->LoginEdit->clear();
     ui->PasswordEdit->clear();
     ui->RoleBox->setCurrentIndex(0);
@@ -228,21 +226,18 @@ void AdminWindow::slotBlocedPole(int index){
         ui->SpecializationBox->setEnabled(false);
         ui->GroupBox->setEnabled(false);
         ui->WorkEdit->setReadOnly(true);
-        ui->DepartmentBox->setEnabled(false);
         ui->NomberPhoneEdit->setReadOnly(true);
     }
-    else if(index == 3){
+    else if(index == 4){
         ui->SpecializationBox->setEnabled(true);
         ui->WorkEdit->setReadOnly(false);
         ui->NomberPhoneEdit->setReadOnly(false);
-        ui->DepartmentBox->setEnabled(false);
         ui->GroupBox->setEnabled(false);
     }
-    else if(index == 4){
-        ui->SpecializationBox->setEnabled(false);
+    else if(index == 3){
+        ui->SpecializationBox->setEnabled(true);
         ui->WorkEdit->setReadOnly(true);
         ui->NomberPhoneEdit->setReadOnly(true);
-        ui->DepartmentBox->setEnabled(true);
         ui->GroupBox->setEnabled(true);
     }
 }

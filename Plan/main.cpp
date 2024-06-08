@@ -20,8 +20,8 @@ int main(int argc, char *argv[])
     Database* db = new Database();
     db->SetSqlDatabase(sdb);
     db->CreateTables();
-    db->InsertAdminAndSmallTestData();
-    //db->InsertTestData();
+    //db->InsertAdminAndSmallTestData();
+    db->InsertTestData();
 
     WindowNavigator navigator(db);
     return a.exec();

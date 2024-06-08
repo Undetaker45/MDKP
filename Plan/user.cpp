@@ -130,7 +130,7 @@ void User::operator << (QSqlQuery& query){
         break;
     case(4):
         id_specialization = query.value("Groups.ID_Specialization").toString().toInt();
-        Department = convertDepartmentToInt(query.value("Listener.Department").toString());
+        Department = convertDepartmentToInt(query.value("Groups.Department").toString());
         department = Department;
         id_group = query.value("Listener.ID_Group").toString().toInt();
         break;

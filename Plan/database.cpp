@@ -50,7 +50,6 @@ void  Database::CreateTables(){
 
     str_query = "CREATE TABLE if not exists Listener ("
                     "ID INTEGER PRIMARY KEY NOT NULL, "
-                    "Department NVARCHAR(20) NOT NULL, "
                     "ID_Group INTEGER NOT NULL, "
                     "ID_User INTEGER NOT NULL, "
                     "FOREIGN KEY (ID_Group) REFERENCES Groups(ID), "
@@ -79,6 +78,7 @@ void  Database::CreateTables(){
                 "ID INTEGER PRIMARY KEY NOT NULL, "
                 "Name NVARCHAR(20) NOT NULL, "
                 "ID_Specialization INTEGER NOT NULL, "
+                "Department NVARCHAR(20) NOT NULL,"
                 "FOREIGN KEY (ID_Specialization) REFERENCES Specialization(ID));";
     queryResult = query.exec(str_query);
     if(!queryResult){
@@ -147,15 +147,15 @@ void Database::InsertTestData(){
             qDebug() << "Не удаётся вставить данные";
             qDebug() << query.lastError();
         }
-        str_query = "INSERT INTO Groups (Name, ID_Specialization) VALUES "
-                    "('КИ22-06Б', 1);";
+        str_query = "INSERT INTO Groups (Name, Department ,ID_Specialization) VALUES "
+                    "('КИ22-06Б', 'Очное', 1);";
         queryResult = query.exec(str_query);
         if(!queryResult){
             qDebug() << "Не удаётся вставить данные";
             qDebug() << query.lastError();
         }
-        str_query = "INSERT INTO Listener (Department, ID_Group, ID_User) VALUES "
-                    "('Очное', 1, 3);";
+        str_query = "INSERT INTO Listener (ID_Group, ID_User) VALUES "
+                    "(1, 3);";
         queryResult = query.exec(str_query);
         if(!queryResult){
             qDebug() << "Не удаётся вставить данные";
@@ -360,7 +360,7 @@ int Database::AddSpecialization(QString Specialization){
     int ID_Specialization = SearchSpecialization(Specialization);
     return ID_Specialization;
 }
-int Database::AddGroup(QString Group, int ID_Specialization){
+int Database::AddGroup(QString Group, int ID_Specialization, QString Department){
     QSqlQuery query;
     bool queryResult;
     query.prepare("SELECT * "
@@ -376,9 +376,10 @@ int Database::AddGroup(QString Group, int ID_Specialization){
     if(query.next() && !query.value(0).isNull()){
         throw std::runtime_error("Данное имя уже используется.");
     }
-    query.prepare("INSERT INTO Groups (Name, ID_Specialization) VALUES"
-                  "(:name, :id_specialization)");
+    query.prepare("INSERT INTO Groups (Name, Department ,ID_Specialization) VALUES"
+                  "(:name, :department ,:id_specialization)");
     query.bindValue(":name", Group);
+    query.bindValue(":department", Department);
     query.bindValue(":id_specialization", ID_Specialization);
     queryResult = query.exec();
 
@@ -454,7 +455,7 @@ void Database::DeleteSpecialization(QString Specialization){
     }
 }
 
-void Database::RegisterUser(QString Surname, QString Name, QString MiddleName, QString Specialization, QString Phone, QString WorkTime, QString Department, QString Group, QString Login, QString Password, QString Role){
+void Database::RegisterUser(QString Surname, QString Name, QString MiddleName, QString Specialization, QString Phone, QString WorkTime, QString Group, QString Login, QString Password, QString Role){
     QSqlQuery query;
     QString str_query;
     int ID_User;
@@ -561,9 +562,8 @@ void Database::RegisterUser(QString Surname, QString Name, QString MiddleName, Q
             throw std::runtime_error("Не удалось выполнить запрос.");
         }
 
-        query.prepare("INSERT INTO Listener (Department, ID_Group, ID_User) VALUES "
-                      "(:department, :id_group, :id_user);");
-        query.bindValue(":department", Department);
+        query.prepare("INSERT INTO Listener (ID_Group, ID_User) VALUES "
+                      "(:id_group, :id_user);");
         query.bindValue(":id_group", ID_Group);
         query.bindValue(":id_user", ID_User);
         queryResult = query.exec();
@@ -865,11 +865,9 @@ void Database::RefreshUserById(User user){
             }
 
             query.prepare("UPDATE Listener "
-                          "SET Department = :department, "
-                          "    ID_Group = :id_group "
+                          "SET ID_Group = :id_group "
                           "WHERE ID_User = :id;");
             query.bindValue(":id_specialization", user.GetIdSpecialization());
-            query.bindValue(":department", user.convertDepartmentToString(user.GetDepartment()));
             query.bindValue(":id_group", user.GetIdGroup());
             query.bindValue(":id", user.GetId());
             queryResult = query.exec();
@@ -932,9 +930,8 @@ void Database::RefreshUserById(User user){
                 throw std::runtime_error("Не удалось выполнить запрос.");
             }
 
-            query.prepare("INSERT INTO Listener (Department, ID_Group, ID_User) VALUES "
-                          "(:department, :id_group, :id_user);");
-            query.bindValue(":department", user.convertDepartmentToString(user.GetDepartment()));
+            query.prepare("INSERT INTO Listener (ID_Group, ID_User) VALUES "
+                          "(:id_group, :id_user);");
             query.bindValue(":id_group", user.GetIdGroup());
             query.bindValue(":id_user", user.GetId());
             queryResult = query.exec();
